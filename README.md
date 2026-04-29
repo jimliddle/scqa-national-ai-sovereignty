@@ -1,2 +1,2 @@
 # scqa-national-ai-sovereignty
-An SQCA of national AI sovereignty
+An SCQA of national AI sovereignty
