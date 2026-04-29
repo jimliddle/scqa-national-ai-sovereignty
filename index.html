@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National AI Strategies Dashboard</title>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Scrollbars and Enhancements -->
+    <style>
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #f1f5f9; /* slate-100 */
+        }
+        /* Custom Scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        .glass-panel {
+            background-color: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(30, 41, 59, 0.8);
+        }
+    </style>
+
+    <!-- CORE TECH STACK (Exact Order Required) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+    <script crossorigin src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="antialiased min-h-screen selection:bg-blue-900 selection:text-blue-100">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // 1. GLOBAL DESTRUCTURING
+        const { useState, useMemo, useEffect } = React;
+        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ReferenceLine, ScatterChart, Scatter, ZAxis } = window.Recharts;
+
+        // 2. CONSTANTS & DATA
+        const TABS = [
+          { id: 'scqa',       label: 'SCQA Summary' },
+          { id: 'timeline',   label: 'Timeline' },
+          { id: 'sovereign',  label: 'Sovereign AI' },
+          { id: 'scorer',     label: 'Posture Scorer' },
+          { id: 'heatmap',    label: 'Strategic Heatmap' },
+          { id: 'inventory',  label: 'Inventory' },
+          { id: 'archetypes', label: 'Archetypes' },
+        ];
+
+        const SOVEREIGN_DATA = [
+          {
+            country: 'China', flag: 'CN',
+            compute: 9, model: 10, data: 10,
+            chipLevel: true,
+            computeNotes: 'Huawei Ascend chip ecosystem maturing. 600,000 Ascend 910C units planned. Domestic data centers at scale. Export controls acted as a forcing function - accelerating, not blocking.',
+            modelNotes: 'DeepSeek (V3, R1, V4 pending), Qwen (Alibaba), ERNIE (Baidu), MiniMax, Kimi - full domestic frontier model ecosystem. Chinese models surpassed US in global token volume (Feb 2026).',
+            dataNotes: 'Cybersecurity Law, Personal Information Protection Law, and Generative AI Regulations enforce strict data localization. Training data stays domestic by legal requirement.',
+            nvidiaPartnered: false,
+            tier: 'Full-stack sovereign',
+            tierColor: '#059669',
+          },
+          {
+            country: 'European Union', flag: 'EU',
+            compute: 6, model: 6, data: 10,
+            chipLevel: false,
+            computeNotes: '13 AI Factory hubs under the AI Factories Initiative. Backed by Horizon Europe funding. Compute gap vs US/China is the structural weakness - EU spends billions where the US spends hundreds of billions.',
+            modelNotes: 'Mistral AI (France) is the strongest EU contender. OpenEuro LLM is early-stage institutional work. No single EU-level frontier model at scale yet.',
+            dataNotes: 'GDPR is the world\'s strictest data governance regime. AI Act adds mandatory training data transparency, copyright compliance, and incident reporting for GPAI models. Enforcement with fines from Aug 2026.',
+            nvidiaPartnered: true,
+            tier: 'Data sovereign only',
+            tierColor: '#7c3aed',
+          },
+          {
+            country: 'United States', flag: 'US',
+            compute: 10, model: 10, data: 4,
+            chipLevel: true,
+            computeNotes: 'Stargate (7GW planned, Abilene operational), hyperscaler clusters at scale (AWS, Azure, GCP), CHIPS Act driving domestic fabrication. Most advanced compute infrastructure globally.',
+            modelNotes: 'OpenAI GPT-5, Anthropic Claude, Google Gemini, Meta Llama - the frontier is dominated by US private sector. Not "national" models but culturally and linguistically US-centric by default.',
+            dataNotes: 'No federal data localization law. US CLOUD Act allows government access to data held by US companies regardless of where it is stored - this is why other nations pursue data sovereignty away from US hyperscalers.',
+            nvidiaPartnered: true,
+            tier: 'Compute and model sovereign',
+            tierColor: '#2563eb',
+          },
+          {
+            country: 'United Arab Emirates', flag: 'AE',
+            compute: 8, model: 9, data: 6,
+            chipLevel: false,
+            computeNotes: 'G42 5GW AI campus in Abu Dhabi (confirmed, UAE Stargate operational 2026). MGX investing globally in AI infrastructure. Strong private-public model using sovereign wealth fund capital.',
+            modelNotes: 'Falcon family (TII): Falcon-H1, Falcon-H1-Arabic (leads Open Arabic LLM Leaderboard), Falcon Perception (multimodal), Falcon-Edge (1.58-bit). Most prolific open-source sovereign model program per capita globally.',
+            dataNotes: 'UAE Personal Data Protection Law (PDPL) active. Hosting US tech (OpenAI, Microsoft, Google) creates structural data sovereignty tension - data center on UAE soil but governed by US company terms.',
+            nvidiaPartnered: true,
+            tier: 'Compute and model sovereign',
+            tierColor: '#2563eb',
+          },
+          {
+            country: 'India', flag: 'IN',
+            compute: 6, model: 7, data: 7,
+            chipLevel: false,
+            computeNotes: '38,000+ GPUs deployed publicly at Rs65/hour (world\'s cheapest). Target 100,000 by end 2026. $200-270B in infrastructure commitments at Feb 2026 summit. Yotta Shakti Cloud: 20,736 NVIDIA Blackwell Ultra GPUs by Aug 2026. Uses NVIDIA silicon throughout - not chip-sovereign.',
+            modelNotes: 'Sarvam AI: 120B-parameter sovereign LLM (selected April 2025). BharatGen foundation models. 43 LLM proposals funded under IndiaAI Mission. Bhashini: 350+ speech/translation models across 22 official languages. Strongest inclusion-focused model program globally.',
+            dataNotes: 'Digital Personal Data Protection Act (DPDP) 2023 enacted. Data localization provisions for sensitive data. IndiaAIKosh: 5,722 national datasets curated. Push to ensure sovereign models train on Indian data, not just Western corpora.',
+            nvidiaPartnered: true,
+            tier: 'Model and data sovereign (compute growing)',
+            tierColor: '#059669',
+          },
+          {
+            country: 'Singapore', flag: 'SG',
+            compute: 6, model: 8, data: 8,
+            chipLevel: false,
+            computeNotes: 'National Supercomputing Centre (NSCC) as backbone. SGD$70M National Multimodal LLM Programme compute allocation. Regional AI hub ambition - hosts hyperscaler APAC infrastructure. Punches above weight given size.',
+            modelNotes: 'SEA-LION v4 (13+ SEA languages, multimodal). SEA-Guard (safety layer, Feb 2026). SEA-LION-Embedding suite (March 2026). MERaLiON (empathetic, A*STAR). Two distinct national models with complementary roles.',
+            dataNotes: 'Personal Data Protection Act (PDPA) with strong enforcement. IMDA AI Governance Model Framework for Agentic AI (2026). World\'s first multicultural multilingual AI safety red-teaming exercise (2024, expanded 2026). Model AI governance exported regionally.',
+            nvidiaPartnered: true,
+            tier: 'Model and data sovereign',
+            tierColor: '#0891b2',
+          },
+          {
+            country: 'France', flag: 'FR',
+            compute: 6, model: 8, data: 8,
+            chipLevel: false,
+            computeNotes: 'Scaleway (iliad Group) building Europe\'s most powerful cloud-native AI supercomputer. NVIDIA Blackwell partnership confirmed. Participation in EU AI Factories. Industrial AI Cloud (Deutsche Telekom/NVIDIA) includes French deployments.',
+            modelNotes: 'Mistral AI is Europe\'s strongest private AI contender. Open-weight models (Mistral 7B, Mixtral, Mistral Large). G42-Mistral strategic partnership spans open-weight models, infrastructure, and applied AI across Middle East, Europe, and Global South.',
+            dataNotes: 'GDPR enforcement via CNIL (one of EU\'s most active regulators). EU AI Act data transparency requirements. France has historically led on digital sovereignty within EU - "nuage souverain" (sovereign cloud) a long-standing policy priority.',
+            nvidiaPartnered: true,
+            tier: 'Model and data sovereign',
+            tierColor: '#0891b2',
+          },
+          {
+            country: 'United Kingdom', flag: 'GB',
+            compute: 6, model: 5, data: 7,
+            chipLevel: false,
+            computeNotes: 'Isambard-AI (Bristol, July 2025). Cambridge DAWN sixfold expansion (Jan 2026). Five AI Growth Zones designated. Stargate UK paused (April 9 2026) - energy costs and regulatory uncertainty. Compute target: 21 ExaFLOPs (2025) to 420 ExaFLOPs by 2030.',
+            modelNotes: 'No clear national foundation model. DeepMind (Google-owned) is UK-headquartered but not a national model. Wayve (autonomous driving). Strong research output but commercial model sovereignty lags France and UAE.',
+            dataNotes: 'UK GDPR (retained post-Brexit). Post-Brexit regulatory flexibility - UK is exploring lighter-touch AI regulation as a competitive differentiator vs EU AI Act. Copyright reform for AI training stalled (creative sector opposition, March 2026).',
+            nvidiaPartnered: true,
+            tier: 'Compute ambition, model gap',
+            tierColor: '#d97706',
+          },
+          {
+            country: 'Japan', flag: 'JP',
+            compute: 7, model: 5, data: 7,
+            chipLevel: false,
+            computeNotes: 'FugakuNEXT supercomputer (NVIDIA partnership). Strong semiconductor manufacturing (Renesas, Sony IMX). NVIDIA collaboration on AI supercomputers confirmed. G7 Hiroshima AI Process shaped global voluntary governance standards.',
+            modelNotes: 'Some domestic LLM activity but no globally prominent national model. Strong in physical AI, robotics, and semiconductor - less prominent in foundation LLM. NEC, Fujitsu, SoftBank have internal model programs.',
+            dataNotes: 'Act on Protection of Personal Information (APPI) with 2022 amendments strengthening data rights. Japan is active in G7 AI governance. Human-centric AI framing emphasises privacy and dignity over raw capability.',
+            nvidiaPartnered: true,
+            tier: 'Compute sovereign, model developing',
+            tierColor: '#d97706',
+          },
+          {
+            country: 'Canada', flag: 'CA',
+            compute: 5, model: 6, data: 7,
+            chipLevel: false,
+            computeNotes: 'TELUS: first North American NVIDIA Cloud Partner, sovereign AI factory in Quebec (99% renewable). Modest national compute vs US/China scale. CAD$2.4B Phase 2 allocation spread across research institutes.',
+            modelNotes: 'Cohere (enterprise LLMs, Toronto-based) is strongest commercial contender. CIFAR-backed foundational research (Hinton lineage). Brain drain to US continues - talent pipeline does not translate to national model programs at scale.',
+            dataNotes: 'PIPEDA (Personal Information Protection and Electronic Documents Act) and provincial laws (Quebec Law 25). AI and Data Act proposed under Bill C-27 - not yet in force. Considered measured and research-grounded in governance approach.',
+            nvidiaPartnered: true,
+            tier: 'Research sovereign, deployment gap',
+            tierColor: '#6366f1',
+          },
+          {
+            country: 'Saudi Arabia', flag: 'SA',
+            compute: 6, model: 3, data: 5,
+            chipLevel: false,
+            computeNotes: 'HUMAIN (PIF subsidiary) + NVIDIA partnership to build AI factories. NEOM pivot to data centers (Oxagon, $5B DataVolt deal). Coastal location (seawater cooling) being repositioned as AI infrastructure asset. Oil price decline constraining overall fiscal capacity.',
+            modelNotes: 'Nascent. HUMAIN only launched in early 2026. KAUST research base. No public frontier model. Strategy is to host US models (OpenAI via NEOM data centers) rather than train sovereign ones - near-term pragmatism over long-term sovereignty.',
+            dataNotes: 'Personal Data Protection Law (PDPL) enacted but enforcement is developing. NEOM data center pivot means Saudi Arabia may host US model infrastructure rather than control training data. Sovereignty is compute-hosting, not data-controlling.',
+            nvidiaPartnered: true,
+            tier: 'Compute hosting, model nascent',
+            tierColor: '#94a3b8',
+          },
+        ];
+
+        const NVIDIA_DEPLOYMENTS = [
+          { country: 'South Korea', gpus: 260000, year: 2025, partners: 'Samsung, SK Group, Hyundai, NAVER, MSIT', notes: 'Largest single national NVIDIA deployment announced to date. APEC Summit Nov 2025.' },
+          { country: 'UAE', gpus: null, year: 2025, partners: 'G42, OpenAI, Oracle, SoftBank, Cisco', notes: 'UAE Stargate: 5GW campus. Grace Blackwell GB300 systems. Operational 2026.' },
+          { country: 'India', gpus: 38000, year: 2025, partners: 'Yotta, L&T, E2E Networks, Locuz, Sify', notes: '38K+ public GPUs. Yotta adding 20,736 Blackwell Ultra GPUs by Aug 2026. Target 100K by end 2026.' },
+          { country: 'Germany', gpus: null, year: 2026, partners: 'Deutsche Telekom, SAP, Perplexity', notes: 'World\'s first Industrial AI Cloud. Live early 2026. Tens of thousands of NVIDIA GPUs.' },
+          { country: 'United Kingdom', gpus: 60000, year: 2025, partners: 'Nscale, OpenAI (paused)', notes: '60K GPUs being established. Stargate UK paused April 2026 - energy and regulation.' },
+          { country: 'Italy', gpus: null, year: 2025, partners: 'Fastweb (Swisscom), government', notes: 'Sovereign AI infrastructure collaboration with government, academia, and industry.' },
+          { country: 'France', gpus: null, year: 2025, partners: 'Scaleway (iliad), Mistral AI', notes: 'Europe\'s most powerful cloud-native AI supercomputer. 1,016 H100 GPUs in DGX SuperPOD.' },
+          { country: 'Saudi Arabia', gpus: null, year: 2026, partners: 'HUMAIN (PIF)', notes: 'AI factories partnership announced. HUMAIN is PIF\'s new AI and data center subsidiary.' },
+          { country: 'Canada', gpus: null, year: 2025, partners: 'TELUS', notes: 'First North American NVIDIA Cloud Partner. Sovereign AI factory in Quebec, powered by 99% renewables.' },
+          { country: 'Japan', gpus: null, year: 2025, partners: 'Government, NEC, Fujitsu', notes: 'FugakuNEXT collaboration. Part of G7 AI infrastructure buildout.' },
+          { country: 'Indonesia', gpus: null, year: 2024, partners: 'Indosat Ooredoo Hutchison', notes: 'Sahabat-AI: first telco-led sovereign AI platform for 270M users, built on SEA-LION.' },
+          { country: 'Norway', gpus: 100000, year: 2025, partners: 'Telenor, Nscale', notes: 'Stargate Norway: 100,000 GPU AI factory. Telenor building Norway\'s first AI factory.' },
+        ];
+
+        const INITIATIVES = [
+          {
+            country: 'United States', flag: '🇺🇸',
+            initiative: 'Stargate Project',
+            archetype: 'Infrastructure-led', region: 'Americas', year: 2025,
+            investment: 500, investmentUnit: '$B private committed',
+            status: 'Active - partial delays',
+            statusColor: 'amber',
+            verifiedNotes: 'Announced Jan 21 2025. 7+ GW planned capacity confirmed Sept 2025. $400B+ committed. Abilene TX flagship operational with NVIDIA GB200 racks. Five US sites confirmed. Custom chip "Titan" (Broadcom/TSMC 3nm) targeting H2 2026. UK leg paused April 9 2026 over energy costs and regulatory uncertainty. All-in cost estimates now approach $850B when operational costs included.',
+            infra: 10, regulation: 3, sovereignty: 7, openness: 5, speed: 9, talent: 9,
+          },
+          {
+            country: 'United States', flag: '🇺🇸',
+            initiative: 'CHIPS and Science Act',
+            archetype: 'Infrastructure-led', region: 'Americas', year: 2022,
+            investment: 52, investmentUnit: '$B public',
+            status: 'Active - fabs under construction',
+            statusColor: 'teal',
+            verifiedNotes: '$52.7B for domestic semiconductor fabrication. TSMC Arizona, Samsung Texas, Intel Ohio fabs under construction. Export controls restricting China access to H100, A100, B200 - a direct instrument of US AI strategy. China reportedly tripling domestic advanced chip output in 2026 but still well behind NVIDIA volumes.',
+            infra: 9, regulation: 4, sovereignty: 8, openness: 5, speed: 7, talent: 8,
+          },
+          {
+            country: 'European Union', flag: '🇪🇺',
+            initiative: 'AI Factories Initiative',
+            archetype: 'Regulation-led', region: 'Europe', year: 2024,
+            investment: 4, investmentUnit: '€B public',
+            status: 'Active - 13 hubs designated',
+            statusColor: 'teal',
+            verifiedNotes: '13 regional supercomputing hubs across member states, backed by Horizon Europe. Designed to give EU researchers and startups access to frontier compute without dependency on US hyperscalers. Compute gap vs Stargate ($500B) remains the primary structural weakness of European AI strategy.',
+            infra: 7, regulation: 9, sovereignty: 8, openness: 8, speed: 5, talent: 7,
+          },
+          {
+            country: 'European Union', flag: '🇪🇺',
+            initiative: 'EU AI Act',
+            archetype: 'Regulation-led', region: 'Europe', year: 2024,
+            investment: 0, investmentUnit: 'Regulatory instrument',
+            status: 'Phased - fines from Aug 2 2026',
+            statusColor: 'amber',
+            verifiedNotes: 'Entered force Aug 1 2024. Prohibited AI practices: Feb 2025 done. GPAI obligations (transparency, copyright, incident reporting): Aug 2 2025 done. GPAI enforcement with fines: Aug 2 2026. High-risk systems: Aug 2026 general, Aug 2027 legacy. Commission proposed simplification package in 2026. GPAI Code of Practice published July 2025 - voluntary compliance tool.',
+            infra: 3, regulation: 10, sovereignty: 9, openness: 9, speed: 4, talent: 6,
+          },
+          {
+            country: 'European Union', flag: '🇪🇺',
+            initiative: 'OpenEuro LLM',
+            archetype: 'Sovereignty-led', region: 'Europe', year: 2024,
+            investment: 1, investmentUnit: '€B public (est.)',
+            status: 'Early stage',
+            statusColor: 'slate',
+            verifiedNotes: 'Open-source multilingual foundation model covering EU languages, positioned as a sovereign alternative to US and Chinese models. Mistral AI (France) remains the strongest European private-sector contender. G42 and Mistral announced a strategic partnership in 2025 spanning open-weight models and infrastructure.',
+            infra: 5, regulation: 8, sovereignty: 9, openness: 10, speed: 4, talent: 7,
+          },
+          {
+            country: 'China', flag: '🇨🇳',
+            initiative: 'New Generation AI Development Plan',
+            archetype: 'Sovereignty-led', region: 'Asia-Pacific', year: 2017,
+            investment: 150, investmentUnit: '$B public (est.)',
+            status: 'Accelerating - domestic stack maturing',
+            statusColor: 'teal',
+            verifiedNotes: 'DeepSeek R1 (Jan 2025) shocked global markets. DeepSeek V4 delayed as of April 2026 - being adapted to Huawei Ascend chips (requiring substantial re-engineering). Chinese model weekly token consumption on OpenRouter surpassed US in Feb 2026. 34% of job functions at Chinese companies fully AI-integrated (vs 30% globally). Huawei plans ~600,000 Ascend 910C chips. Export controls acting as a forcing function.',
+            infra: 10, regulation: 7, sovereignty: 10, openness: 3, speed: 10, talent: 9,
+          },
+          {
+            country: 'India', flag: '🇮🇳',
+            initiative: 'IndiaAI Mission',
+            archetype: 'Inclusion-led', region: 'Asia-Pacific', year: 2024,
+            investment: 1.25, investmentUnit: '$B public (Rs10,372 crore)',
+            status: 'Significantly exceeding targets',
+            statusColor: 'teal',
+            verifiedNotes: 'Original 10,000 GPU target surpassed by 3.8x: 38,000+ GPUs deployed as of March 2026 (confirmed Lok Sabha). 20,000 additional sovereign GPUs pledged at India AI Impact Summit (Feb 2026), heading toward 58,000+. Target 100,000 GPUs by end 2026. Subsidised rate Rs65/hour - among cheapest public compute globally. 190 projects approved. Sarvam AI selected for 120B-parameter sovereign LLM. Summit secured $200-270B+ in infrastructure commitments.',
+            infra: 6, regulation: 4, sovereignty: 7, openness: 8, speed: 8, talent: 9,
+          },
+          {
+            country: 'Singapore', flag: '🇸🇬',
+            initiative: 'SEA-LION / National Multimodal LLM Programme',
+            archetype: 'Regional cooperation', region: 'Asia-Pacific', year: 2023,
+            investment: 0.07, investmentUnit: 'SGD$70M public',
+            status: 'Active - rapid capability expansion',
+            statusColor: 'teal',
+            verifiedNotes: 'S$70M National Multimodal LLM Programme (NMLP). SEA-LION v4 (multimodal, 13+ SEA languages). SEA-Guard safety layer released Feb 4 2026. SEA-LION-Embedding suite released March 2026. Companion model MERaLiON by A*STAR. National AI Impact Programme (NAIIP) launched March 2026 targeting 10,000 enterprises over 3 years. AI adoption among non-SMEs jumped from 44% to 62.5% in 2024.',
+            infra: 6, regulation: 9, sovereignty: 6, openness: 10, speed: 9, talent: 8,
+          },
+          {
+            country: 'France', flag: '🇫🇷',
+            initiative: 'National AI Strategy',
+            archetype: 'Sovereignty-led', region: 'Europe', year: 2018,
+            investment: 1.5, investmentUnit: '€B public',
+            status: 'Active - Mistral as national champion',
+            statusColor: 'teal',
+            verifiedNotes: 'Mistral AI remains Europe\'s strongest private-sector AI contender. G42 and Mistral signed a strategic partnership in 2025 spanning open-weight models and infrastructure. France hosted AI summits positioning itself as a governance voice. Macron has positioned France as the EU\'s AI leader in diplomatic fora.',
+            infra: 6, regulation: 8, sovereignty: 8, openness: 7, speed: 6, talent: 8,
+          },
+          {
+            country: 'United Kingdom', flag: '🇬🇧',
+            initiative: 'AI Opportunities Action Plan 2025',
+            archetype: 'Infrastructure-led', region: 'Europe', year: 2025,
+            investment: 14, investmentUnit: '£B private committed',
+            status: 'Delivering - Stargate UK paused',
+            statusColor: 'amber',
+            verifiedNotes: 'Published Jan 13 2025. One-year update (Jan 2026): 38 of 50 commitments met. Five AI Growth Zones: Culham, North East, North Wales, South Wales, Lanarkshire. Isambard-AI supercomputer launched Bristol July 2025. Cambridge DAWN sixfold expansion Jan 2026. £6B VC raised by UK AI firms in 2025. CRITICAL: Stargate UK paused April 9 2026 - OpenAI cited energy costs and regulatory uncertainty.',
+            infra: 6, regulation: 7, sovereignty: 6, openness: 8, speed: 7, talent: 9,
+          },
+          {
+            country: 'Japan', flag: '🇯🇵',
+            initiative: 'Society 5.0 / AI Strategy',
+            archetype: 'Human-centric', region: 'Asia-Pacific', year: 2019,
+            investment: 2, investmentUnit: '$B public (est.)',
+            status: 'Active - G7 Hiroshima Process',
+            statusColor: 'teal',
+            verifiedNotes: 'Society 5.0 integrates AI with physical infrastructure for an ageing population and disaster-prone society. Chaired G7 Hiroshima AI Process 2023. FugakuNEXT supercomputer collaboration with NVIDIA. Japan\'s approach is distinctly risk-aware and human-centric rather than compute-competitive.',
+            infra: 7, regulation: 7, sovereignty: 7, openness: 7, speed: 5, talent: 7,
+          },
+          {
+            country: 'Canada', flag: '🇨🇦',
+            initiative: 'Pan-Canadian AI Strategy',
+            archetype: 'Research-led', region: 'Americas', year: 2017,
+            investment: 2.4, investmentUnit: 'CAD$B public',
+            status: 'Active - research depth, deployment lag',
+            statusColor: 'teal',
+            verifiedNotes: 'First national AI strategy globally (2017). Phase 2 CAD$2.4B announced 2024. CIFAR-led with Vector (Toronto), Mila (Montreal), Amii (Edmonton). Hinton Nobel Prize 2024. TELUS first North American NVIDIA Cloud Partner - sovereign AI factory in Quebec. Brain drain to US continues.',
+            infra: 5, regulation: 7, sovereignty: 5, openness: 9, speed: 5, talent: 10,
+          },
+          {
+            country: 'UAE', flag: '🇦🇪',
+            initiative: 'UAE AI Strategy 2031 / G42 / Falcon',
+            archetype: 'Infrastructure-led', region: 'Middle East', year: 2017,
+            investment: 8, investmentUnit: '$B public (+ G42/MGX private)',
+            status: 'Accelerating - 5GW campus confirmed',
+            statusColor: 'teal',
+            verifiedNotes: 'G42 5GW data center campus in Abu Dhabi confirmed - to host OpenAI and US hyperscalers. UAE Stargate (Nvidia, Cisco, OpenAI, G42, Oracle, SoftBank) announced May 2025, expected operational 2026. Falcon model family (TII): Falcon-H1, Falcon-H1-Arabic (leads Open Arabic LLM Leaderboard), Falcon Perception (multimodal), Falcon-Edge (BitNet 1.58-bit). G42-Mistral AI strategic partnership. Microsoft $1.5B investment in G42. US-UAE AI Acceleration Partnership formalised.',
+            infra: 9, regulation: 5, sovereignty: 7, openness: 7, speed: 9, talent: 6,
+          },
+          {
+            country: 'Saudi Arabia', flag: '🇸🇦',
+            initiative: 'NEOM / HUMAIN / Vision 2030 AI',
+            archetype: 'Infrastructure-led', region: 'Middle East', year: 2017,
+            investment: 50, investmentUnit: '$B spent (of $500B committed)',
+            status: 'Fundamentally restructured',
+            statusColor: 'red',
+            verifiedNotes: 'CRITICAL: The Line construction suspended Sept 2025. MBS now envisions "far smaller" project. Scale-back confirmed Jan 2026. 2029 Asian Winter Games postponed. Three Trojena contracts ($6B) cancelled March 2026. First operational segment now 2.4km (vs 170km). Full timeline: 2045+. Strategy pivot: coastal location being repurposed for AI data centers. $5B DataVolt deal for Oxagon. PIF launched HUMAIN as new AI entity. HUMAIN + NVIDIA partnership announced. Oil price decline ($100 to $60/barrel) is primary fiscal driver.',
+            infra: 6, regulation: 3, sovereignty: 7, openness: 4, speed: 4, talent: 5,
+          },
+        ];
+
+        const ARCHETYPE_COLORS = {
+          'Infrastructure-led':   '#3b82f6', // blue-500
+          'Regulation-led':       '#8b5cf6', // violet-500
+          'Sovereignty-led':      '#ef4444', // red-500
+          'Inclusion-led':        '#10b981', // emerald-500
+          'Regional cooperation': '#06b6d4', // cyan-500
+          'Human-centric':        '#f59e0b', // amber-500
+          'Research-led':         '#6366f1', // indigo-500
+        };
+
+        const STATUS_COLORS = {
+          teal:  'bg-teal-900/40 border border-teal-700/50',
+          amber: 'bg-amber-900/40 border border-amber-700/50',
+          red:   'bg-red-900/40 border border-red-700/50',
+          slate: 'bg-slate-800/40 border border-slate-600/50',
+        };
+        const STATUS_TEXT = {
+          teal: 'text-teal-400', amber: 'text-amber-400', red: 'text-red-400', slate: 'text-slate-400',
+        };
+
+        const DIM_LABELS = {
+          infra: 'Infrastructure', regulation: 'Regulatory Maturity',
+          sovereignty: 'Tech Sovereignty', openness: 'Openness / Collab.',
+          speed: 'Execution Speed', talent: 'Talent Depth',
+        };
+
+        const SCQA = {
+          situation: {
+            title: 'Situation', color: 'bg-slate-800',
+            points: [
+              '14 national AI programs are now active across 11 nations, with commitments ranging from SGD$70M (Singapore SEA-LION) to $500B (US Stargate) - a spread of four orders of magnitude.',
+              'Canada\'s 2017 strategy was the starting gun; the UK\'s January 2025 plan is the most recent entrant. Every G7 economy plus the UAE and Saudi Arabia now treats AI infrastructure as a strategic priority comparable to energy and defence.',
+              'Five distinct strategic postures have crystallised: Infrastructure-led (US, UK, UAE), Regulation-led (EU), Sovereignty-led (China, France), Inclusion-led (India), and Regional cooperation (Singapore).',
+            ],
+          },
+          complication: {
+            title: 'Complication', color: 'bg-rose-900/80',
+            points: [
+              'The US-China axis is the primary structural force. China\'s DeepSeek models surpassed US models in global token volume (Feb 2026), demonstrating that efficiency can compete with scale - and that export controls are a forcing function, not a ceiling.',
+              'Infrastructure promises are colliding with physical reality. Stargate UK paused (April 2026) over energy and regulation. NEOM\'s The Line is suspended, its scope shrinking from 170km to 2.4km. The gap between commitment and delivery is widening.',
+              'India is the positive outlier: it has tripled its original GPU target, deployed 38,000+ units at the world\'s lowest subsidised rate, and secured $200-270B in infrastructure commitments - all in 24 months.',
+              'Sovereign AI has emerged as the defining strategic concept - but most nations buying NVIDIA chips are not achieving true sovereignty. They own data centers but depend on US silicon. Compute sovereignty, model sovereignty, and data sovereignty are three different things that are routinely conflated.',
+            ],
+          },
+          question: {
+            title: 'Question', color: 'bg-violet-900/80',
+            points: [
+              'Which combination of compute investment, model development, and data governance actually produces durable AI autonomy - and which nations are genuinely sovereign vs. merely hosting foreign intelligence on domestic soil?',
+            ],
+          },
+          answer: {
+            title: 'Answer', color: 'bg-teal-900/80',
+            points: [
+              '1. Sovereign AI has three separable layers. Compute sovereignty means owning the infrastructure (data centers, chips). Model sovereignty means training on your own cultural and linguistic data. Data sovereignty means controlling what trains the model and who can access it. A nation can have one without the others.',
+              '2. Only China and the US have chip-level sovereignty. Everyone else buying NVIDIA GPUs is building on foreign silicon - strategically dependent on a US company subject to US export controls. This is the hidden dependency in most national sovereign AI programs.',
+              '3. The NVIDIA "Sovereign AI" framing is partly a sales strategy. Jensen Huang at Davos 2026: "AI is infrastructure - every country should treat it like electricity or roads." True - but NVIDIA sells the power plants. Nations need to be clear about which layer they are actually making sovereign.',
+              '4. Open-source is the most capital-efficient path to model sovereignty. SEA-LION (Singapore) and Falcon (UAE) demonstrate that a credible, culturally-relevant national model can be built at millions of dollars, not billions, by fine-tuning on open base models with national data.',
+              '5. Data sovereignty may be the most durable form. The EU\'s GDPR-based approach produces compliance obligations for any model touching EU data, regardless of where it was trained or who owns the servers. Data governance travels with the data - compute governance does not.',
+            ],
+          },
+        };
+
+        const TIMELINE_EVENTS = [
+          { date: '2017', actor: 'Canada', event: 'First national AI strategy globally - Pan-Canadian AI Strategy, CAD$125M Phase 1', category: 'Research-led' },
+          { date: '2017', actor: 'China', event: 'New Generation AI Development Plan - 2030 global leadership target formalised', category: 'Sovereignty-led' },
+          { date: '2017', actor: 'UAE', event: 'UAE AI Strategy launched + world\'s first AI Minister appointed', category: 'Infrastructure-led' },
+          { date: '2017', actor: 'Saudi Arabia', event: 'NEOM announced as $500B AI-powered megacity - Vision 2030 flagship', category: 'Infrastructure-led' },
+          { date: '2018', actor: 'France', event: 'Villani Report leads to National AI Strategy, €1.5B commitment, INRIA expansion', category: 'Sovereignty-led' },
+          { date: '2019', actor: 'Japan', event: 'Society 5.0 AI Strategy - human-centric, disaster resilience, ageing society focus', category: 'Human-centric' },
+          { date: '2021', actor: 'EU', event: 'AI Act proposed - first comprehensive AI regulatory framework globally', category: 'Regulation-led' },
+          { date: '2022', actor: 'United States', event: 'CHIPS and Science Act - $52.7B for domestic semiconductor fabrication', category: 'Infrastructure-led' },
+          { date: '2023', actor: 'Singapore', event: 'SEA-LION launched - open-source LLM for Southeast Asia, 11+ languages', category: 'Regional cooperation' },
+          { date: '2024-Q1', actor: 'India', event: 'IndiaAI Mission approved - Rs10,372 crore, original 10,000 GPU target', category: 'Inclusion-led' },
+          { date: '2024-Q2', actor: 'EU', event: 'AI Act adopted by European Parliament - risk-based framework begins phased implementation', category: 'Regulation-led' },
+          { date: '2024-Q4', actor: 'Canada', event: 'Pan-Canadian AI Strategy Phase 2 CAD$2.4B; Hinton Nobel Prize', category: 'Research-led' },
+          { date: '2025-Jan', actor: 'United States', event: 'Stargate Project announced at White House - $500B private AI infrastructure consortium', category: 'Infrastructure-led' },
+          { date: '2025-Jan', actor: 'United Kingdom', event: 'AI Opportunities Action Plan - 50 commitments, AI Growth Zones, £14B private commitments', category: 'Infrastructure-led' },
+          { date: '2025-Jan', actor: 'China', event: 'DeepSeek R1 released - competitive with US frontier models at a fraction of compute cost', category: 'Sovereignty-led' },
+          { date: '2025-May', actor: 'UAE', event: 'UAE Stargate announced - G42, Oracle, SoftBank, OpenAI, Nvidia, Cisco 5GW campus', category: 'Infrastructure-led' },
+          { date: '2025-Aug', actor: 'EU', event: 'GPAI model obligations enter force - transparency, copyright, incident reporting mandatory', category: 'Regulation-led' },
+          { date: '2025-Sep', actor: 'United States', event: 'Stargate adds 5 new US sites; 7GW planned, $400B+ committed', category: 'Infrastructure-led' },
+          { date: '2025-Sep', actor: 'Saudi Arabia', event: 'The Line construction suspended - strategic review ordered by MBS', category: 'Infrastructure-led' },
+          { date: '2025-Nov', actor: 'South Korea', event: 'NVIDIA deal - 260,000 GPUs across sovereign clouds and AI factories (Samsung, SK, Hyundai, NAVER)', category: 'Infrastructure-led' },
+          { date: '2026-Jan', actor: 'Saudi Arabia', event: 'NEOM formally scaled back - HUMAIN launched as new PIF AI entity', category: 'Infrastructure-led' },
+          { date: '2026-Jan', actor: 'NVIDIA', event: 'Jensen Huang at Davos: "AI is infrastructure - every country should treat it like electricity"', category: 'Infrastructure-led' },
+          { date: '2026-Feb', actor: 'India', event: 'India AI Impact Summit - $200-270B+ in commitments; 38,000+ GPUs confirmed', category: 'Inclusion-led' },
+          { date: '2026-Feb', actor: 'China', event: 'Chinese models surpass US in weekly token volume on OpenRouter - first time', category: 'Sovereignty-led' },
+          { date: '2026-Mar', actor: 'Saudi Arabia', event: '$6B Trojena contracts cancelled; HUMAIN + NVIDIA partnership announced', category: 'Infrastructure-led' },
+          { date: '2026-Mar', actor: 'Singapore', event: 'SEA-LION-Embedding suite released - state-of-the-art across 10 SEA languages', category: 'Regional cooperation' },
+          { date: '2026-Apr', actor: 'United Kingdom', event: 'Stargate UK paused - OpenAI cites energy costs and regulatory uncertainty', category: 'Infrastructure-led' },
+          { date: '2026-Aug', actor: 'EU', event: 'TARGET: GPAI enforcement with fines enters force', category: 'Regulation-led' },
+          { date: '2030', actor: 'China', event: 'TARGET: Global AI leadership across full domestic technology stack', category: 'Sovereignty-led' },
+          { date: '2031', actor: 'UAE', event: 'TARGET: AI contributes 13.6% of GDP', category: 'Infrastructure-led' },
+        ];
+
+        // 3. COMPONENTS
+        function SCQAView() {
+          const [expanded, setExpanded] = useState('situation');
+          const order = ['situation', 'complication', 'question', 'answer'];
+          return (
+            <div className="space-y-4">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">SCQA: The Strategic Argument - April 2026</h2>
+                <p className="text-sm text-slate-400">All data verified against primary sources. The narrative a policy maker, investor, or board needs to hear.</p>
+              </div>
+              {order.map(key => {
+                const s = SCQA[key]; const isOpen = expanded === key;
+                return (
+                  <div key={key} className="rounded-xl overflow-hidden glass-panel shadow-sm">
+                    <button onClick={() => setExpanded(isOpen ? null : key)}
+                      className={`w-full ${s.color} text-white px-5 py-4 flex items-center justify-between hover:opacity-90 transition`}>
+                      <span className="font-semibold tracking-wide">{s.title}</span>
+                      <span className="text-xl font-light">{isOpen ? '−' : '+'}</span>
+                    </button>
+                    {isOpen && (
+                      <div className="p-5 space-y-3 bg-slate-900/30">
+                        {s.points.map((p, i) => (
+                          <div key={i} className="flex gap-3 text-sm leading-relaxed text-slate-300">
+                            <span className="text-blue-400 font-bold shrink-0 mt-0.5">▸</span><span>{p}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+
+        function TimelineView() {
+          const [filter, setFilter] = useState('All');
+          const categories = ['All', ...Object.keys(ARCHETYPE_COLORS)];
+          const filtered = filter === 'All' ? TIMELINE_EVENTS : TIMELINE_EVENTS.filter(t => t.category === filter);
+          return (
+            <div className="space-y-6">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Verified Initiative Timeline</h2>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map(c => (
+                    <button key={c} onClick={() => setFilter(c)}
+                      style={filter === c && c !== 'All' ? { backgroundColor: ARCHETYPE_COLORS[c], borderColor: ARCHETYPE_COLORS[c] } : {}}
+                      className={`text-xs px-3 py-1.5 rounded-full font-medium transition border ${filter === c ? 'text-white bg-blue-600 border-blue-500' : 'bg-slate-800/50 border-slate-700 text-slate-400 hover:bg-slate-700'}`}>
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="relative pl-6 border-l-2 border-slate-800 space-y-5 ml-2">
+                {filtered.map((e, i) => (
+                  <div key={i} className="relative group">
+                    <div className="absolute -left-[31px] w-4 h-4 rounded-full border-2 border-slate-950 shadow shadow-black z-10 transition-transform group-hover:scale-125"
+                      style={{ backgroundColor: ARCHETYPE_COLORS[e.category] }} />
+                    <div className="glass-panel rounded-xl p-4 shadow-sm hover:border-slate-600 transition">
+                      <div className="flex items-start justify-between gap-3 flex-wrap">
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-mono tracking-widest text-slate-500 uppercase">{e.date}</div>
+                          <div className="text-base font-bold text-slate-100 mt-1">{e.actor}</div>
+                          <div className="text-sm text-slate-300 mt-1.5 leading-relaxed">{e.event}</div>
+                        </div>
+                        <span className="text-[10px] px-2.5 py-1 rounded-full text-white font-medium shrink-0 tracking-wide"
+                          style={{ backgroundColor: ARCHETYPE_COLORS[e.category] }}>
+                          {e.category}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        function SovereignAIView() {
+          const [selected, setSelected] = useState(null);
+          const [mode, setMode] = useState('map');
+          const [sortDim, setSortDim] = useState('model');
+
+          const sorted = useMemo(() =>
+            [...SOVEREIGN_DATA].sort((a, b) => {
+              const aScore = (a.compute + a.model + a.data) / 3;
+              const bScore = (b.compute + b.model + b.data) / 3;
+              if (sortDim === 'overall') return bScore - aScore;
+              return b[sortDim] - a[sortDim];
+            }),
+            [sortDim]
+          );
+
+          const flagMap = { CN: '🇨🇳', EU: '🇪🇺', US: '🇺🇸', AE: '🇦🇪', IN: '🇮🇳', SG: '🇸🇬', FR: '🇫🇷', GB: '🇬🇧', JP: '🇯🇵', CA: '🇨🇦', SA: '🇸🇦' };
+          const dimColor = (v) => v >= 8 ? '#34d399' : v >= 6 ? '#fbbf24' : v >= 4 ? '#fb923c' : '#f87171';
+
+          const barData = sorted.map(d => ({
+            country: d.country.replace('United States', 'US').replace('United Kingdom', 'UK').replace('Saudi Arabia', 'KSA').replace('European Union', 'EU').replace('Singapore', 'SGP'),
+            compute: d.compute, model: d.model, data: d.data,
+            flag: flagMap[d.flag],
+          }));
+
+          return (
+            <div className="space-y-5">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">Sovereign AI - Three Dimensions Unpacked</h2>
+                <p className="text-sm text-slate-400 mb-4 leading-relaxed">
+                  Sovereign AI is not a single thing. NVIDIA's definition - "a nation's capabilities to produce AI using its own infrastructure, data, workforce and business networks" - covers three separable layers.
+                  Most nations conflate them. Only China has achieved all three. Only China and the US have chip-level sovereignty.
+                </p>
+                <div className="grid md:grid-cols-3 gap-4 mb-4">
+                  {[
+                    { label: 'Compute Sovereignty', desc: 'Owns data centers and ideally chips. Hosting a NVIDIA data center is not chip sovereignty - it is infrastructure dependency with domestic soil.', color: '#3b82f6' },
+                    { label: 'Model Sovereignty', desc: 'Trains foundation models on national cultural and linguistic data. Can be achieved at low cost via fine-tuning on open base models (Singapore, UAE approach).', color: '#8b5cf6' },
+                    { label: 'Data Sovereignty', desc: 'Controls what trains the model and who can access outputs. Travels with the data - not with the data center. The EU\'s GDPR approach is the most durable form globally.', color: '#10b981' },
+                  ].map(d => (
+                    <div key={d.label} className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
+                      <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: d.color }}>{d.label}</div>
+                      <p className="text-xs text-slate-400 leading-relaxed">{d.desc}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-amber-950/30 border border-amber-900/50 rounded-lg p-4">
+                  <div className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-1.5">The NVIDIA commercial angle</div>
+                  <p className="text-xs text-amber-200/70 leading-relaxed">
+                    Jensen Huang has made Sovereign AI a core NVIDIA growth narrative - the company credited it with creating a multi-billion dollar vertical in 2024 earnings. Nations building on NVIDIA chips gain AI capability but remain dependent on a US company subject to US export controls. The distinction between "NVIDIA-sovereign" (you own the building but not the engine) and "truly sovereign" (you control the full stack) matters enormously for strategic planning.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3 items-center">
+                <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
+                  {['map', 'bars'].map(m => (
+                    <button key={m} onClick={() => setMode(m)}
+                      className={`text-xs px-4 py-1.5 rounded-md font-medium transition ${mode === m ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}>
+                      {m === 'map' ? 'Country Cards' : 'Bar Comparison'}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex-1" />
+                <select value={sortDim} onChange={e => setSortDim(e.target.value)}
+                  className="text-xs bg-slate-800 text-slate-300 border border-slate-700 rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition">
+                  <option value="overall">Sort: Overall Average</option>
+                  <option value="compute">Sort: Compute Score</option>
+                  <option value="model">Sort: Model Score</option>
+                  <option value="data">Sort: Data Score</option>
+                </select>
+              </div>
+
+              {mode === 'bars' && (
+                <div className="glass-panel rounded-xl p-5 shadow-lg">
+                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-6">Compute / Model / Data sovereignty scores by nation</div>
+                  <div className="h-[350px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={barData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                        <XAxis dataKey="country" tick={{ fontSize: 11, fill: '#94a3b8', fontFamily: 'Inter' }} axisLine={{stroke: '#334155'}} tickLine={false} />
+                        <YAxis domain={[0, 10]} tick={{ fontSize: 11, fill: '#94a3b8', fontFamily: 'JetBrains Mono' }} axisLine={false} tickLine={false} />
+                        <Tooltip 
+                            contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5)' }} 
+                            itemStyle={{ fontSize: '13px', fontFamily: 'Inter' }}
+                            labelStyle={{ color: '#f8fafc', fontWeight: 'bold', marginBottom: '4px' }} 
+                            cursor={{fill: '#1e293b', opacity: 0.4}}
+                        />
+                        <Legend wrapperStyle={{ fontSize: 11, color: '#cbd5e1', paddingTop: '10px' }} iconType="circle" />
+                        <Bar dataKey="compute" name="Compute" fill="#3b82f6" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                        <Bar dataKey="model" name="Model" fill="#8b5cf6" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                        <Bar dataKey="data" name="Data" fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              )}
+
+              {mode === 'map' && (
+                <div className="space-y-3">
+                  {sorted.map((d, i) => (
+                    <div key={d.country} className="glass-panel rounded-xl border border-slate-800 overflow-hidden shadow-sm transition-all hover:border-slate-600">
+                      <button onClick={() => setSelected(selected === i ? null : i)}
+                        className="w-full p-4 flex items-center gap-4 hover:bg-slate-800/30 transition text-left">
+                        <span className="text-2xl shrink-0 drop-shadow-md">{flagMap[d.flag]}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2.5 flex-wrap">
+                            <span className="text-base font-bold text-slate-100 tracking-tight">{d.country}</span>
+                            <span className="text-[10px] px-2.5 py-0.5 rounded-full text-white font-medium tracking-wide"
+                              style={{ backgroundColor: d.tierColor + 'cc' }}>{d.tier}</span>
+                            {d.chipLevel && <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-amber-900/80 border border-amber-700/50 text-amber-300 font-bold tracking-wider">CHIP SOVEREIGN</span>}
+                          </div>
+                        </div>
+                        <div className="flex gap-4 shrink-0 px-2">
+                          {[['C', d.compute, '#3b82f6'], ['M', d.model, '#8b5cf6'], ['D', d.data, '#10b981']].map(([lbl, val, col]) => (
+                            <div key={lbl} className="text-center w-6">
+                              <div className="text-lg font-bold font-mono" style={{ color: dimColor(val) }}>{val}</div>
+                              <div className="text-[10px] font-bold mt-0.5" style={{ color: col }}>{lbl}</div>
+                            </div>
+                          ))}
+                        </div>
+                        <span className="text-slate-500 ml-2 text-xl font-light shrink-0">{selected === i ? '−' : '+'}</span>
+                      </button>
+                      {selected === i && (
+                        <div className="bg-slate-950/50 px-5 py-4 border-t border-slate-800/80 space-y-4">
+                          <div className="grid md:grid-cols-3 gap-4">
+                            {[
+                              { label: 'Compute Sovereignty', score: d.compute, notes: d.computeNotes, color: '#3b82f6' },
+                              { label: 'Model Sovereignty', score: d.model, notes: d.modelNotes, color: '#8b5cf6' },
+                              { label: 'Data Sovereignty', score: d.data, notes: d.dataNotes, color: '#10b981' },
+                            ].map(dim => (
+                              <div key={dim.label} className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
+                                <div className="flex items-center justify-between mb-3">
+                                  <div className="text-[11px] uppercase tracking-wider font-bold" style={{ color: dim.color }}>{dim.label}</div>
+                                  <div className="text-xl font-bold font-mono drop-shadow-sm" style={{ color: dimColor(dim.score) }}>{dim.score}</div>
+                                </div>
+                                <div className="w-full bg-slate-800/80 rounded-full h-1.5 mb-3 overflow-hidden">
+                                  <div className="h-1.5 rounded-full transition-all duration-500" style={{ width: `${dim.score * 10}%`, backgroundColor: dim.color, boxShadow: `0 0 8px ${dim.color}80` }} />
+                                </div>
+                                <p className="text-xs text-slate-300 leading-relaxed">{dim.notes}</p>
+                              </div>
+                            ))}
+                          </div>
+                          {d.nvidiaPartnered && (
+                            <div className="bg-emerald-950/20 rounded-lg p-3 border border-emerald-900/50 text-xs text-slate-300 flex items-start gap-2">
+                              <span className="text-emerald-400 font-bold shrink-0 mt-0.5">NVIDIA Partner →</span>
+                              <span>This nation has an active NVIDIA Sovereign AI deployment or partnership. Compute sovereignty is being built on US-made silicon.</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="glass-panel rounded-xl p-5 shadow-lg overflow-hidden">
+                <h3 className="text-sm font-bold text-slate-100 tracking-tight mb-4">NVIDIA Sovereign AI - Verified Deployments (April 2026)</h3>
+                <div className="overflow-x-auto -mx-5 px-5">
+                  <table className="w-full text-xs min-w-[700px]">
+                    <thead>
+                      <tr className="border-b border-slate-700/50">
+                        <th className="px-3 py-3 text-left text-slate-400 font-semibold uppercase tracking-wider">Country</th>
+                        <th className="px-3 py-3 text-left text-slate-400 font-semibold uppercase tracking-wider">GPUs</th>
+                        <th className="px-3 py-3 text-left text-slate-400 font-semibold uppercase tracking-wider">Year</th>
+                        <th className="px-3 py-3 text-left text-slate-400 font-semibold uppercase tracking-wider">Key Partners</th>
+                        <th className="px-3 py-3 text-left text-slate-400 font-semibold uppercase tracking-wider w-1/3">Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/50">
+                      {NVIDIA_DEPLOYMENTS.map((d, i) => (
+                        <tr key={i} className="hover:bg-slate-800/30 transition">
+                          <td className="px-3 py-3 font-semibold text-slate-200">{d.country}</td>
+                          <td className="px-3 py-3 font-mono text-emerald-400/90">{d.gpus ? d.gpus.toLocaleString() : 'undisclosed'}</td>
+                          <td className="px-3 py-3 text-slate-400 font-mono">{d.year}</td>
+                          <td className="px-3 py-3 text-slate-300 leading-snug">{d.partners}</td>
+                          <td className="px-3 py-3 text-slate-400 leading-snug">{d.notes}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="glass-panel border-amber-900/30 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-amber-500 font-mono drop-shadow-sm">{SOVEREIGN_DATA.filter(d => d.chipLevel).length}</div>
+                  <div className="text-[11px] uppercase tracking-wider text-amber-600/80 font-bold mt-1">Chip sovereign<br/>(US, China)</div>
+                </div>
+                <div className="glass-panel border-emerald-900/30 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-emerald-500 font-mono drop-shadow-sm">{NVIDIA_DEPLOYMENTS.length}</div>
+                  <div className="text-[11px] uppercase tracking-wider text-emerald-600/80 font-bold mt-1">NVIDIA sovereign<br/>deployments</div>
+                </div>
+                <div className="glass-panel border-violet-900/30 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-violet-500 font-mono drop-shadow-sm">{SOVEREIGN_DATA.filter(d => d.model >= 7).length}</div>
+                  <div className="text-[11px] uppercase tracking-wider text-violet-600/80 font-bold mt-1">Nations with credible<br/>national model</div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        function PostureScorer() {
+          const [weights, setWeights] = useState({ infra: 5, regulation: 3, sovereignty: 4, openness: 3, speed: 5, talent: 5 });
+          const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0) || 1;
+
+          const scored = useMemo(() => {
+            const byCountry = {};
+            INITIATIVES.forEach(init => {
+              if (!byCountry[init.country]) byCountry[init.country] = { ...init, count: 1 };
+              else { Object.keys(weights).forEach(k => { byCountry[init.country][k] += init[k]; }); byCountry[init.country].count++; }
+            });
+            return Object.entries(byCountry).map(([country, data]) => {
+              const n = data.count;
+              const score = Object.keys(weights).reduce((s, k) => s + (data[k] / n) * (weights[k] / totalWeight), 0);
+              return { country, flag: data.flag, score: Math.round(score * 10), archetype: data.archetype };
+            }).sort((a, b) => b.score - a.score);
+          }, [weights, totalWeight]);
+
+          return (
+            <div className="space-y-5">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-1">Strategic Posture Scorer</h2>
+                <p className="text-sm text-slate-400">Adjust dimension weights to reflect your priorities. Scores update dynamically from verified April 2026 data.</p>
+              </div>
+              
+              <div className="glass-panel rounded-xl p-6 shadow-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+                    {Object.entries(DIM_LABELS).map(([key, label]) => (
+                    <div key={key}>
+                        <div className="flex justify-between items-baseline mb-2">
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-300">{label}</label>
+                        <span className="text-base font-bold font-mono text-blue-400">{weights[key]}</span>
+                        </div>
+                        <input type="range" min={0} max={10} value={weights[key]}
+                        onChange={e => setWeights(w => ({ ...w, [key]: parseInt(e.target.value) }))}
+                        className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition" />
+                    </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-4">Nations Ranked By Custom Weights</div>
+                <div className="h-[380px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={scored} layout="vertical" margin={{ left: 20, right: 30, top: 10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
+                        <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: '#94a3b8', fontFamily: 'JetBrains Mono' }} axisLine={{stroke: '#334155'}} tickLine={false} />
+                        <YAxis type="category" dataKey="country" tick={{ fontSize: 12, fill: '#f1f5f9', fontFamily: 'Inter', fontWeight: 500 }} width={120} axisLine={false} tickLine={false} />
+                        <Tooltip 
+                            contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5)' }} 
+                            labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }} 
+                            formatter={(v, name, props) => [`${v} / 100`, props.payload.archetype]} 
+                            cursor={{fill: '#1e293b', opacity: 0.4}}
+                        />
+                        <Bar dataKey="score" radius={[0, 4, 4, 0]} maxBarSize={32} label={{ position: 'right', fill: '#94a3b8', fontSize: 11, fontFamily: 'JetBrains Mono', formatter: (v)=>v }}>
+                        {scored.map((e, i) => <Cell key={i} fill={ARCHETYPE_COLORS[e.archetype] || '#475569'} />)}
+                        </Bar>
+                    </BarChart>
+                    </ResponsiveContainer>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {scored.slice(0, 6).map((s, i) => (
+                  <div key={s.country} className="glass-panel rounded-xl p-4 flex items-center gap-3 hover:border-slate-600 transition">
+                    <span className="text-2xl drop-shadow-md">{s.flag}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-bold text-slate-100 truncate tracking-tight">{s.country}</div>
+                      <div className="text-[10px] text-slate-400 truncate mt-0.5">{s.archetype}</div>
+                    </div>
+                    <div className="text-2xl font-bold font-mono drop-shadow" style={{ color: i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : i === 2 ? '#cd7f32' : '#475569' }}>{s.score}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        function StrategicHeatmap() {
+          const [dim, setDim] = useState('speed');
+
+          const byCountry = useMemo(() => {
+            const acc = {};
+            INITIATIVES.forEach(init => {
+              if (!acc[init.country]) acc[init.country] = { ...init, count: 1 };
+              else { Object.keys(DIM_LABELS).forEach(k => { acc[init.country][k] += init[k]; }); acc[init.country].count++; }
+            });
+            return Object.values(acc).map(d => ({ ...d, dimVal: Math.round((d[dim] / d.count) * 10) / 10 })).sort((a, b) => b.dimVal - a.dimVal);
+          }, [dim]);
+
+          const tier = v => v >= 8 ? 'Leading' : v >= 6 ? 'Competitive' : v >= 4 ? 'Developing' : 'Early';
+          const tierBorderLeft = { Leading: 'border-l-emerald-500', Competitive: 'border-l-blue-500', Developing: 'border-l-amber-500', Early: 'border-l-slate-500' };
+          const tierText = { Leading: 'text-emerald-400', Competitive: 'text-blue-400', Developing: 'text-amber-400', Early: 'text-slate-500' };
+
+          return (
+            <div className="space-y-5">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Strategic Position Heatmap - April 2026</h2>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(DIM_LABELS).map(([k, label]) => (
+                    <button key={k} onClick={() => setDim(k)}
+                      className={`text-xs px-3 py-1.5 rounded-full font-medium transition border ${dim === k ? 'bg-blue-600 text-white border-blue-500 shadow' : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-700'}`}>
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {byCountry.map(r => {
+                  const t = tier(r.dimVal);
+                  return (
+                    <div key={r.country} className={`glass-panel rounded-xl p-4 border-l-4 shadow-sm transition hover:border-r-slate-600 hover:border-y-slate-600 ${tierBorderLeft[t]}`}>
+                      <div className="flex items-center gap-4">
+                        <span className="text-2xl drop-shadow-md">{r.flag}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-base font-bold text-slate-100 tracking-tight">{r.country}</div>
+                          <div className="text-[11px] font-medium mt-1 tracking-wide" style={{ color: ARCHETYPE_COLORS[r.archetype] || '#94a3b8' }}>{r.archetype}</div>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <div className={`text-[10px] font-bold uppercase tracking-widest ${tierText[t]} mb-0.5`}>{t}</div>
+                          <div className="flex items-baseline justify-end gap-1">
+                              <span className="text-2xl font-bold text-slate-100 font-mono tracking-tighter">{r.dimVal}</span>
+                              <span className="text-[10px] font-mono text-slate-500">/10</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-3 w-full bg-slate-800/80 rounded-full h-1.5 overflow-hidden">
+                        <div className="h-1.5 rounded-full transition-all duration-700 ease-out"
+                          style={{ width: `${r.dimVal * 10}%`, backgroundColor: ARCHETYPE_COLORS[r.archetype] || '#475569', boxShadow: `0 0 6px ${ARCHETYPE_COLORS[r.archetype]}80` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        }
+
+        function InitiativeInventory() {
+          const [sortKey, setSortKey] = useState('investment');
+          const [sortDir, setSortDir] = useState('desc');
+          const [filter, setFilter] = useState('All');
+          const [expanded, setExpanded] = useState(null);
+
+          const archetypes = ['All', ...Object.keys(ARCHETYPE_COLORS)];
+
+          const sorted = useMemo(() => {
+            let rows = filter === 'All' ? INITIATIVES : INITIATIVES.filter(r => r.archetype === filter);
+            return [...rows].sort((a, b) => {
+              if (typeof a[sortKey] === 'number') return sortDir === 'desc' ? b[sortKey] - a[sortKey] : a[sortKey] - b[sortKey];
+              return sortDir === 'desc' ? String(b[sortKey]).localeCompare(String(a[sortKey])) : String(a[sortKey]).localeCompare(String(b[sortKey]));
+            });
+          }, [sortKey, sortDir, filter]);
+
+          return (
+            <div className="space-y-5">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Initiative Inventory - Verified April 2026</h2>
+                <div className="flex flex-wrap gap-2">
+                  {archetypes.map(a => (
+                    <button key={a} onClick={() => setFilter(a)}
+                      style={filter === a && a !== 'All' ? { backgroundColor: ARCHETYPE_COLORS[a], borderColor: ARCHETYPE_COLORS[a] } : {}}
+                      className={`text-xs px-3 py-1.5 rounded-full font-medium transition border ${filter === a ? 'bg-blue-600 text-white border-blue-500' : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-700'}`}>
+                      {a}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                {sorted.map((r, i) => (
+                  <div key={i} className="glass-panel rounded-xl border border-slate-800 overflow-hidden shadow-sm transition hover:border-slate-600">
+                    <button onClick={() => setExpanded(expanded === i ? null : i)}
+                      className="w-full p-4 flex items-center gap-4 hover:bg-slate-800/30 transition text-left">
+                      <span className="text-2xl shrink-0 drop-shadow-md">{r.flag}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1.5">
+                          <span className="text-base font-bold text-slate-100 tracking-tight">{r.country}</span>
+                          <span className="text-xs text-slate-500 hidden sm:inline">·</span>
+                          <span className="text-sm font-medium text-slate-300">{r.initiative}</span>
+                        </div>
+                        <div>
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded tracking-wide uppercase ${STATUS_COLORS[r.statusColor]} ${STATUS_TEXT[r.statusColor]}`}>
+                            {r.status}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className="text-lg font-bold text-slate-100 font-mono tracking-tighter">
+                          {r.investment > 0 ? `${r.investmentUnit.includes('€') ? '€' : r.investmentUnit.includes('£') ? '£' : r.investmentUnit.includes('CAD') ? 'C$' : '$'}${r.investment}B` : '-'}
+                        </div>
+                        <div className="text-[11px] font-mono text-slate-500 mt-0.5">{r.year}</div>
+                      </div>
+                      <span className="text-slate-500 ml-2 text-xl font-light shrink-0">{expanded === i ? '−' : '+'}</span>
+                    </button>
+                    {expanded === i && (
+                      <div className="bg-slate-950/50 px-5 py-4 border-t border-slate-800/80 space-y-4">
+                        <p className="text-sm text-slate-300 leading-relaxed border-l-2 border-slate-700 pl-3">{r.verifiedNotes}</p>
+                        <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                          {Object.entries(DIM_LABELS).map(([k, label]) => (
+                            <div key={k} className="text-center bg-slate-900/50 border border-slate-800/50 rounded-lg p-3">
+                              <div className="text-xl font-bold font-mono drop-shadow-sm"
+                                style={{ color: r[k] >= 8 ? '#34d399' : r[k] >= 6 ? '#fbbf24' : '#f87171' }}>
+                                {r[k]}
+                              </div>
+                              <div className="text-[10px] font-bold tracking-wider uppercase text-slate-500 mt-1">{label.split(' ')[0]}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="glass-panel border-slate-700 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-slate-100 font-mono drop-shadow-sm">{INITIATIVES.length}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mt-1">Initiatives tracked</div>
+                </div>
+                <div className="glass-panel border-emerald-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-emerald-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'teal').length}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-600/80 mt-1">On track</div>
+                </div>
+                <div className="glass-panel border-amber-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-amber-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'amber').length}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-amber-600/80 mt-1">Delays / partial</div>
+                </div>
+                <div className="glass-panel border-red-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
+                  <div className="text-3xl font-bold text-red-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'red').length}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-red-600/80 mt-1">Restructured</div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        function ArchetypeCompare() {
+          const ARCHETYPE_DIMS = ['Infrastructure', 'Regulation', 'Sovereignty', 'Openness', 'Speed', 'Talent'];
+          const ARCHETYPE_SCORES = {
+            'US (Infrastructure)':   [10, 3.5, 7.5, 5, 9,  8.5],
+            'EU (Regulation)':       [5,  9.5, 8.5, 9, 4.5, 7  ],
+            'China (Sovereignty)':   [10, 7,   10,  3, 10,  9  ],
+            'India (Inclusion)':     [6,  4,   7,   8, 8,   9  ],
+            'Singapore (Regional)':  [6,  9,   6,   10,9,   8  ],
+          };
+          const ARCHETYPE_RADAR_COLORS = {
+            'US (Infrastructure)':  '#3b82f6', // blue
+            'EU (Regulation)':      '#8b5cf6', // violet
+            'China (Sovereignty)':  '#ef4444', // red
+            'India (Inclusion)':    '#10b981', // emerald
+            'Singapore (Regional)': '#06b6d4', // cyan
+          };
+
+          const radarData = ARCHETYPE_DIMS.map((dim, i) => ({
+            dimension: dim,
+            ...Object.fromEntries(Object.entries(ARCHETYPE_SCORES).map(([k, v]) => [k, v[i]])),
+          }));
+
+          const summaries = {
+            'US (Infrastructure)': {
+              exemplars: 'Stargate ($500B committed, 7GW), CHIPS Act ($52.7B)',
+              thesis: 'Overwhelm through scale and private capital. Own the compute layer and frontier model access follows.',
+              april2026: 'Stargate operational in Abilene TX; 5 US sites active; UK leg paused. Custom silicon "Titan" targeting H2 2026. Cost estimates rising to ~$850B all-in.',
+              risk: 'Execution risk on energy and grid; regulatory fragmentation; concentration in 3 companies.',
+            },
+            'EU (Regulation)': {
+              exemplars: 'AI Act (enforcement Aug 2026), AI Factories (13 hubs)',
+              thesis: 'Set the global compliance standard. Make Brussels the Geneva of AI - where every globally deployed model must conform.',
+              april2026: 'GPAI enforcement with fines begins Aug 2 2026. Simplification proposals in 2026 to reduce startup burden. Compute gap vs US/China remains structural.',
+              risk: 'Over-regulation risk; compute gap; EU AI startups face compliance overhead US and China counterparts do not.',
+            },
+            'China (Sovereignty)': {
+              exemplars: 'DeepSeek (efficiency breakthrough), Huawei Ascend, NGAIDP',
+              thesis: 'Full-stack independence by 2030. No reliance on US chips, cloud, or models.',
+              april2026: 'Chinese models surpassed US in OpenRouter token volume (Feb 2026). DeepSeek V4 delayed - Huawei chip transition requires substantial re-engineering. Export controls acting as a forcing function.',
+              risk: 'Chip performance gap vs NVIDIA persists; talent suppression risk; opacity reduces external adoption.',
+            },
+            'India (Inclusion)': {
+              exemplars: 'IndiaAI Mission (38,000+ GPUs, ~$1.25B public + $200-270B private commitments)',
+              thesis: '"AI for All" - apply AI to 1.4B people across 22 official languages. Access sovereignty over stack sovereignty.',
+              april2026: 'Tripled original GPU target. 58,000+ units heading to 100,000 by end 2026. Rs65/hour. Sarvam AI building 120B-parameter sovereign LLM. $200-270B in infrastructure commitments secured.',
+              risk: 'Energy reliability; foreign GPU dependency; talent retention; last-mile deployment in tier 2/3 cities.',
+            },
+            'Singapore (Regional)': {
+              exemplars: 'SEA-LION v4 (13+ languages), MERaLiON, SEA-Guard, SGD$70M NMLP',
+              thesis: 'Build the open regional layer. A shared multilingual model serves 700M Southeast Asians at a fraction of the cost of competing nationally.',
+              april2026: 'SEA-Guard (Feb 2026) and SEA-LION-Embedding suite (March 2026) released. IMDA\'s National AI Impact Programme targeting 10,000 enterprises. AI adoption among non-SMEs jumped from 44% to 62.5% in 2024.',
+              risk: 'Resource constrained; dependent on global base models; ASEAN political fragmentation.',
+            },
+          };
+
+          return (
+            <div className="space-y-5">
+              <div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">Five Strategic Archetypes - April 2026 State</h2>
+                <p className="text-sm text-slate-400">Each archetype reflects a different definition of winning in AI. The radar shows how they trade off across six dimensions.</p>
+              </div>
+              <div className="glass-panel rounded-xl p-5 shadow-lg flex justify-center items-center">
+                <div className="w-full max-w-2xl h-[400px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart data={radarData} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
+                        <PolarGrid stroke="#334155" />
+                        <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 11, fill: '#cbd5e1', fontFamily: 'Inter', fontWeight: 600 }} />
+                        <PolarRadiusAxis domain={[0, 10]} tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} tickCount={5} angle={30} />
+                        {Object.keys(ARCHETYPE_SCORES).map(m => (
+                        <Radar key={m} name={m} dataKey={m} stroke={ARCHETYPE_RADAR_COLORS[m]} fill={ARCHETYPE_RADAR_COLORS[m]} fillOpacity={0.1} strokeWidth={2.5} dot={{r: 3, fillOpacity: 1}} activeDot={{r: 5}} />
+                        ))}
+                        <Legend wrapperStyle={{ fontSize: 11, color: '#e2e8f0', fontFamily: 'Inter', paddingTop: '20px' }} iconType="circle" />
+                        <Tooltip 
+                            contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5)' }} 
+                            itemStyle={{ fontSize: '12px', fontFamily: 'Inter', fontWeight: 500 }}
+                            labelStyle={{ color: '#f8fafc', fontWeight: 'bold', marginBottom: '4px' }} 
+                        />
+                    </RadarChart>
+                    </ResponsiveContainer>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {Object.entries(summaries).map(([name, s]) => (
+                  <div key={name} className="glass-panel rounded-xl p-5 shadow-sm hover:border-slate-600 transition">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-3.5 h-3.5 rounded-full shrink-0 shadow-sm" style={{ backgroundColor: ARCHETYPE_RADAR_COLORS[name] }} />
+                      <span className="font-bold text-base tracking-tight text-slate-100">{name}</span>
+                    </div>
+                    <p className="text-xs text-slate-400 italic mb-3 font-medium">{s.exemplars}</p>
+                    <p className="text-sm text-slate-300 mb-4 leading-relaxed">{s.thesis}</p>
+                    <div className="bg-slate-900/50 border border-slate-800/80 rounded-lg p-3 mb-3">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-blue-400 mb-1.5 flex items-center gap-1.5">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                          April 2026 state
+                      </div>
+                      <p className="text-xs text-slate-200 leading-relaxed">{s.april2026}</p>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-rose-500 mb-1">Primary risk</div>
+                      <p className="text-xs text-slate-400 leading-relaxed">{s.risk}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="glass-panel border-violet-900/40 rounded-xl p-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/10 blur-3xl rounded-full"></div>
+                <div className="relative z-10">
+                    <div className="text-base font-bold tracking-tight text-violet-300 mb-2">The question the archetypes obscure</div>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                    Every archetype assumes the application layer follows from the infrastructure or regulatory layer. The evidence in April 2026 is more ambiguous: China leads on deployment breadth (34% of job functions fully AI-integrated), not on frontier models. India is tripling its compute faster than anyone expected. Estonia delivers AI government services without a frontier model. The nations not yet on this list - those that move fastest on implementation rather than procurement - may define the decade.
+                    </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        // 4. MAIN APP
+        function App() {
+          const [tab, setTab] = useState('scqa');
+          return (
+            <div className="text-slate-100 font-sans pb-12">
+              <header className="px-4 py-8 border-b border-slate-800/80 relative overflow-hidden"
+                style={{ background: 'radial-gradient(ellipse at top right, #1e3a8a 0%, #020617 70%)' }}>
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+                <div className="max-w-6xl mx-auto relative z-10 flex justify-between items-start gap-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></div>
+                      <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Verified 15 April 2026 • 14 Initiatives • 11 Nations</div>
+                    </div>
+                    <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tighter mb-3">
+                      The National AI Race<br className="hidden md:block" /> Promise, Delivery, and Sovereignty
+                    </h1>
+                    <p className="text-base text-slate-400 font-medium max-w-3xl leading-relaxed">
+                      Stargate executing • NEOM suspended • India tripling targets • EU enforcement imminent • DeepSeek reshaping the calculus • Sovereign AI unpacked
+                    </p>
+                  </div>
+                  
+                  {/* Subtle Top-Right Logo (Embedded as SVG Data URI) */}
+                  <div className="hidden sm:block shrink-0 pt-2">
+                    <img 
+                      src="data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 160 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='5' fill='%23ffffff' /%3E%3Ccircle cx='21' cy='5' r='5' fill='%23ffffff' /%3E%3Ccircle cx='37' cy='5' r='5' fill='%23ffffff' /%3E%3Ccircle cx='5' cy='21' r='5' fill='%23ffffff' /%3E%3Ccircle cx='21' cy='21' r='5' fill='%230d9488' /%3E%3Ccircle cx='37' cy='21' r='5' fill='%23ffffff' /%3E%3Ccircle cx='5' cy='37' r='5' fill='%23ffffff' /%3E%3Ccircle cx='21' cy='37' r='5' fill='%23ffffff' /%3E%3Ccircle cx='37' cy='37' r='5' fill='%23ffffff' /%3E%3Ctext x='52' y='32' font-family='system-ui, -apple-system, sans-serif' font-weight='800' font-size='32' letter-spacing='-1' fill='%23ffffff'%3Epract%3Ctspan fill='%230d9488'%3E.ai%3C/tspan%3E%3C/text%3E%3C/svg%3E" 
+                      alt="Pract.AI Logo" 
+                      className="h-8 md:h-10 w-auto opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </header>
+
+              <nav className="sticky top-0 z-50 glass-panel border-b border-slate-800 shadow-sm overflow-x-auto">
+                <div className="flex gap-2 px-4 py-3 min-w-max max-w-6xl mx-auto">
+                  {TABS.map(t => (
+                    <button key={t.id} onClick={() => setTab(t.id)}
+                      className={`px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-all duration-200
+                        ${tab === t.id ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'}`}>
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              </nav>
+
+              <main className="p-4 md:p-6 lg:p-8 max-w-6xl mx-auto mt-4">
+                {tab === 'scqa'       && <SCQAView />}
+                {tab === 'timeline'   && <TimelineView />}
+                {tab === 'sovereign'  && <SovereignAIView />}
+                {tab === 'scorer'     && <PostureScorer />}
+                {tab === 'heatmap'    && <StrategicHeatmap />}
+                {tab === 'inventory'  && <InitiativeInventory />}
+                {tab === 'archetypes' && <ArchetypeCompare />}
+              </main>
+
+              <footer className="max-w-6xl mx-auto px-4 mt-8">
+                  <div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
+                    Sources verified April 15 2026: OpenAI/Stargate, CNBC/Bloomberg Stargate UK pause, EU Commission AI Act, Lok Sabha March 2026, India AI Impact Summit Feb 2026, NEOM/Euronews Jan-Mar 2026, NVIDIA newsroom/blogs (sovereign AI deployments), G42/TII/IMDA/AI Singapore official releases, techxplore DeepSeek V4 April 2026, UK GOV.UK one-year-on Jan 2026.<br/><span className="text-slate-400 mt-2 block">For decision-support only.</span>
+                  </div>
+              </footer>
+            </div>
+          );
+        }
+
+        // 5. RENDER
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
