@@ -170,9 +170,9 @@
           },
           {
             country: 'United Kingdom', flag: 'GB',
-            compute: 6, model: 5, data: 7,
+            compute: 5, model: 5, data: 7,
             domesticChipDesign: false,
-            computeNotes: "Isambard-AI launched in July 2025. The January 2026 government update reported five AI Growth Zones and a £2B plan for twentyfold public compute expansion by 2030. Targets and procurement plans are not delivered capacity.",
+            computeNotes: "Isambard-AI launched in July 2025. The January 2026 government update reported five AI Growth Zones and a £2B plan for twentyfold public compute expansion by 2030. Targets and procurement plans are not delivered capacity. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. No confirmed restart was identified in this review. Editorial compute score reduced from 6 to 5: the paused project weakens accessible-capacity expectations, while delivered public compute retains credit.",
             modelNotes: "The £500M Sovereign AI programme launched 16 April 2026 with initial backing for domestic firms and compute access. DeepMind remains Google-owned; research strengths and domestic company support do not establish a national general-purpose model.",
             dataNotes: "UK GDPR and domestic data governance remain relevant to AI deployment. Sovereignty also depends on licences, operator access and supply-chain resilience.",
             nvidiaPartnered: true,
@@ -223,7 +223,7 @@
           {"country": "UAE", "gpus": null, "year": 2025, "partners": "G42, OpenAI, Oracle, SoftBank, Cisco", "notes": "Planned 1GW Stargate cluster inside wider 5GW campus; first 200MW expected in 2026. Commissioning not established by this announcement.", "sourceUrl": "https://openai.com/index/introducing-stargate-uae/"},
           {"country": "India", "gpus": 45000, "year": 2026, "partners": "IndiaAI empanelled compute providers", "notes": "PIB reports over 45,000 shared GPUs as of June 2026; 237 projects approved for 9.318M GPU hours by August. Mixed-provider access, not a single NVIDIA installation.", "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"},
           {"country": "Germany", "gpus": 10000, "year": 2025, "partners": "NVIDIA, industrial software partners", "notes": "June 2025 industrial AI cloud announcement specified 10,000 GPUs. Announcement count; commissioning should be checked separately.", "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-builds-worlds-first-industrial-ai-cloud-to-advance-european-manufacturing"},
-          {"country": "United Kingdom", "gpus": null, "year": 2026, "partners": "Government, domestic AI firms", "notes": "Sovereign AI supports domestic firms with funding and public supercomputer access. No consolidated national NVIDIA GPU count asserted.", "sourceUrl": "https://www.sovereignai.gov.uk/"},
+          {"country": "United Kingdom", "gpus": null, "year": 2026, "partners": "OpenAI, Nscale, NVIDIA", "notes": "Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Paused project, not commissioned capacity; separate from public compute and Sovereign AI funding.", "sourceUrl": "https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/"},
           {"country": "Italy", "gpus": null, "year": 2024, "partners": "Fastweb, NVIDIA", "notes": "Fastweb announced its NeXXt AI Factory and MIIA model operational in July 2024; later NVIDIA announcements include broader telco partnerships.", "sourceUrl": "https://investor.nvidia.com/news/press-release-details/2025/Europe-Builds-AI-Infrastructure-With-NVIDIA-to-Fuel-Regions-Next-Industrial-Transformation/default.aspx"},
           {"country": "France", "gpus": null, "year": 2026, "partners": "Mistral, NVIDIA", "notes": "Mistral reports GB200 production in February 2026 and first external customers in March; 1GW EU-wide capacity is a 2030 target.", "sourceUrl": "https://mistral.ai/compute/"},
           {"country": "Saudi Arabia", "gpus": 18000, "year": 2025, "partners": "HUMAIN, NVIDIA", "notes": "First phase planned with 18,000 GB300 GPUs; up to 500MW projected over five years. Partnership announced May 2025.", "sourceUrl": "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia"},
@@ -338,10 +338,10 @@
             initiative: 'AI Opportunities Action Plan 2025',
             archetype: 'Infrastructure-led', region: 'Europe', year: 2025,
             investment: 14, investmentUnit: '£B private committed',
-            status: "Delivery and domestic company backing",
+            status: "Stargate UK paused; other programmes active",
             statusColor: 'amber',
-            verifiedNotes: "January 2026 update reported 38 of 50 action commitments met and five Growth Zones. £500M Sovereign AI launched on 16 April 2026 with initial company backing and compute access. The £14B figure is the original private investment announcement, not a public budget or delivered spending total.",
-            infra: 6, regulation: 7, sovereignty: 6, openness: 8, speed: 7, talent: 9,
+            verifiedNotes: "January 2026 update reported 38 of 50 action commitments met and five Growth Zones. £500M Sovereign AI launched on 16 April 2026 with initial company backing and compute access. The £14B figure is the original private investment announcement, not a public budget or delivered spending total. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Parliament acknowledged the pause on 29 April; the government described it as wider programme recalibration. No confirmed restart was identified by this review. Editorial infrastructure score reduced 6→5 and execution speed 7→5 to reflect the flagship pause and delivery risk; public compute and company support retain credit. Other dimensions are unchanged.",
+            infra: 5, regulation: 7, sovereignty: 6, openness: 8, speed: 5, talent: 9,
             sourceUrl: "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
           },
           {
@@ -423,7 +423,7 @@
             'Since the April edition, DeepSeek V4 has released, the UK has launched £500M Sovereign AI, and EU AI enforcement has entered a new phase. Older omissions also required correction: Sarvam models, EuroHPC expansion and the May 2025 HUMAIN launch.',
           ]},
           complication: { title: 'Complication', color: 'bg-rose-900/80', points: [
-            'Announced investment, contracted capacity, installed hardware and available compute are different milestones. Stargate UAE targets and multi-year HUMAIN plans must not be counted as commissioned infrastructure.',
+            'Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Announced investment, contracted capacity, installed hardware and available compute are different milestones. Stargate UAE targets and multi-year HUMAIN plans must not be counted as commissioned infrastructure.',
             'Domestic model capability is broadening: Sarvam released 30B and 105B weights; SEA-LION adapts international base models; HUMAIN M3 is in limited preview. A released model, a preview and a roadmap offer different levels of control.',
             'The EU now lists 19 AI Factories and 13 Antennas. Enforcement powers apply from August 2026, while the Commission lists later high-risk deadlines. Regulation and compute investment are complementary strategies.',
             'No country controls every advanced semiconductor dependency. Chip design, fabrication, manufacturing equipment, energy, cloud operation and model licences all affect resilience.',
@@ -463,6 +463,7 @@
           { date: '2025-May', actor: 'Saudi Arabia', event: 'PIF launches HUMAIN; NVIDIA partnership follows with planned 18,000-GB300 first phase', category: 'Infrastructure-led' },
           { date: '2025-Oct', actor: 'EU', event: 'Six more AI Factories selected, taking network to 19', category: 'Regulation-led' },
           { date: '2026-Mar', actor: 'India', event: 'Sarvam releases 30B and 105B model weights', category: 'Inclusion-led' },
+          { date: '2026-Apr', actor: 'United Kingdom', event: '9 April: Stargate UK paused; energy costs and regulation cited by OpenAI', category: 'Infrastructure-led' },
           { date: '2026-Apr', actor: 'United Kingdom', event: '£500M Sovereign AI launches with initial company backing', category: 'Infrastructure-led' },
           { date: '2026-Apr', actor: 'China', event: 'DeepSeek V4 released on 24 April', category: 'Sovereignty-led' },
           { date: '2026-Apr', actor: 'Canada', event: 'Public sovereign supercomputing application call opens', category: 'Research-led' },
@@ -1171,9 +1172,11 @@
                   <div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
                     <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 7 October 2026</h2>
                     <p className="text-slate-400 mb-3">Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 7 October 2026. Coverage is selective.</p>
-                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. The Saudi model score moves from 3 to 6 to reflect a limited preview; other scores remain comparative judgments.</p>
+                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. The Saudi model score moves from 3 to 6 to reflect a limited preview; UK compute falls 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. Other scores remain comparative judgments.</p>
                     <p className="text-slate-400 mb-3">Investment figures retain original currencies and scopes. Public allocations, private ambitions and total project budgets are not directly comparable or summed. “Not stated” means no comparable verified amount is asserted. The EU overlaps with France; do not add their figures.</p>
                     <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
+                      <a className="text-blue-400 underline" href="https://www.reuters.com/business/openai-pauses-uk-data-centre-project-over-regulation-costs-2026-04-09/" target="_blank" rel="noopener noreferrer">Stargate UK pause · Reuters ↗</a>
+                      <a className="text-blue-400 underline" href="https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/" target="_blank" rel="noopener noreferrer">UK government response · Parliament ↗</a>
                       <a className="text-blue-400 underline" href="https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act" target="_blank" rel="noopener noreferrer">EU AI enforcement ↗</a>
                       <a className="text-blue-400 underline" href="https://www.eurohpc-ju.europa.eu/ai-factories_en" target="_blank" rel="noopener noreferrer">EuroHPC Factories ↗</a>
                       <a className="text-blue-400 underline" href="https://www.deepseek.com/en/transparency/" target="_blank" rel="noopener noreferrer">DeepSeek releases ↗</a>
