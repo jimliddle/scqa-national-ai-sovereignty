@@ -77,16 +77,250 @@
           { id: 'scqa',       label: 'SCQA Summary' },
           { id: 'timeline',   label: 'Timeline' },
           { id: 'sovereign',  label: 'Sovereign AI' },
+          { id: 'models',     label: 'Models & Control' },
           { id: 'scorer',     label: 'Posture Scorer' },
           { id: 'heatmap',    label: 'Strategic Heatmap' },
           { id: 'inventory',  label: 'Inventory' },
           { id: 'archetypes', label: 'Archetypes' },
         ];
 
+        const MODEL_CAPABILITIES = [
+          {
+                    "country": "United States",
+                    "category": "Frontier developer",
+                    "capability": 10,
+                    "control": 7,
+                    "models": "OpenAI GPT / Anthropic Claude / Google Gemini; Meta open-weight models",
+                    "evidence": "Multiple US labs appear among leading independent general-capability evaluations. Review: 7 October 2026.",
+                    "ownership": "Domestic private developers; company control is not a national guarantee of access.",
+                    "weights": "Mixed: leading proprietary APIs alongside selected downloadable models; rights depend on the named release.",
+                    "dependencies": "Proprietary services retain vendor access and roadmap dependence. Local weights still need compute, software and hardware.",
+                    "implication": "Strong frontier option set, with sovereignty varying by model and deployment contract.",
+                    "sources": [
+                              [
+                                        "Independent evaluations",
+                                        "https://artificialanalysis.ai/models/releases"
+                              ]
+                    ]
+          },
+          {
+                    "country": "China",
+                    "category": "Frontier developer",
+                    "capability": 9,
+                    "control": 8,
+                    "models": "Qwen / Kimi / GLM / DeepSeek",
+                    "evidence": "Independent evaluations show globally competitive Chinese model developers, including leading open-weight offerings. Review: 7 October 2026.",
+                    "ownership": "Domestic private model developers; national ecosystem capability is distinct from state ownership.",
+                    "weights": "Selected models have downloadable weights; licences differ across releases and developers.",
+                    "dependencies": "Downloaded weights reduce API withdrawal exposure; training provenance and accelerator supply remain separate dependencies.",
+                    "implication": "Domestic model alternatives and local deployment options strengthen resilience.",
+                    "sources": [
+                              [
+                                        "Independent evaluations",
+                                        "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3"
+                              ],
+                              [
+                                        "DeepSeek releases",
+                                        "https://www.deepseek.com/en/transparency/"
+                              ]
+                    ]
+          },
+          {
+                    "country": "United Kingdom",
+                    "category": "Frontier research, foreign-controlled",
+                    "capability": 9,
+                    "control": 4,
+                    "models": "Google DeepMind / Gemini — UK-linked research, Google-controlled",
+                    "evidence": "Google DeepMind combines UK-founded DeepMind with Google Brain; Gemini appears among leading model evaluations. UK research presence is credited separately from control.",
+                    "ownership": "Google corporate control. UK research activity does not establish a UK-controlled national frontier model.",
+                    "weights": "Gemini service access is not equivalent to ownership of its weights. Other Google model releases have separate terms.",
+                    "dependencies": "Frontier access and roadmap depend on the foreign corporate provider; domestic research talent is a separate strength.",
+                    "implication": "High frontier research capability, weaker national control over the resulting model services.",
+                    "sources": [
+                              [
+                                        "DeepMind organisation",
+                                        "https://deepmind.google/about/"
+                              ],
+                              [
+                                        "UK research presence",
+                                        "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/platform-37-the-ai-exchange/"
+                              ],
+                              [
+                                        "Independent evaluations",
+                                        "https://artificialanalysis.ai/models/releases"
+                              ]
+                    ]
+          },
+          {
+                    "country": "France",
+                    "category": "Frontier challenger",
+                    "capability": 7,
+                    "control": 7,
+                    "models": "Mistral Large 4 Preview / wider Mistral family",
+                    "evidence": "Large 4 preview released 6 October 2026. Artificial Analysis reports Intelligence Index 38 and leading capability outside US/China; this is not the overall global lead.",
+                    "ownership": "French private developer; domestic corporate presence does not mean public ownership.",
+                    "weights": "Large 4 preview API available; weights planned for end-October, not yet released as of this review. Older releases have their own licences.",
+                    "dependencies": "Local control of Large 4 cannot be inferred from planned weights; preview service and future terms matter.",
+                    "implication": "A domestic challenger improves strategic choice; count actual deployment rights separately from capability.",
+                    "sources": [
+                              [
+                                        "Release and preview status",
+                                        "https://mistral.ai/news/mistral-large-4/"
+                              ],
+                              [
+                                        "Independent model evaluation",
+                                        "https://artificialanalysis.ai/models/releases"
+                              ]
+                    ]
+          },
+          {
+                    "country": "European Union",
+                    "category": "Frontier challenger",
+                    "capability": 7,
+                    "control": 7,
+                    "models": "Mistral (France); OpenEuroLLM collaborative programme",
+                    "evidence": "Mistral provides EU-based challenger capability. OpenEuroLLM is a multilingual development programme, not evidence of a deployed frontier model.",
+                    "ownership": "Mixed private and collaborative development. Mistral is counted in France and the EU; these rows overlap.",
+                    "weights": "Mistral Large 4 weights pending; other models have release-specific rights. OpenEuroLLM goals do not establish delivered capability.",
+                    "dependencies": "EU location and regulation do not automatically grant ownership, source access or control of every model.",
+                    "implication": "Regional choice is expanding; distinguish shared governance from direct model control.",
+                    "sources": [
+                              [
+                                        "Mistral preview",
+                                        "https://mistral.ai/news/mistral-large-4/"
+                              ],
+                              [
+                                        "OpenEuroLLM programme",
+                                        "https://digital-strategy.ec.europa.eu/en/news/pioneering-ai-project-awarded-opening-large-language-models-european-languages"
+                              ]
+                    ]
+          },
+          {
+                    "country": "Canada",
+                    "category": "Enterprise / specialist developer",
+                    "capability": 5,
+                    "control": 8,
+                    "models": "Cohere Command A+",
+                    "evidence": "Command A+ released 20 May 2026. Enterprise and agentic positioning is documented; broad frontier leadership is not established by the evidence used here.",
+                    "ownership": "Canadian private model developer; commercial contracts and model rights are assessed separately.",
+                    "weights": "Command A+ weights available under Apache 2.0, per Cohere documentation. This does not generalise to every Cohere release.",
+                    "dependencies": "Self-hosting supports continuity if an API ends; ongoing training and accelerator access remain operational dependencies.",
+                    "implication": "Strong local-deployment rights can support sovereignty without overall frontier leadership.",
+                    "sources": [
+                              [
+                                        "Model, date and licence",
+                                        "https://docs.cohere.com/docs/command-a-plus"
+                              ]
+                    ]
+          },
+          {
+                    "country": "India",
+                    "category": "Domestic / regional developer",
+                    "capability": 5,
+                    "control": 8,
+                    "models": "Sarvam 30B / 105B; BharatGen programme",
+                    "evidence": "Sarvam released 30B/105B weights 6 March 2026 and reports training from scratch in India. Indian-language capability is distinct from broad global frontier status.",
+                    "ownership": "Domestic developer and IndiaAI-backed compute; provider claims are not independent frontier rankings.",
+                    "weights": "Sarvam 105B weights available under Apache 2.0; consult each model card.",
+                    "dependencies": "Local deployment is possible with suitable compute; imported accelerators and continued model development remain dependencies.",
+                    "implication": "Domestic training and usable weights provide meaningful national capability even without a demonstrated broad frontier lead.",
+                    "sources": [
+                              [
+                                        "Training and release",
+                                        "https://www.sarvam.ai/blogs/sarvam-30b-105b"
+                              ],
+                              [
+                                        "Weights and licence",
+                                        "https://huggingface.co/sarvamai/sarvam-105b"
+                              ]
+                    ]
+          },
+          {
+                    "country": "United Arab Emirates",
+                    "category": "Domestic / regional developer",
+                    "capability": 4,
+                    "control": 7,
+                    "models": "TII Falcon family / Falcon-H1 Arabic",
+                    "evidence": "Falcon-H1 Arabic announced January 2026. Arabic leaderboard claims are developer-reported and do not establish global general-purpose frontier status.",
+                    "ownership": "Abu Dhabi public research institution TII develops domestic models.",
+                    "weights": "Falcon releases have downloadable weights under model-specific TII terms; open weights do not imply unrestricted use.",
+                    "dependencies": "Local hosting and adaptation remain subject to licence terms, hardware and model-specific training provenance.",
+                    "implication": "Domestic Arabic capability and deployment options support sovereignty; imported frontier partnerships are a separate route.",
+                    "sources": [
+                              [
+                                        "Arabic model release",
+                                        "https://falconllm.tii.ae/abu-dhabi-tii-launches-falcon-h1-arabic-establishing-the-worlds-leading-arabic-ai-model.html"
+                              ],
+                              [
+                                        "Falcon licensing",
+                                        "https://www.tii.ae/news/middle-easts-leading-ai-powerhouse-tii-launches-two-new-ai-models-falcon-arabic-first-arabic"
+                              ]
+                    ]
+          },
+          {
+                    "country": "Japan",
+                    "category": "Domestic / regional developer",
+                    "capability": 4,
+                    "control": 6,
+                    "models": "NII LLM-jp-3 172B (selected example)",
+                    "evidence": "A domestic Japanese model is publicly documented. Broad frontier status is not established in the evidence reviewed; this is not a complete inventory of Japanese models.",
+                    "ownership": "National Institute of Informatics research programme.",
+                    "weights": "172B release requires individual permission; terms allow modification but restrict redistribution. Availability is not an unrestricted open licence.",
+                    "dependencies": "Licence permission, redistribution limits and local compute affect practical autonomy.",
+                    "implication": "Domestic research capability exists; deployment and reuse freedoms must be checked model by model.",
+                    "sources": [
+                              [
+                                        "Model card and terms",
+                                        "https://huggingface.co/llm-jp/llm-jp-3-172b"
+                              ]
+                    ]
+          },
+          {
+                    "country": "Singapore",
+                    "category": "Regional adaptation",
+                    "capability": 3,
+                    "control": 6,
+                    "models": "SEA-LION v4.5; regional safety and embedding models",
+                    "evidence": "SEA-LION v4.5 adapts Gemma and Qwen variants. Regional evaluation and language alignment do not establish an independent broad frontier model.",
+                    "ownership": "AI Singapore develops regional adaptations of international base models.",
+                    "weights": "Selected weights available; base-model restrictions and variant-specific terms apply.",
+                    "dependencies": "Existing local weights can support continuity; future base-model access, provenance and licence obligations remain dependencies.",
+                    "implication": "Regional adaptation delivers useful control and language fit without owning the entire base-model lineage.",
+                    "sources": [
+                              [
+                                        "Releases, provenance and licensing",
+                                        "https://github.com/aisingapore/sealion"
+                              ]
+                    ]
+          },
+          {
+                    "country": "Saudi Arabia",
+                    "category": "Regional preview",
+                    "capability": 3,
+                    "control": 4,
+                    "models": "HUMAIN M3 limited preview",
+                    "evidence": "Preview terms effective 31 August 2026. Arabic benchmark results are provider evaluations of a preview checkpoint; independent broad frontier status is not established.",
+                    "ownership": "PIF-owned HUMAIN; provider describes Arabic post-training of a reference model.",
+                    "weights": "Preview API/playground access; weights not released. Future weight plans are not current deployment rights.",
+                    "dependencies": "Access depends on preview terms and the provider; underlying reference-model provenance is a separate question.",
+                    "implication": "Domestic adaptation ambition is visible, but current preview access provides limited operational independence.",
+                    "sources": [
+                              [
+                                        "Model description",
+                                        "https://node.humain.com/"
+                              ],
+                              [
+                                        "Preview rights",
+                                        "https://node.humain.com/legal/model-terms"
+                              ]
+                    ]
+          }
+];
+
         const SOVEREIGN_DATA = [
           {
             country: 'China', flag: 'CN',
-            compute: 9, model: 10, data: 10,
+            compute: 9, model: 8, data: 10,
             domesticChipDesign: true,
             computeNotes: "Huawei Ascend and domestic accelerators provide alternatives to imported GPUs. Domestic capacity is growing, but no complete independence from global fabrication, equipment or software supply chains is established here.",
             modelNotes: "DeepSeek V4 released 24 April 2026, alongside the broader Qwen, ERNIE, MiniMax and Kimi ecosystem. A domestic model ecosystem does not by itself establish chip or supply-chain independence.",
@@ -98,7 +332,7 @@
           },
           {
             country: 'European Union', flag: 'EU',
-            compute: 6, model: 6, data: 10,
+            compute: 6, model: 7, data: 10,
             domesticChipDesign: false,
             computeNotes: "EuroHPC lists 19 AI Factories and 13 Antennas. A Gigafactories tender launched 30 July 2026, with proposals due 12 November. Selection and implementation do not mean every system is operational.",
             modelNotes: 'Mistral is a major European model developer. OpenEuroLLM is a collaborative multilingual model programme, distinct from commercial offerings.',
@@ -110,7 +344,7 @@
           },
           {
             country: 'United States', flag: 'US',
-            compute: 10, model: 10, data: 4,
+            compute: 10, model: 7, data: 4,
             domesticChipDesign: true,
             computeNotes: "OpenAI reported on 29 April 2026 that it had surpassed its goal of securing 10GW of US Stargate infrastructure. Secured capacity is not the same as commissioned power. Abilene supports model training; chip-design leadership still depends on international fabrication and equipment.",
             modelNotes: "OpenAI, Anthropic, Google and Meta support a large private-sector model ecosystem. Company ownership, deployment control and national public-interest access are different questions.",
@@ -122,7 +356,7 @@
           },
           {
             country: 'United Arab Emirates', flag: 'AE',
-            compute: 8, model: 9, data: 6,
+            compute: 8, model: 7, data: 6,
             domesticChipDesign: false,
             computeNotes: "Stargate UAE is a planned 1GW cluster within a wider 5GW campus. OpenAI announced a 200MW first phase expected in 2026; that schedule is not proof of commissioning.",
             modelNotes: "TII released Falcon-H1 Arabic in January 2026. Its leaderboard leadership is a dated developer claim; the Falcon programme demonstrates domestic model capability without proving independence in every layer.",
@@ -134,7 +368,7 @@
           },
           {
             country: 'India', flag: 'IN',
-            compute: 6, model: 7, data: 7,
+            compute: 6, model: 8, data: 7,
             domesticChipDesign: false,
             computeNotes: "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, 237 projects had been approved for 9.318 million subsidised GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure.",
             modelNotes: "Sarvam released open-weight 30B and 105B reasoning models on 6 March 2026, reporting training entirely in India on IndiaAI compute. ",
@@ -146,7 +380,7 @@
           },
           {
             country: 'Singapore', flag: 'SG',
-            compute: 6, model: 8, data: 8,
+            compute: 6, model: 6, data: 8,
             domesticChipDesign: false,
             computeNotes: 'National Supercomputing Centre (NSCC) as backbone. S$70M National Multimodal LLM Programme. Regional AI hub ambition - hosts hyperscaler APAC infrastructure. Punches above weight given size.',
             modelNotes: "SEA-LION now lists v4.5 models, alongside v4, SEA-Guard and the March 2026 embedding suite. Many variants adapt Gemma, Qwen or other base models; regional language control and base-model independence should be distinguished.",
@@ -158,7 +392,7 @@
           },
           {
             country: 'France', flag: 'FR',
-            compute: 6, model: 8, data: 8,
+            compute: 6, model: 7, data: 8,
             domesticChipDesign: false,
             computeNotes: "Mistral reports production GB200 compute from February 2026 and first external customers in March. Its Sweden expansion is in development and its 1GW EU capacity is a 2030 ambition.",
             modelNotes: "Mistral is a major European model developer with open-weight and commercial offerings. Availability, licence terms and deployment control vary by model.",
@@ -170,7 +404,7 @@
           },
           {
             country: 'United Kingdom', flag: 'GB',
-            compute: 5, model: 5, data: 7,
+            compute: 5, model: 4, data: 7,
             domesticChipDesign: false,
             computeNotes: "Isambard-AI launched in July 2025. The January 2026 government update reported five AI Growth Zones and a £2B plan for twentyfold public compute expansion by 2030. Targets and procurement plans are not delivered capacity. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. No confirmed restart was identified in this review. Editorial compute score reduced from 6 to 5: the paused project weakens accessible-capacity expectations, while delivered public compute retains credit.",
             modelNotes: "The £500M Sovereign AI programme launched 16 April 2026 with initial backing for domestic firms and compute access. DeepMind remains Google-owned; research strengths and domestic company support do not establish a national general-purpose model.",
@@ -182,7 +416,7 @@
           },
           {
             country: 'Japan', flag: 'JP',
-            compute: 7, model: 5, data: 7,
+            compute: 7, model: 6, data: 7,
             domesticChipDesign: false,
             computeNotes: "RIKEN announced two Blackwell systems totalling 2,140 GPUs, scheduled for spring 2026. FugakuNEXT is a Fujitsu/NVIDIA development programme aimed at operation by 2030, not a current deployed system.",
             modelNotes: 'Some domestic LLM activity but no globally prominent national model. Strong in physical AI, robotics, and semiconductor - less prominent in foundation LLM. NEC, Fujitsu, SoftBank have internal model programs.',
@@ -194,7 +428,7 @@
           },
           {
             country: 'Canada', flag: 'CA',
-            compute: 5, model: 6, data: 7,
+            compute: 5, model: 8, data: 7,
             domesticChipDesign: false,
             computeNotes: "The Canadian Sovereign AI Compute Strategy allocates up to C$2B across commercial capacity, public infrastructure and access. The public supercomputing application call launched April 2026. This is separate from Pan-Canadian research-strategy funding.",
             modelNotes: 'Cohere is a Canadian enterprise model developer; CIFAR, Vector, Mila and Amii anchor research. Research strength, company control and publicly accessible compute are distinct capabilities.',
@@ -206,7 +440,7 @@
           },
           {
             country: 'Saudi Arabia', flag: 'SA',
-            compute: 6, model: 6, data: 5,
+            compute: 6, model: 4, data: 5,
             domesticChipDesign: false,
             computeNotes: "HUMAIN and NVIDIA announced a planned 18,000-GB300 first phase and up to 500MW over five years in May 2025. These are announced programme targets; verified commissioning is not established by the announcement.",
             modelNotes: "HUMAIN M3 is available in limited preview on HUMAIN Node. The provider reports Arabic post-training of a reference model; open weights are planned rather than released. Preview benchmark claims are vendor evaluations.",
@@ -559,6 +793,61 @@
           );
         }
 
+        function ModelCapabilityView() {
+          const [filter, setFilter] = useState('All');
+          const [selected, setSelected] = useState(null);
+          const groups = ['All', 'Frontier', 'Regional / specialist'];
+          const filtered = MODEL_CAPABILITIES.filter(d => filter === 'All' || (filter === 'Frontier' ? d.category.toLowerCase().includes('frontier') : !d.category.toLowerCase().includes('frontier')));
+          const sorted = [...filtered].sort((a,b) => b.capability - a.capability || a.country.localeCompare(b.country));
+          return (
+            <div className="space-y-5">
+              <div className="glass-panel rounded-xl p-5">
+                <h2 className="text-lg font-bold text-slate-100 mb-2">Frontier Capability ≠ Sovereign Model Control</h2>
+                <p className="text-sm text-slate-300 leading-relaxed">Frontier capability describes proximity to the leading edge of broad model performance. Model control describes who owns the developer and what can be deployed, adapted and maintained locally. A nation can have strong research with foreign corporate control, or useful local model control without a frontier model.</p>
+                <div className="grid md:grid-cols-3 gap-3 mt-4 text-xs text-slate-300">
+                  <div className="rounded-lg border border-blue-900 bg-blue-950/20 p-3"><strong className="text-blue-300">Capability</strong><p className="mt-1">Independent, dated evaluations; general capability and language-specific results remain distinct.</p></div>
+                  <div className="rounded-lg border border-violet-900 bg-violet-950/20 p-3"><strong className="text-violet-300">Control</strong><p className="mt-1">Developer ownership, released weights, licensing and the ability to adapt the model.</p></div>
+                  <div className="rounded-lg border border-teal-900 bg-teal-950/20 p-3"><strong className="text-teal-300">Continuity</strong><p className="mt-1">Can the model keep operating if a foreign API or supplier withdraws? Local weights help, but compute and maintenance still matter.</p></div>
+                </div>
+                <p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 7 October 2026. These are separate editorial scores, not benchmark values. Capability: 9–10 leading frontier ecosystem/research presence; 7–8 challenger; 4–6 domestic or specialist developer; 1–3 adaptation or preview without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. UK-linked DeepMind research earns capability credit while Google corporate control limits its control score. The evidence is selective; “not established” does not mean no model exists.</p>
+                <p className="text-xs text-slate-400 mt-2">The control scores replace the former blended model scores in Sovereign AI. Capability stays separate and is not folded into the six-factor Posture Scorer, which compares programme strategy. France/EU overlap and cross-border research affiliations must not be added together.</p>
+                <div className="overflow-x-auto mt-4">
+                  <table className="w-full text-xs text-left">
+                    <caption className="text-left text-sm font-bold text-slate-200 mb-2">Which jurisdictions have frontier capability?</caption>
+                    <thead className="text-slate-400 border-b border-slate-700"><tr><th className="py-2 pr-4">Assessment</th><th className="py-2">Jurisdictions in this review</th></tr></thead>
+                    <tbody className="text-slate-300 divide-y divide-slate-800">
+                      <tr><td className="py-2 pr-4">Frontier developers</td><td>United States, China</td></tr>
+                      <tr><td className="py-2 pr-4">Frontier research under foreign corporate control</td><td>United Kingdom — Google DeepMind</td></tr>
+                      <tr><td className="py-2 pr-4">Frontier challenger</td><td>France / EU — Mistral; overlapping coverage</td></tr>
+                      <tr><td className="py-2 pr-4">Domestic / specialist models; broad frontier status not established</td><td>Canada, India, Japan, United Arab Emirates</td></tr>
+                      <tr><td className="py-2 pr-4">Regional adaptation / preview; broad frontier status not established</td><td>Singapore, Saudi Arabia</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2" aria-label="Model capability filters">
+                {groups.map(g => <button key={g} onClick={() => {setFilter(g);setSelected(null);}} aria-pressed={filter===g} className={`text-xs px-4 py-2 rounded-full border ${filter===g?'bg-blue-600 border-blue-500 text-white':'bg-slate-800 border-slate-700 text-slate-300'}`}>{g}</button>)}
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {sorted.map(d => (
+                  <section key={d.country} className="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                    <button className="w-full p-5 text-left hover:bg-slate-800/30" aria-expanded={selected===d.country} onClick={() => setSelected(selected===d.country?null:d.country)}>
+                      <div className="flex justify-between gap-3 items-start"><div><h3 className="text-base font-bold text-white">{d.country}</h3><p className="text-xs text-blue-300 mt-1">{d.category}</p></div><span className="text-slate-400">{selected===d.country?'−':'+'}</span></div>
+                      <p className="text-sm text-slate-300 mt-3">{d.models}</p>
+                      <div className="flex gap-6 mt-4"><div><span className="text-2xl font-mono font-bold text-blue-400">{d.capability}<span className="text-xs text-slate-500">/10</span></span><p className="text-xs text-slate-400">Frontier capability</p></div><div><span className="text-2xl font-mono font-bold text-violet-400">{d.control}<span className="text-xs text-slate-500">/10</span></span><p className="text-xs text-slate-400">Model control</p></div></div>
+                      <p className="text-xs text-slate-400 mt-3 leading-relaxed">{d.implication}</p>
+                    </button>
+                    {selected===d.country && <div className="p-5 border-t border-slate-800 bg-slate-950/40 space-y-3 text-xs leading-relaxed">
+                      {[['Dated capability evidence',d.evidence],['Ownership / control',d.ownership],['Weights / deployment rights',d.weights],['Dependencies / continuity',d.dependencies]].map(([label,value]) => <div key={label}><h4 className="font-bold text-slate-200 mb-1">{label}</h4><p className="text-slate-400">{value}</p></div>)}
+                      <div className="flex flex-wrap gap-3">{d.sources.map(([label,url]) => <a key={url} className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a>)}</div>
+                    </div>}
+                  </section>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
         function SovereignAIView() {
           const [selected, setSelected] = useState(null);
           const [mode, setMode] = useState('map');
@@ -594,7 +883,7 @@
                 <div className="grid md:grid-cols-3 gap-4 mb-4">
                   {[
                     { label: 'Compute Sovereignty', desc: 'Controls infrastructure access and operation, with resilience across energy, accelerators, software and suppliers.', color: '#3b82f6' },
-                    { label: 'Model Sovereignty', desc: 'Controls model deployment and adaptation rights. Domestic training and local-language alignment help, but licences and base-model provenance also matter.', color: '#8b5cf6' },
+                    { label: 'Model Control', desc: 'Controls model deployment and adaptation rights. Domestic training and local-language alignment help, but licences and base-model provenance also matter.', color: '#8b5cf6' },
                     { label: 'Data Sovereignty', desc: 'Controls data collection, use and access through law, contracts and technical safeguards. Data protection does not automatically confer model ownership.', color: '#10b981' },
                   ].map(d => (
                     <div key={d.label} className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
@@ -611,6 +900,7 @@
                 </div>
               </div>
 
+              <div className="glass-panel rounded-xl p-4 text-xs text-slate-400">Model values now assess control rather than blending capability and sovereignty. See Models &amp; Control for a separate frontier assessment, named models, ownership, licences and deployment dependencies. The UK can have high frontier research capability and lower control.</div>
               <div className="flex flex-wrap gap-3 items-center">
                 <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
                   {['map', 'bars'].map(m => (
@@ -625,7 +915,7 @@
                   className="text-xs bg-slate-800 text-slate-300 border border-slate-700 rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition">
                   <option value="overall">Sort: Overall Average</option>
                   <option value="compute">Sort: Compute Score</option>
-                  <option value="model">Sort: Model Score</option>
+                  <option value="model">Sort: Model Control</option>
                   <option value="data">Sort: Data Score</option>
                 </select>
               </div>
@@ -647,7 +937,7 @@
                         />
                         <Legend wrapperStyle={{ fontSize: 11, color: '#cbd5e1', paddingTop: '10px' }} iconType="circle" />
                         <Bar dataKey="compute" name="Compute" fill="#3b82f6" radius={[4, 4, 0, 0]} maxBarSize={40} />
-                        <Bar dataKey="model" name="Model" fill="#8b5cf6" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                        <Bar dataKey="model" name="Model Control" fill="#8b5cf6" radius={[4, 4, 0, 0]} maxBarSize={40} />
                         <Bar dataKey="data" name="Data" fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={40} />
                       </BarChart>
                     </ResponsiveContainer>
@@ -685,7 +975,7 @@
                           <div className="grid md:grid-cols-3 gap-4">
                             {[
                               { label: 'Compute Sovereignty', score: d.compute, notes: d.computeNotes, color: '#3b82f6' },
-                              { label: 'Model Sovereignty', score: d.model, notes: d.modelNotes, color: '#8b5cf6' },
+                              { label: 'Model Control', score: d.model, notes: d.modelNotes, color: '#8b5cf6' },
                               { label: 'Data Sovereignty', score: d.data, notes: d.dataNotes, color: '#10b981' },
                             ].map(dim => (
                               <div key={dim.label} className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
@@ -753,7 +1043,7 @@
                 </div>
                 <div className="glass-panel border-violet-900/30 rounded-xl p-4 text-center flex flex-col justify-center">
                   <div className="text-3xl font-bold text-violet-500 font-mono drop-shadow-sm">{SOVEREIGN_DATA.filter(d => d.model >= 7).length}</div>
-                  <div className="text-[11px] uppercase tracking-wider text-violet-600/80 font-bold mt-1">Jurisdictions with stronger<br/>editorial model scores</div>
+                  <div className="text-[11px] uppercase tracking-wider text-violet-600/80 font-bold mt-1">Jurisdictions with stronger<br/>editorial model-control scores</div>
                 </div>
               </div>
             </div>
@@ -1162,6 +1452,7 @@
                 {tab === 'scqa'       && <SCQAView />}
                 {tab === 'timeline'   && <TimelineView />}
                 {tab === 'sovereign'  && <SovereignAIView />}
+                {tab === 'models'     && <ModelCapabilityView />}
                 {tab === 'scorer'     && <PostureScorer />}
                 {tab === 'heatmap'    && <StrategicHeatmap />}
                 {tab === 'inventory'  && <InitiativeInventory />}
@@ -1172,7 +1463,7 @@
                   <div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
                     <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 7 October 2026</h2>
                     <p className="text-slate-400 mb-3">Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 7 October 2026. Coverage is selective.</p>
-                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. The Saudi model score moves from 3 to 6 to reflect a limited preview; UK compute falls 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. Other scores remain comparative judgments.</p>
+                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. Model-control scores were reassessed separately from frontier capability; Saudi control is 4 because its preview weights remain unavailable; UK compute falls 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. Other scores remain comparative judgments. Models &amp; Control documents the new capability/control rubric and evidence; capability is not included in the six-factor posture calculation.</p>
                     <p className="text-slate-400 mb-3">Investment figures retain original currencies and scopes. Public allocations, private ambitions and total project budgets are not directly comparable or summed. “Not stated” means no comparable verified amount is asserted. The EU overlaps with France; do not add their figures.</p>
                     <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
                       <a className="text-blue-400 underline" href="https://www.reuters.com/business/openai-pauses-uk-data-centre-project-over-regulation-costs-2026-04-09/" target="_blank" rel="noopener noreferrer">Stargate UK pause · Reuters ↗</a>
@@ -1206,3 +1497,4 @@
     </script>
 </body>
 </html>
+
