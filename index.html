@@ -112,13 +112,13 @@
             country: 'United States', flag: 'US',
             compute: 10, model: 10, data: 4,
             domesticChipDesign: true,
-            computeNotes: "Stargate reported nearly 7GW planned capacity and over $400B in investment plans in September 2025; Abilene had begun workloads. Planned sites are not all live. US chip design leadership still depends on international fabrication and equipment.",
+            computeNotes: "OpenAI reported on 29 April 2026 that it had surpassed its goal of securing 10GW of US Stargate infrastructure. Secured capacity is not the same as commissioned power. Abilene supports model training; chip-design leadership still depends on international fabrication and equipment.",
             modelNotes: "OpenAI, Anthropic, Google and Meta support a large private-sector model ecosystem. Company ownership, deployment control and national public-interest access are different questions.",
             dataNotes: "Data location, provider jurisdiction and lawful access are separate considerations. Hosting domestically does not automatically eliminate foreign legal or contractual exposure.",
             nvidiaPartnered: true,
             tier: "Chip-design and model leadership",
             tierColor: '#2563eb',
-            sourceUrl: "https://openai.com/index/five-new-stargate-sites/",
+            sourceUrl: "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/",
           },
           {
             country: 'United Arab Emirates', flag: 'AE',
@@ -136,7 +136,7 @@
             country: 'India', flag: 'IN',
             compute: 6, model: 7, data: 7,
             domesticChipDesign: false,
-            computeNotes: "Government reported 38,000 GPUs available in February 2026 and announced 20,000 more. These are programme access and expansion figures, not a verified installed total for October. The minister expected over $200B of AI investment over two years; this is a forecast, not expenditure.",
+            computeNotes: "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, 237 projects had been approved for 9.318 million subsidised GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure.",
             modelNotes: "Sarvam released open-weight 30B and 105B reasoning models on 6 March 2026, reporting training entirely in India on IndiaAI compute. ",
             dataNotes: "The DPDP framework and IndiaAI data initiatives address governance and access. Domestic training is evidence of local capability, not a blanket legal requirement that every dataset stay in India.",
             nvidiaPartnered: true,
@@ -221,7 +221,7 @@
         const NVIDIA_DEPLOYMENTS = [
           {"country": "South Korea", "gpus": 260000, "year": 2025, "partners": "MSIT, Samsung, SK, Hyundai, NAVER", "notes": "Announced over 260,000 GPUs on 30 October 2025 across government and industry; staged deployment, not a single installed cluster.", "sourceUrl": "https://nvidianews.nvidia.com/news/south-korea-ai-infrastructure"},
           {"country": "UAE", "gpus": null, "year": 2025, "partners": "G42, OpenAI, Oracle, SoftBank, Cisco", "notes": "Planned 1GW Stargate cluster inside wider 5GW campus; first 200MW expected in 2026. Commissioning not established by this announcement.", "sourceUrl": "https://openai.com/index/introducing-stargate-uae/"},
-          {"country": "India", "gpus": 38000, "year": 2026, "partners": "IndiaAI empanelled compute providers", "notes": "Government reported 38,000 programme GPUs in February and announced 20,000 more. Mixed-provider access figure; not a single NVIDIA installation.", "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2229171&lang=1&reg=1"},
+          {"country": "India", "gpus": 45000, "year": 2026, "partners": "IndiaAI empanelled compute providers", "notes": "PIB reports over 45,000 shared GPUs as of June 2026; 237 projects approved for 9.318M GPU hours by August. Mixed-provider access, not a single NVIDIA installation.", "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"},
           {"country": "Germany", "gpus": 10000, "year": 2025, "partners": "NVIDIA, industrial software partners", "notes": "June 2025 industrial AI cloud announcement specified 10,000 GPUs. Announcement count; commissioning should be checked separately.", "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-builds-worlds-first-industrial-ai-cloud-to-advance-european-manufacturing"},
           {"country": "United Kingdom", "gpus": null, "year": 2026, "partners": "Government, domestic AI firms", "notes": "Sovereign AI supports domestic firms with funding and public supercomputer access. No consolidated national NVIDIA GPU count asserted.", "sourceUrl": "https://www.sovereignai.gov.uk/"},
           {"country": "Italy", "gpus": null, "year": 2024, "partners": "Fastweb, NVIDIA", "notes": "Fastweb announced its NeXXt AI Factory and MIIA model operational in July 2024; later NVIDIA announcements include broader telco partnerships.", "sourceUrl": "https://investor.nvidia.com/news/press-release-details/2025/Europe-Builds-AI-Infrastructure-With-NVIDIA-to-Fuel-Regions-Next-Industrial-Transformation/default.aspx"},
@@ -241,9 +241,9 @@
             investment: 500, investmentUnit: "$B announced investment ambition",
             status: "Buildout - planned and live capacity differ",
             statusColor: 'amber',
-            verifiedNotes: "January 2025 announcement set a $500B ambition. September 2025 update listed nearly 7GW planned capacity and over $400B in investment plans over three years. Abilene had begun workloads; five new sites were announced, not all commissioned. ",
+            verifiedNotes: "January 2025 announcement set a $500B ambition. On 29 April 2026 OpenAI reported surpassing its goal of securing 10GW of US infrastructure, with more than 3GW added in the preceding 90 days. These are company-reported secured-capacity figures, not a verified total of operational power. Abilene supports model training.",
             infra: 10, regulation: 3, sovereignty: 7, openness: 5, speed: 9, talent: 9,
-            sourceUrl: "https://openai.com/index/five-new-stargate-sites/",
+            sourceUrl: "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/",
           },
           {
             country: 'United States', flag: '🇺🇸',
@@ -307,9 +307,9 @@
             investment: 1.25, investmentUnit: '$B public (Rs10,372 crore)',
             status: 'Significantly exceeding targets',
             statusColor: 'teal',
-            verifiedNotes: "Government reported 38,000 GPUs available in February 2026 and announced 20,000 more. These are programme access and expansion figures, not a verified installed total for October. The minister expected over $200B of AI investment over two years; this is a forecast, not expenditure. Sarvam released 30B and 105B models in March 2026. The approved mission budget is Rs10,371.92 crore; the dollar value shown is approximate.",
+            verifiedNotes: "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, 237 projects had been approved for 9.318 million subsidised GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure. Sarvam released 30B and 105B models in March 2026. The approved mission budget is Rs10,371.92 crore; the dollar value shown is approximate.",
             infra: 6, regulation: 4, sovereignty: 7, openness: 8, speed: 8, talent: 9,
-            sourceUrl: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2229171&lang=1&reg=1",
+            sourceUrl: "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3",
           },
           {
             country: 'Singapore', flag: '🇸🇬',
@@ -466,6 +466,8 @@
           { date: '2026-Apr', actor: 'United Kingdom', event: '£500M Sovereign AI launches with initial company backing', category: 'Infrastructure-led' },
           { date: '2026-Apr', actor: 'China', event: 'DeepSeek V4 released on 24 April', category: 'Sovereignty-led' },
           { date: '2026-Apr', actor: 'Canada', event: 'Public sovereign supercomputing application call opens', category: 'Research-led' },
+          { date: '2026-Jun', actor: 'India', event: 'Shared compute capacity exceeds 45,000 GPUs per PIB; 237 projects approved for subsidised access by August', category: 'Inclusion-led' },
+          { date: '2026-Apr', actor: 'United States', event: 'OpenAI reports surpassing 10GW secured infrastructure goal; distinct from operational power', category: 'Infrastructure-led' },
           { date: '2026-Jul', actor: 'EU', event: 'AI Gigafactories tender opens; proposals due 12 November 2026', category: 'Regulation-led' },
           { date: '2026-Aug', actor: 'EU', event: 'AI Act enforcement powers and transparency requirements apply', category: 'Regulation-led' },
           { date: '2026-Aug', actor: 'Saudi Arabia', event: 'HUMAIN M3 limited-preview terms effective 31 August; weights not released', category: 'Sovereignty-led' },
@@ -1017,9 +1019,9 @@
 
           const summaries = {
             'US (Infrastructure)': {
-              exemplars: 'Stargate ($500B ambition, nearly 7GW planned), CHIPS Act ($52.7B)',
+              exemplars: 'Stargate ($500B ambition, over 10GW secured per OpenAI), CHIPS Act ($52.7B)',
               thesis: 'Overwhelm through scale and private capital. Own the compute layer and frontier model access follows.',
-              currentState: 'Abilene began workloads; five additional sites were announced in September 2025. Planned capacity and actual service availability must be tracked separately.',
+              currentState: 'OpenAI reported surpassing its 10GW secured-capacity goal in April 2026. Abilene supports training. Contracted capacity and operational service availability remain distinct.',
               risk: 'Execution risk on energy and grid; regulatory fragmentation; concentration in 3 companies.',
             },
             'EU (Regulation)': {
@@ -1035,9 +1037,9 @@
               risk: 'Chip performance gap vs NVIDIA persists; talent suppression risk; opacity reduces external adoption.',
             },
             'India (Inclusion)': {
-              exemplars: 'IndiaAI Mission (38,000 reported GPUs, ~$1.25B mission budget)',
+              exemplars: 'IndiaAI Mission (45,000+ reported shared GPUs, ~$1.25B mission budget)',
               thesis: '"AI for All" - apply AI to 1.4B people across 22 official languages. Access sovereignty over stack sovereignty.',
-              currentState: '38,000 GPUs reported in February; 20,000 more announced. Sarvam released 30B and 105B models in March. Investment forecasts are not delivered expenditure.',
+              currentState: 'Shared capacity exceeded 45,000 GPUs by June; 237 projects approved for 9.318M GPU hours by August. Sarvam released 30B and 105B models in March. Investment forecasts are not delivered expenditure.',
               risk: 'Energy reliability; foreign GPU dependency; talent retention; last-mile deployment in tier 2/3 cities.',
             },
             'Singapore (Regional)': {
@@ -1175,7 +1177,7 @@
                       <a className="text-blue-400 underline" href="https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act" target="_blank" rel="noopener noreferrer">EU AI enforcement ↗</a>
                       <a className="text-blue-400 underline" href="https://www.eurohpc-ju.europa.eu/ai-factories_en" target="_blank" rel="noopener noreferrer">EuroHPC Factories ↗</a>
                       <a className="text-blue-400 underline" href="https://www.deepseek.com/en/transparency/" target="_blank" rel="noopener noreferrer">DeepSeek releases ↗</a>
-                      <a className="text-blue-400 underline" href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2229171&lang=1&reg=1" target="_blank" rel="noopener noreferrer">India compute announcement ↗</a>
+                      <a className="text-blue-400 underline" href="https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3" target="_blank" rel="noopener noreferrer">India compute and access ↗</a>
                       <a className="text-blue-400 underline" href="https://www.sarvam.ai/blogs/sarvam-30b-105b" target="_blank" rel="noopener noreferrer">Sarvam released models ↗</a>
                       <a className="text-blue-400 underline" href="https://github.com/aisingapore/sealion" target="_blank" rel="noopener noreferrer">SEA-LION releases ↗</a>
                       <a className="text-blue-400 underline" href="https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai" target="_blank" rel="noopener noreferrer">UK Sovereign AI ↗</a>
@@ -1185,7 +1187,7 @@
                       <a className="text-blue-400 underline" href="https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia" target="_blank" rel="noopener noreferrer">HUMAIN/NVIDIA plan ↗</a>
                       <a className="text-blue-400 underline" href="https://node.humain.com/legal/model-terms" target="_blank" rel="noopener noreferrer">HUMAIN preview terms ↗</a>
                       <a className="text-blue-400 underline" href="https://mistral.ai/compute/" target="_blank" rel="noopener noreferrer">Mistral compute ↗</a>
-                      <a className="text-blue-400 underline" href="https://openai.com/index/five-new-stargate-sites/" target="_blank" rel="noopener noreferrer">US Stargate sites ↗</a>
+                      <a className="text-blue-400 underline" href="https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/" target="_blank" rel="noopener noreferrer">US Stargate progress ↗</a>
                       <a className="text-blue-400 underline" href="https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing" target="_blank" rel="noopener noreferrer">RIKEN / FugakuNEXT ↗</a>
                     </div>
                     <span className="text-slate-400 mt-3 block">For strategic discussion and decision support.</span>
