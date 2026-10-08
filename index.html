@@ -94,12 +94,24 @@
                     "evidence": "Multiple US labs appear among leading independent general-capability evaluations. Review: 7 October 2026.",
                     "ownership": "Domestic private developers; company control is not a national guarantee of access.",
                     "weights": "Mixed: leading proprietary APIs alongside selected downloadable models; rights depend on the named release.",
-                    "dependencies": "Proprietary services retain vendor access and roadmap dependence. Local weights still need compute, software and hardware.",
+                    "dependencies": "12 June: US export controls caused Fable/Mythos access suspension; lifted 30 June, restored 1 July. Astra advanced cyber access and Google Fairwind are managed-access programmes, not verified blanket export embargoes. Domestic private ownership still does not guarantee public access.",
                     "implication": "Strong frontier option set, with sovereignty varying by model and deployment contract.",
                     "sources": [
                               [
                                         "Independent evaluations",
                                         "https://artificialanalysis.ai/models/releases"
+                              ],
+                              [
+                                        "Anthropic suspension and restoration",
+                                        "https://www.anthropic.com/news/redeploying-fable-5"
+                              ],
+                              [
+                                        "Astra access controls",
+                                        "https://openai.com/index/path-to-astra/"
+                              ],
+                              [
+                                        "Gemini managed access",
+                                        "https://deepmind.google/fairwind-program/"
                               ]
                     ]
           },
@@ -127,27 +139,31 @@
           },
           {
                     "country": "United Kingdom",
-                    "category": "Frontier research, foreign-controlled",
-                    "capability": 9,
+                    "category": "Domestic development / foreign-controlled research",
+                    "capability": 3,
                     "control": 4,
-                    "models": "Google DeepMind / Gemini — UK-linked research, Google-controlled",
-                    "evidence": "Google DeepMind combines UK-founded DeepMind with Google Brain; Gemini appears among leading model evaluations. UK research presence is credited separately from control.",
-                    "ownership": "Google corporate control. UK research activity does not establish a UK-controlled national frontier model.",
+                    "models": "Ineffable Intelligence — development stage; Gemini — US-controlled supplier",
+                    "evidence": "No UK-controlled, publicly demonstrated broad frontier model is established in this review. Ineffable describes a research mission, not a released frontier system. Gemini capability is attributed to Google in the US, not to UK sovereign capability.",
+                    "ownership": "DeepMind was UK-founded and retains major UK research operations, but is part of Google under US parent Alphabet. Research location does not confer UK ownership or guaranteed model access.",
                     "weights": "Gemini service access is not equivalent to ownership of its weights. Other Google model releases have separate terms.",
-                    "dependencies": "Frontier access and roadmap depend on the foreign corporate provider; domestic research talent is a separate strength.",
-                    "implication": "High frontier research capability, weaker national control over the resulting model services.",
+                    "dependencies": "Gemini access and roadmap remain under Google control. The June Fable/Mythos suspension demonstrates foreign-jurisdiction continuity risk; fund backing does not remove it.",
+                    "implication": "Strong research talent; no demonstrated UK-controlled frontier model. Capability revised 9→3 to remove foreign-owned Gemini credit.",
                     "sources": [
                               [
-                                        "DeepMind organisation",
+                                        "Google DeepMind organisation",
                                         "https://deepmind.google/about/"
                               ],
                               [
-                                        "UK research presence",
-                                        "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/platform-37-the-ai-exchange/"
+                                        "Domestic development mission",
+                                        "https://www.ineffable.ai/"
                               ],
                               [
-                                        "Independent evaluations",
-                                        "https://artificialanalysis.ai/models/releases"
+                                        "UK fund scope",
+                                        "https://www.sovereignai.gov.uk/faqs"
+                              ],
+                              [
+                                        "Access withdrawal precedent",
+                                        "https://www.anthropic.com/news/redeploying-fable-5"
                               ]
                     ]
           },
@@ -161,7 +177,7 @@
                     "ownership": "French private developer; domestic corporate presence does not mean public ownership.",
                     "weights": "Large 4 preview API available; weights planned for end-October, not yet released as of this review. Older releases have their own licences.",
                     "dependencies": "Local control of Large 4 cannot be inferred from planned weights; preview service and future terms matter.",
-                    "implication": "A domestic challenger improves strategic choice; count actual deployment rights separately from capability.",
+                    "implication": "Domestic frontier challenger capability: 7/10 reflects competitive models below the broad global leaders in this rubric. Unlike UK-linked Gemini research, Mistral is a domestic developer. Large 4 preview rights and pending weights remain distinct.",
                     "sources": [
                               [
                                         "Release and preview status",
@@ -183,7 +199,7 @@
                     "ownership": "Mixed private and collaborative development. Mistral is counted in France and the EU; these rows overlap.",
                     "weights": "Mistral Large 4 weights pending; other models have release-specific rights. OpenEuroLLM goals do not establish delivered capability.",
                     "dependencies": "EU location and regulation do not automatically grant ownership, source access or control of every model.",
-                    "implication": "Regional choice is expanding; distinguish shared governance from direct model control.",
+                    "implication": "Domestic frontier challenger capability: 7/10 reflects competitive models below the broad global leaders in this rubric. Unlike UK-linked Gemini research, Mistral is a domestic developer. Large 4 preview rights and pending weights remain distinct.",
                     "sources": [
                               [
                                         "Mistral preview",
@@ -336,7 +352,7 @@
             domesticChipDesign: false,
             computeNotes: "EuroHPC lists 19 AI Factories and 13 Antennas. A Gigafactories tender launched 30 July 2026, with proposals due 12 November. Selection and implementation do not mean every system is operational.",
             modelNotes: 'Mistral is a major European model developer. OpenEuroLLM is a collaborative multilingual model programme, distinct from commercial offerings.',
-            dataNotes: "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework.",
+            dataNotes: "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework. Cloud Sovereignty Framework: 48 criteria across eight objectives, plus SEAL assurance thresholds. The April procurement requires SEAL-2 (data sovereignty), not full supply-chain independence. The 3 June Cloud and AI Development Act proposes an EU-wide sovereignty framework; this is a legislative proposal, not enacted law.",
             nvidiaPartnered: true,
             tier: "Governance-led, compute expanding",
             tierColor: '#7c3aed',
@@ -407,7 +423,7 @@
             compute: 5, model: 4, data: 7,
             domesticChipDesign: false,
             computeNotes: "Isambard-AI launched in July 2025. The January 2026 government update reported five AI Growth Zones and a £2B plan for twentyfold public compute expansion by 2030. Targets and procurement plans are not delivered capacity. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. No confirmed restart was identified in this review. Editorial compute score reduced from 6 to 5: the paused project weakens accessible-capacity expectations, while delivered public compute retains credit.",
-            modelNotes: "The £500M Sovereign AI programme launched 16 April 2026 with initial backing for domestic firms and compute access. DeepMind remains Google-owned; research strengths and domestic company support do not establish a national general-purpose model.",
+            modelNotes: "The £500M Sovereign AI fund launched 16 April 2026. This is an announced fund envelope, not £500M disbursed or a dedicated frontier-model training budget. Its typical £1M–£10M equity investments span five areas; compute, procurement and visas are additional support levers. DeepMind remains Google-owned; research strengths and domestic company support do not establish a national general-purpose model.",
             dataNotes: "UK GDPR and domestic data governance remain relevant to AI deployment. Sovereignty also depends on licences, operator access and supply-chain resilience.",
             nvidiaPartnered: true,
             tier: 'Compute ambition, model gap',
@@ -508,7 +524,7 @@
             investment: 0, investmentUnit: 'Regulatory instrument',
             status: "Enforcement active; high-risk phases later",
             statusColor: "teal",
-            verifiedNotes: "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework.",
+            verifiedNotes: "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework. Cloud Sovereignty Framework: 48 criteria across eight objectives, plus SEAL assurance thresholds. The April procurement requires SEAL-2 (data sovereignty), not full supply-chain independence. The 3 June Cloud and AI Development Act proposes an EU-wide sovereignty framework; this is a legislative proposal, not enacted law.",
             infra: 3, regulation: 10, sovereignty: 9, openness: 9, speed: 4, talent: 6,
             sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act",
           },
@@ -574,8 +590,8 @@
             investment: 14, investmentUnit: '£B private committed',
             status: "Stargate UK paused; other programmes active",
             statusColor: 'amber',
-            verifiedNotes: "January 2026 update reported 38 of 50 action commitments met and five Growth Zones. £500M Sovereign AI launched on 16 April 2026 with initial company backing and compute access. The £14B figure is the original private investment announcement, not a public budget or delivered spending total. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Parliament acknowledged the pause on 29 April; the government described it as wider programme recalibration. No confirmed restart was identified by this review. Editorial infrastructure score reduced 6→5 and execution speed 7→5 to reflect the flagship pause and delivery risk; public compute and company support retain credit. Other dimensions are unchanged.",
-            infra: 5, regulation: 7, sovereignty: 6, openness: 8, speed: 5, talent: 9,
+            verifiedNotes: "January 2026 update reported 38 of 50 action commitments met and five Growth Zones. £500M Sovereign AI launched on 16 April 2026: announced fund size, not a verified disbursement total or dedicated frontier-model budget. The fund spans five areas with typical £1M–£10M equity investments and access to existing public compute. Initial support includes Callosum equity and compute for six startups; these are distinct from delivered national frontier capability. The £14B figure is the original private investment announcement, not a public budget or delivered spending total. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Parliament acknowledged the pause on 29 April; the government described it as wider programme recalibration. No confirmed restart was identified by this review. Editorial infrastructure score reduced 6→5 and execution speed 7→5 to reflect the flagship pause and delivery risk; public compute and company support retain credit. Tech sovereignty is revised 6→4: foreign-controlled frontier access and early domestic model development limit autonomy. The £500M envelope earns no automatic model or infrastructure uplift; talent retains 9 for research strengths.",
+            infra: 5, regulation: 7, sovereignty: 4, openness: 8, speed: 5, talent: 9,
             sourceUrl: "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
           },
           {
@@ -654,19 +670,20 @@
           situation: { title: 'Situation', color: 'bg-slate-800', points: [
             'AI capability is a strategic national priority. This dashboard compares ten countries and the EU across infrastructure, models and governance; it is a selected sample, not a global census.',
             'The US and China have large model and accelerator ecosystems. Europe is expanding shared compute; India and Singapore emphasise local-language access; Gulf programmes combine domestic models with international infrastructure partnerships.',
-            'Since the April edition, DeepSeek V4 has released, the UK has launched £500M Sovereign AI, and EU AI enforcement has entered a new phase. Older omissions also required correction: Sarvam models, EuroHPC expansion and the May 2025 HUMAIN launch.',
+            'Since the April edition, DeepSeek V4 has released; the UK has launched a £500M venture fund envelope; and the EU has published cloud sovereignty criteria and proposed a Cloud and AI Development Act. Older omissions also required correction: Sarvam models, EuroHPC expansion and the May 2025 HUMAIN launch.',
           ]},
           complication: { title: 'Complication', color: 'bg-rose-900/80', points: [
             'Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Announced investment, contracted capacity, installed hardware and available compute are different milestones. Stargate UAE targets and multi-year HUMAIN plans must not be counted as commissioned infrastructure.',
             'Domestic model capability is broadening: Sarvam released 30B and 105B weights; SEA-LION adapts international base models; HUMAIN M3 is in limited preview. A released model, a preview and a roadmap offer different levels of control.',
             'The EU now lists 19 AI Factories and 13 Antennas. Enforcement powers apply from August 2026, while the Commission lists later high-risk deadlines. Regulation and compute investment are complementary strategies.',
+            'The June US Fable/Mythos export-control suspension was lifted, but exposed foreign-access withdrawal risk. Astra and advanced Gemini cyber access are also gated; a managed safety programme is distinct from a government export ban.',
             'No country controls every advanced semiconductor dependency. Chip design, fabrication, manufacturing equipment, energy, cloud operation and model licences all affect resilience.',
           ]},
           question: { title: 'Question', color: 'bg-violet-900/80', points: [
             'Which mix of delivered compute, controllable models, data governance and resilient suppliers gives a nation durable AI autonomy and measurable public benefit?',
           ]},
           answer: { title: 'Answer', color: 'bg-teal-900/80', points: [
-            '1. Assess compute, model and data control separately. Location is one input; operator access, licences, training provenance and the ability to switch providers matter too.',
+            '1. Separate domestic model capability from research location: Gemini is Google-controlled, while Mistral is a French frontier challenger. Assess compute, model and data control separately. Location is one input; operator access, licences, training provenance and the ability to switch providers matter too.',
             '2. Measure delivery. Track commissioning, accessible GPU hours, utilisation, energy constraints and service outcomes alongside investment announcements.',
             '3. Build domestic capability where it matters. Local-language models and applied research can add autonomy without duplicating the entire frontier stack.',
             '4. Open weights can enable local deployment and adaptation, but licences, base-model provenance and evaluation determine the actual freedom gained.',
@@ -698,7 +715,7 @@
           { date: '2025-Oct', actor: 'EU', event: 'Six more AI Factories selected, taking network to 19', category: 'Regulation-led' },
           { date: '2026-Mar', actor: 'India', event: 'Sarvam releases 30B and 105B model weights', category: 'Inclusion-led' },
           { date: '2026-Apr', actor: 'United Kingdom', event: '9 April: Stargate UK paused; energy costs and regulation cited by OpenAI', category: 'Infrastructure-led' },
-          { date: '2026-Apr', actor: 'United Kingdom', event: '£500M Sovereign AI launches with initial company backing', category: 'Infrastructure-led' },
+          { date: '2026-Apr', actor: 'United Kingdom', event: '16 April: £500M Sovereign AI fund launches; fund envelope, not disbursed spending or a dedicated frontier-model budget', sourceUrl: 'https://www.sovereignai.gov.uk/faqs', category: 'Infrastructure-led' },
           { date: '2026-Apr', actor: 'China', event: 'DeepSeek V4 released on 24 April', category: 'Sovereignty-led' },
           { date: '2026-Apr', actor: 'Canada', event: 'Public sovereign supercomputing application call opens', category: 'Research-led' },
           { date: '2026-Jun', actor: 'India', event: 'Shared compute capacity exceeds 45,000 GPUs per PIB; 237 projects approved for subsidised access by August', category: 'Inclusion-led' },
@@ -706,6 +723,14 @@
           { date: '2026-Jul', actor: 'EU', event: 'AI Gigafactories tender opens; proposals due 12 November 2026', category: 'Regulation-led' },
           { date: '2026-Aug', actor: 'EU', event: 'AI Act enforcement powers and transparency requirements apply', category: 'Regulation-led' },
           { date: '2026-Aug', actor: 'Saudi Arabia', event: 'HUMAIN M3 limited-preview terms effective 31 August; weights not released', category: 'Sovereignty-led' },
+          {"date": "2026-Apr", "actor": "EU", "event": "17 April: sovereign cloud contracts awarded, up to €180M over six years; SEAL-2 minimum, not full sovereignty", "category": "Sovereignty-led", "sourceUrl": "https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en"},
+          {"date": "2026-Jun", "actor": "EU", "event": "1 June: Cloud Sovereignty Framework clarification — 48 criteria, eight objectives and separate SEAL thresholds", "category": "Sovereignty-led", "sourceUrl": "https://commission.europa.eu/news-and-media/news/sovereign-cloud-framework-explained-2026-06-01_en"},
+          {"date": "2026-Jun", "actor": "EU", "event": "3 June: Cloud and AI Development Act proposed, including EU-wide sovereignty assessment; not enacted law", "category": "Sovereignty-led", "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM%3A2026%3A0502%3AFIN"},
+          {"date": "2026-Jun", "actor": "United States", "event": "12 June: US export-control directive on Fable 5/Mythos 5 foreign access causes Anthropic to suspend both for all users", "category": "Sovereignty-led", "sourceUrl": "https://www.anthropic.com/news/fable-mythos-access"},
+          {"date": "2026-Jun", "actor": "United States", "event": "30 June: Fable/Mythos export controls lifted; access restored 1 July — historical disruption, not an ongoing blanket ban", "category": "Sovereignty-led", "sourceUrl": "https://www.anthropic.com/news/redeploying-fable-5"},
+          {"date": "2026-Sep", "actor": "United States", "event": "1 September: Astra advanced cyber capabilities restricted to testers and managed access; safety gating, not a verified export embargo", "category": "Sovereignty-led", "sourceUrl": "https://openai.com/index/path-to-astra/"},
+          {"date": "2026-Sep", "actor": "United States / Google", "event": "2 September: Fairwind launches managed Gemini cyber access for trusted partners; current programme includes Gemini 4 Argon; no verified US embargo in reviewed sources", "category": "Sovereignty-led", "sourceUrl": "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/"},
+          {"date": "2026-Oct", "actor": "France", "event": "6 October: Mistral Large 4 preview announced; downloadable weights planned for 27 October, not yet delivered", "category": "Sovereignty-led", "sourceUrl": "https://mistral.ai/news/mistral-large-4/"},
         ];
 
         // 3. COMPONENTS
@@ -716,7 +741,7 @@
             <div className="space-y-4">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">SCQA: The Strategic Argument - October 2026</h2>
-                <p className="text-sm text-slate-400">Reviewed 7 October 2026. Linked evidence, dated milestones and editorial analysis for strategic discussion.</p>
+                <p className="text-sm text-slate-400">Reviewed 8 October 2026. Linked evidence, dated milestones and editorial analysis for strategic discussion.</p>
               </div>
               {order.map(key => {
                 const s = SCQA[key]; const isOpen = expanded === key;
@@ -779,6 +804,7 @@
                           <div className="text-xs font-mono tracking-widest text-slate-500 uppercase">{e.date}</div>
                           <div className="text-base font-bold text-slate-100 mt-1">{e.actor}</div>
                           <div className="text-sm text-slate-300 mt-1.5 leading-relaxed">{e.event}</div>
+                          {e.sourceUrl && <a className="text-xs text-blue-400 underline" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Source ↗</a>}
                         </div>
                         <span className="text-[10px] px-2.5 py-1 rounded-full text-white font-medium shrink-0 tracking-wide"
                           style={{ backgroundColor: ARCHETYPE_COLORS[e.category] }}>
@@ -803,21 +829,21 @@
             <div className="space-y-5">
               <div className="glass-panel rounded-xl p-5">
                 <h2 className="text-lg font-bold text-slate-100 mb-2">Frontier Capability ≠ Sovereign Model Control</h2>
-                <p className="text-sm text-slate-300 leading-relaxed">Frontier capability describes proximity to the leading edge of broad model performance. Model control describes who owns the developer and what can be deployed, adapted and maintained locally. A nation can have strong research with foreign corporate control, or useful local model control without a frontier model.</p>
+                <p className="text-sm text-slate-300 leading-relaxed">Domestic model capability describes proximity to the leading edge of broad performance from domestically controlled developers. Foreign-owned research operations do not earn national model capability credit. Model control describes who owns the developer and what can be deployed, adapted and maintained locally. A nation can have strong research with foreign corporate control, or useful local model control without a frontier model.</p>
                 <div className="grid md:grid-cols-3 gap-3 mt-4 text-xs text-slate-300">
                   <div className="rounded-lg border border-blue-900 bg-blue-950/20 p-3"><strong className="text-blue-300">Capability</strong><p className="mt-1">Independent, dated evaluations; general capability and language-specific results remain distinct.</p></div>
                   <div className="rounded-lg border border-violet-900 bg-violet-950/20 p-3"><strong className="text-violet-300">Control</strong><p className="mt-1">Developer ownership, released weights, licensing and the ability to adapt the model.</p></div>
                   <div className="rounded-lg border border-teal-900 bg-teal-950/20 p-3"><strong className="text-teal-300">Continuity</strong><p className="mt-1">Can the model keep operating if a foreign API or supplier withdraws? Local weights help, but compute and maintenance still matter.</p></div>
                 </div>
-                <p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 7 October 2026. These are separate editorial scores, not benchmark values. Capability: 9–10 leading frontier ecosystem/research presence; 7–8 challenger; 4–6 domestic or specialist developer; 1–3 adaptation or preview without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. UK-linked DeepMind research earns capability credit while Google corporate control limits its control score. The evidence is selective; “not established” does not mean no model exists.</p>
+                <p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 8 October 2026. These are separate editorial scores, not benchmark values. Capability: 9–10 domestic leading frontier ecosystem; 7–8 domestic frontier challenger; 4–6 released domestic or specialist developer capability; 1–3 adaptation, preview or early domestic development without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. The UK is revised 9→3: Gemini belongs to US-controlled Google, while Ineffable is still development-stage in the evidence reviewed. France/EU remain 7 for Mistral, a domestic frontier challenger; these ordinal scores are not benchmark percentages. The evidence is selective; “not established” does not mean no model exists.</p>
                 <p className="text-xs text-slate-400 mt-2">The control scores replace the former blended model scores in Sovereign AI. Capability stays separate and is not folded into the six-factor Posture Scorer, which compares programme strategy. France/EU overlap and cross-border research affiliations must not be added together.</p>
                 <div className="overflow-x-auto mt-4">
                   <table className="w-full text-xs text-left">
-                    <caption className="text-left text-sm font-bold text-slate-200 mb-2">Which jurisdictions have frontier capability?</caption>
+                    <caption className="text-left text-sm font-bold text-slate-200 mb-2">Which jurisdictions have domestic frontier models?</caption>
                     <thead className="text-slate-400 border-b border-slate-700"><tr><th className="py-2 pr-4">Assessment</th><th className="py-2">Jurisdictions in this review</th></tr></thead>
                     <tbody className="text-slate-300 divide-y divide-slate-800">
                       <tr><td className="py-2 pr-4">Frontier developers</td><td>United States, China</td></tr>
-                      <tr><td className="py-2 pr-4">Frontier research under foreign corporate control</td><td>United Kingdom — Google DeepMind</td></tr>
+                      <tr><td className="py-2 pr-4">No demonstrated domestic frontier model</td><td>United Kingdom — Gemini is Google-controlled; domestic development remains early</td></tr>
                       <tr><td className="py-2 pr-4">Frontier challenger</td><td>France / EU — Mistral; overlapping coverage</td></tr>
                       <tr><td className="py-2 pr-4">Domestic / specialist models; broad frontier status not established</td><td>Canada, India, Japan, United Arab Emirates</td></tr>
                       <tr><td className="py-2 pr-4">Regional adaptation / preview; broad frontier status not established</td><td>Singapore, Saudi Arabia</td></tr>
@@ -834,7 +860,7 @@
                     <button className="w-full p-5 text-left hover:bg-slate-800/30" aria-expanded={selected===d.country} onClick={() => setSelected(selected===d.country?null:d.country)}>
                       <div className="flex justify-between gap-3 items-start"><div><h3 className="text-base font-bold text-white">{d.country}</h3><p className="text-xs text-blue-300 mt-1">{d.category}</p></div><span className="text-slate-400">{selected===d.country?'−':'+'}</span></div>
                       <p className="text-sm text-slate-300 mt-3">{d.models}</p>
-                      <div className="flex gap-6 mt-4"><div><span className="text-2xl font-mono font-bold text-blue-400">{d.capability}<span className="text-xs text-slate-500">/10</span></span><p className="text-xs text-slate-400">Frontier capability</p></div><div><span className="text-2xl font-mono font-bold text-violet-400">{d.control}<span className="text-xs text-slate-500">/10</span></span><p className="text-xs text-slate-400">Model control</p></div></div>
+                      <div className="flex gap-6 mt-4"><div><span className="text-2xl font-mono font-bold text-blue-400">{d.capability}<span className="text-xs text-slate-500">/10</span></span><p className="text-xs text-slate-400">Domestic model capability</p></div><div><span className="text-2xl font-mono font-bold text-violet-400">{d.control}<span className="text-xs text-slate-500">/10</span></span><p className="text-xs text-slate-400">Model control</p></div></div>
                       <p className="text-xs text-slate-400 mt-3 leading-relaxed">{d.implication}</p>
                     </button>
                     {selected===d.country && <div className="p-5 border-t border-slate-800 bg-slate-950/40 space-y-3 text-xs leading-relaxed">
@@ -900,7 +926,12 @@
                 </div>
               </div>
 
-              <div className="glass-panel rounded-xl p-4 text-xs text-slate-400">Model values now assess control rather than blending capability and sovereignty. See Models &amp; Control for a separate frontier assessment, named models, ownership, licences and deployment dependencies. The UK can have high frontier research capability and lower control.</div>
+              <div className="glass-panel rounded-xl p-5 text-sm text-slate-300">
+                <h3 className="font-bold text-white mb-2">EU sovereignty framework: procurement and proposed law</h3>
+                <p>The Cloud Sovereignty Framework scores 48 criteria across eight objectives: strategic; legal and jurisdictional; data and AI; operational; supply chain; technological; security and compliance; environmental sustainability. Its weighted score is separate from SEAL assurance thresholds. April cloud contracts require SEAL-2 data sovereignty, not SEAL-4 full sovereignty. The June Cloud and AI Development Act proposes a wider EU framework; it is not enacted law. This dashboard does not calculate SEAL ratings, and national scores are not interchangeable with provider procurement assessments.</p>
+                <div className="flex flex-wrap gap-4 mt-3 text-xs"><a className="text-blue-400 underline" href="https://commission.europa.eu/news-and-media/news/sovereign-cloud-framework-explained-2026-06-01_en" target="_blank" rel="noopener noreferrer">Commission framework ↗</a><a className="text-blue-400 underline" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM%3A2026%3A0502%3AFIN" target="_blank" rel="noopener noreferrer">Legislative proposal ↗</a></div>
+              </div>
+              <div className="glass-panel rounded-xl p-4 text-xs text-slate-400">Model values now assess control rather than blending capability and sovereignty. See Models &amp; Control for a separate frontier assessment, named models, ownership, licences and deployment dependencies. The UK has strong research talent but no demonstrated domestically controlled frontier model in this review.</div>
               <div className="flex flex-wrap gap-3 items-center">
                 <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
                   {['map', 'bars'].map(m => (
@@ -1080,14 +1111,35 @@
                     <div key={key}>
                         <div className="flex justify-between items-baseline mb-2">
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-300">{label}</label>
-                        <span className="text-base font-bold font-mono text-blue-400">{weights[key]}</span>
+                        <span className="text-base font-bold font-mono text-blue-400">{weights[key]} <span className="text-xs">({Math.round(weights[key] / totalWeight * 1000) / 10}%)</span></span>
                         </div>
-                        <input type="range" min={0} max={10} value={weights[key]}
+                        <input aria-label={label + " weight"} type="range" min={0} max={10} value={weights[key]}
                         onChange={e => setWeights(w => ({ ...w, [key]: parseInt(e.target.value) }))}
                         className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition" />
                     </div>
                     ))}
                 </div>
+              </div>
+
+              <div className="glass-panel rounded-xl p-5 space-y-4 text-sm text-slate-300">
+                <h3 className="text-lg font-bold text-white">Scoring methodology and weighting</h3>
+                <p>Each programme has six editorial scores from 1 to 10. First average the selected programmes within each country for each dimension; then apply your normalized weights. Programmes receive equal weight within a country, regardless of budget. Countries with different programme coverage are not measured on an identical evidence base.</p>
+                <p className="font-mono text-xs bg-slate-950 rounded p-3">Score / 100 = round(10 × Σ(country dimension mean × weight / sum of weights))</p>
+                <p>Defaults: infrastructure 20%, regulatory maturity 12%, tech sovereignty 16%, openness 12%, execution speed 20%, talent 20%. These are editorial starting preferences, not statistically calibrated weights. A zero weight excludes a dimension. If every weight is zero, displayed scores are 0 and no meaningful ranking exists. Rounding can create ties; small gaps are not evidence of significant national differences.</p>
+                <p>Score bands: 1–3 early; 4–6 developing; 7–8 strong; 9–10 leading within the sample. The criteria below guide judgment; they are not a mechanical conversion of budgets or benchmark results. Exact point choices remain editorial, with no measured uncertainty intervals. Sources and programme notes are in Inventory.</p>
+                <div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr className="text-slate-400"><th className="py-2 pr-4">Dimension</th><th>Evidence considered</th></tr></thead><tbody className="divide-y divide-slate-800">
+                  {[
+                    ['Infrastructure','Accessible compute, commissioning, power and grid delivery. Plans and fund envelopes are weaker evidence than operational capacity.'],
+                    ['Regulatory maturity','Implemented rules, accountable institutions and enforceable guidance. More restrictive rules do not automatically mean a higher score.'],
+                    ['Tech sovereignty','Domestic developer control, model deployment rights, supplier diversity and exit options. Foreign-owned local research is not domestic frontier ownership.'],
+                    ['Openness / collaboration','Usable model licences, shared compute access and cross-border partnerships; openness can coexist with external dependencies.'],
+                    ['Execution speed','Delivered milestones and elapsed implementation; pauses and unfulfilled targets reduce confidence.'],
+                    ['Talent depth','Research and engineering ecosystem, institutions and ability to retain skilled teams, independent of ownership of their models.']
+                  ].map(([label,evidence])=><tr key={label}><th className="py-3 pr-4 font-semibold">{label}</th><td>{evidence}</td></tr>)}
+                </tbody></table></div>
+                <p><strong>UK worked example at default weights:</strong> 10 × (5×0.20 + 7×0.12 + 4×0.16 + 8×0.12 + 5×0.20 + 9×0.20) = 62.4 → <strong>62/100</strong>. Infrastructure 5 and speed 5 reflect the Stargate pause while retaining delivered public compute credit. Sovereignty 4 reflects foreign frontier dependence and early domestic development; talent 9 reflects research strengths. Previously 66, before sovereignty was revised 6→4.</p>
+                <p>Model capability/control scores in Models &amp; Control are separate. Frontier capability does not enter this six-factor formula directly; domestic control and external dependencies inform the sovereignty judgment. The £500M UK fund envelope receives no automatic score uplift. Radar archetypes are fixed illustrations; heatmap values are country dimension means.</p>
+                <details><summary className="cursor-pointer font-bold text-blue-300">Inspect country inputs and current weighted results</summary><div className="overflow-x-auto mt-3"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Country / programmes</th>{Object.values(DIM_LABELS).map(label=><th key={label} className="p-2">{label}</th>)}<th className="p-2">Current /100</th></tr></thead><tbody>{scored.map(row=>{const items=INITIATIVES.filter(i=>i.country===row.country);return <tr key={row.country} className="border-t border-slate-800"><th className="p-2">{row.country} ({items.length})</th>{Object.keys(DIM_LABELS).map(k=><td className="p-2" key={k}>{(items.reduce((sum,i)=>sum+i[k],0)/items.length).toFixed(2)}</td>)}<td className="p-2 font-bold">{row.score}</td></tr>;})}</tbody></table></div></details>
               </div>
 
               <div className="glass-panel rounded-xl p-5 shadow-lg">
@@ -1415,7 +1467,7 @@
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></div>
-                      <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Reviewed 7 October 2026 • 14 Initiatives • 10 Countries + EU</div>
+                      <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Reviewed 8 October 2026 • 14 Initiatives • 10 Countries + EU</div>
                     </div>
                     <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tighter mb-3">
                       The National AI Race<br className="hidden md:block" /> Promise, Delivery, and Sovereignty
@@ -1461,10 +1513,11 @@
 
               <footer className="max-w-6xl mx-auto px-4 mt-8">
                   <div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
-                    <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 7 October 2026</h2>
-                    <p className="text-slate-400 mb-3">Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 7 October 2026. Coverage is selective.</p>
-                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. Model-control scores were reassessed separately from frontier capability; Saudi control is 4 because its preview weights remain unavailable; UK compute falls 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. Other scores remain comparative judgments. Models &amp; Control documents the new capability/control rubric and evidence; capability is not included in the six-factor posture calculation.</p>
+                    <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 8 October 2026</h2>
+                    <p className="text-slate-400 mb-3">Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 8 October 2026. Coverage is selective.</p>
+                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. Model-control scores were reassessed separately from frontier capability; Saudi control is 4 because its preview weights remain unavailable; UK compute previously fell 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. UK domestic capability is corrected 9→3 by removing US-controlled Gemini credit; tech sovereignty 6→4 changes default posture 66→62. Other scores remain comparative judgments. Models &amp; Control documents the new capability/control rubric and evidence; capability is not included in the six-factor posture calculation.</p>
                     <p className="text-slate-400 mb-3">Investment figures retain original currencies and scopes. Public allocations, private ambitions and total project budgets are not directly comparable or summed. “Not stated” means no comparable verified amount is asserted. The EU overlaps with France; do not add their figures.</p>
+                    <p className="text-slate-400 mb-3">UK funding scope: £500M is the Sovereign AI fund envelope, not a verified disbursement total, new installed compute, or a dedicated frontier training budget. The reviewed evidence does not establish that the whole amount is new incremental spending. <a className="text-blue-400 underline" href="https://www.sovereignai.gov.uk/faqs" target="_blank" rel="noopener noreferrer">Official fund scope ↗</a>. <a className="text-blue-400 underline" href="https://whyaiman.substack.com/p/how-serious-is-the-uk-about-artificial" target="_blank" rel="noopener noreferrer">Why Aiman critique ↗</a> is commentary on mixed investment headlines, power and grid constraints; funding delivery is assessed against official disclosures.</p>
                     <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
                       <a className="text-blue-400 underline" href="https://www.reuters.com/business/openai-pauses-uk-data-centre-project-over-regulation-costs-2026-04-09/" target="_blank" rel="noopener noreferrer">Stargate UK pause · Reuters ↗</a>
                       <a className="text-blue-400 underline" href="https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/" target="_blank" rel="noopener noreferrer">UK government response · Parliament ↗</a>
@@ -1497,4 +1550,3 @@
     </script>
 </body>
 </html>
-
