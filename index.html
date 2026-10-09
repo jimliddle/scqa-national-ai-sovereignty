@@ -2114,9 +2114,9 @@
           const chronological = [...filtered].sort((a, b) => timelineKey(b.date) - timelineKey(a.date));
           return (
             <div className="space-y-6">
-              <div className="glass-panel rounded-xl p-5 shadow-lg">
+<div className="glass-panel rounded-xl p-5 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Dated Initiative Timeline — newest first</h2>
-                <p className="text-xs text-slate-400 mb-3">The timeline runs from the latest developments back to the first strategy milestones. Where a source gives only a month, quarter or year, the entry keeps that precision and sorts at the start of the period. Future targets stay with the announcement that set them; passing a target date does not establish completion.</p>
+                <p className="text-xs text-slate-400 mb-3">Latest developments first. Future targets remain labelled as plans.</p>
                 <div className="flex flex-wrap gap-2">
                   {categories.map(c => (
                     <button key={c} onClick={() => setFilter(c)}
@@ -2127,7 +2127,7 @@
                   ))}
                 </div>
               </div>
-              <div className="relative pl-6 border-l-2 border-slate-800 space-y-5 ml-2">
+<div className="relative pl-6 border-l-2 border-slate-800 space-y-5 ml-2">
                 {chronological.map((e, i) => (
                   <div key={i} className="relative group">
                     <div className="absolute -left-[31px] w-4 h-4 rounded-full border-2 border-slate-950 shadow shadow-black z-10 transition-transform group-hover:scale-125"
@@ -2149,7 +2149,8 @@
                   </div>
                 ))}
               </div>
-            </div>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Dates and timeline coverage</summary><div className="mt-4 space-y-4"><p className="text-xs text-slate-400 mb-3">The timeline runs from the latest developments back to the first strategy milestones. Where a source gives only a month, quarter or year, the entry keeps that precision and sorts at the start of the period. Future targets stay with the announcement that set them; passing a target date does not establish completion.</p></div></details>
+</div>
           );
         }
 
@@ -2161,17 +2162,8 @@
           const sorted = [...filtered].sort((a,b) => b.capability - a.capability || a.country.localeCompare(b.country));
           return (
             <div className="space-y-5">
-              <div className="glass-panel rounded-xl p-5">
-                <h2 className="text-lg font-bold text-slate-100 mb-2">Model Capability and Ownership</h2>
-                <p className="text-sm text-slate-300 leading-relaxed">Capability assesses how models from domestically controlled developers compare with leading general-purpose models. Control assesses ownership and the rights to run, adapt and maintain them locally. Research at a foreign-owned lab counts towards talent, but not domestic model ownership. A country can also run useful models locally without developing a frontier model.</p>
-                <div className="grid md:grid-cols-3 gap-3 mt-4 text-xs text-slate-300">
-                  <div className="rounded-lg border border-blue-900 bg-blue-950/20 p-3"><strong className="text-blue-300">Capability</strong><p className="mt-1">Dated independent evaluations, with general performance and language-specific results assessed separately.</p></div>
-                  <div className="rounded-lg border border-violet-900 bg-violet-950/20 p-3"><strong className="text-violet-300">Control</strong><p className="mt-1">Developer ownership, released weights, licensing and the ability to adapt the model.</p></div>
-                  <div className="rounded-lg border border-teal-900 bg-teal-950/20 p-3"><strong className="text-teal-300">Continuity</strong><p className="mt-1">Can the model keep operating if a foreign API or supplier withdraws? Local weights help, but compute and maintenance still matter.</p></div>
-                </div>
-                <p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 9 October 2026. These scores reflect editorial judgment; they are not calculated from benchmarks. Capability: 9–10 leading domestic frontier developers; 7–8 domestic frontier challenger; 4–6 released domestic or specialist developer capability; 1–3 adaptation, preview or early domestic development without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. The UK is revised 9→3: Gemini belongs to US-controlled Google, while Ineffable is still development-stage in the evidence reviewed. France/EU remain 7 for Mistral, a domestic frontier challenger; these ordinal scores are not benchmark percentages. “Not established” means the reviewed evidence is insufficient to support the claim.</p>
-                <p className="text-xs text-slate-400 mt-2">Sovereign AI uses the control score. The six-factor Posture Scorer compares programmes and does not directly include model capability. EU/member-state overlap and cross-border research affiliations must not be added together.</p>
-                <div className="overflow-x-auto mt-4">
+<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Model Capability and Ownership</h2><p className="text-sm text-slate-300">The US and China lead this review. France has a frontier challenger in Mistral; the UK has no demonstrated domestically controlled frontier model.</p></div>
+<div className="overflow-x-auto mt-4">
                   <table className="w-full text-xs text-left">
                     <caption className="text-left text-sm font-bold text-slate-200 mb-2">Which jurisdictions have domestic frontier models?</caption>
                     <thead className="text-slate-400 border-b border-slate-700"><tr><th className="py-2 pr-4">Assessment</th><th className="py-2">Jurisdictions in this review</th></tr></thead>
@@ -2184,11 +2176,10 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-2" aria-label="Model capability filters">
+<div className="flex flex-wrap gap-2" aria-label="Model capability filters">
                 {groups.map(g => <button key={g} onClick={() => {setFilter(g);setSelected(null);}} aria-pressed={filter===g} className={`text-xs px-4 py-2 rounded-full border ${filter===g?'bg-blue-600 border-blue-500 text-white':'bg-slate-800 border-slate-700 text-slate-300'}`}>{g}</button>)}
               </div>
-              <div className="grid md:grid-cols-2 gap-4">
+<div className="grid md:grid-cols-2 gap-4">
                 {sorted.map(d => (
                   <section key={d.country} className="glass-panel rounded-xl border border-slate-800 overflow-hidden">
                     <button className="w-full p-5 text-left hover:bg-slate-800/30" aria-expanded={selected===d.country} onClick={() => setSelected(selected===d.country?null:d.country)}>
@@ -2204,7 +2195,15 @@
                   </section>
                 ))}
               </div>
-            </div>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">How capability and control are assessed</summary><div className="mt-4 space-y-4"><p className="text-sm text-slate-300 leading-relaxed">Capability assesses how models from domestically controlled developers compare with leading general-purpose models. Control assesses ownership and the rights to run, adapt and maintain them locally. Research at a foreign-owned lab counts towards talent, but not domestic model ownership. A country can also run useful models locally without developing a frontier model.</p>
+<div className="grid md:grid-cols-3 gap-3 mt-4 text-xs text-slate-300">
+                  <div className="rounded-lg border border-blue-900 bg-blue-950/20 p-3"><strong className="text-blue-300">Capability</strong><p className="mt-1">Dated independent evaluations, with general performance and language-specific results assessed separately.</p></div>
+                  <div className="rounded-lg border border-violet-900 bg-violet-950/20 p-3"><strong className="text-violet-300">Control</strong><p className="mt-1">Developer ownership, released weights, licensing and the ability to adapt the model.</p></div>
+                  <div className="rounded-lg border border-teal-900 bg-teal-950/20 p-3"><strong className="text-teal-300">Continuity</strong><p className="mt-1">Can the model keep operating if a foreign API or supplier withdraws? Local weights help, but compute and maintenance still matter.</p></div>
+                </div>
+<p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 9 October 2026. These scores reflect editorial judgment; they are not calculated from benchmarks. Capability: 9–10 leading domestic frontier developers; 7–8 domestic frontier challenger; 4–6 released domestic or specialist developer capability; 1–3 adaptation, preview or early domestic development without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. The UK is revised 9→3: Gemini belongs to US-controlled Google, while Ineffable is still development-stage in the evidence reviewed. France/EU remain 7 for Mistral, a domestic frontier challenger; these ordinal scores are not benchmark percentages. “Not established” means the reviewed evidence is insufficient to support the claim.</p>
+<p className="text-xs text-slate-400 mt-2">Sovereign AI uses the control score. The six-factor Posture Scorer compares programmes and does not directly include model capability. EU/member-state overlap and cross-border research affiliations must not be added together.</p></div></details>
+</div>
           );
         }
 
@@ -2234,39 +2233,8 @@
 
           return (
             <div className="space-y-5">
-              <div className="glass-panel rounded-xl p-5 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">Compute, Models and Data</h2>
-                <p className="text-sm text-slate-400 mb-4 leading-relaxed">
-                  This view assesses control over compute, models and data.
-                  All countries depend on external suppliers. The scores describe the degree of control supported by the available evidence.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4 mb-4">
-                  {[
-                    { label: 'Compute Sovereignty', desc: 'Access to working infrastructure, reliable power and software, with options to replace suppliers.', color: '#3b82f6' },
-                    { label: 'Model Control', desc: 'Controls model deployment and adaptation rights. Domestic training and local-language alignment help, but licences and base-model provenance also matter.', color: '#8b5cf6' },
-                    { label: 'Data Sovereignty', desc: 'Controls data collection, use and access through law, contracts and technical safeguards. Data protection does not automatically confer model ownership.', color: '#10b981' },
-                  ].map(d => (
-                    <div key={d.label} className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
-                      <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: d.color }}>{d.label}</div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{d.desc}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="bg-amber-950/30 border border-amber-900/50 rounded-lg p-4">
-                  <div className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-1.5">Supplier dependencies</div>
-                  <p className="text-xs text-amber-200/70 leading-relaxed">
-                    NVIDIA partnerships can expand domestic compute access while retaining dependencies on accelerator design, software and export permissions. Assess who operates the systems, who can access data, and how easily workloads can move to another supplier.
-                  </p>
-                </div>
-              </div>
-
-              <div className="glass-panel rounded-xl p-5 text-sm text-slate-300">
-                <h3 className="font-bold text-white mb-2">EU sovereignty framework: procurement and proposed law</h3>
-                <p>The Cloud Sovereignty Framework scores 48 criteria across eight objectives: strategic; legal and jurisdictional; data and AI; operational; supply chain; technological; security and compliance; environmental sustainability. Its weighted score is separate from SEAL assurance thresholds. April cloud contracts require SEAL-2 data sovereignty, not SEAL-4 full sovereignty. The June Cloud and AI Development Act proposes a wider EU framework; it is not enacted law. This dashboard does not calculate SEAL ratings, and national scores are not interchangeable with provider procurement assessments.</p>
-                <div className="flex flex-wrap gap-4 mt-3 text-xs"><a className="text-blue-400 underline" href="https://commission.europa.eu/news-and-media/news/sovereign-cloud-framework-explained-2026-06-01_en" target="_blank" rel="noopener noreferrer">Commission framework ↗</a><a className="text-blue-400 underline" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM%3A2026%3A0502%3AFIN" target="_blank" rel="noopener noreferrer">Legislative proposal ↗</a></div>
-              </div>
-              <div className="glass-panel rounded-xl p-4 text-xs text-slate-400">Model scores assess ownership and deployment rights. See Models &amp; Control for a separate frontier assessment, named models, ownership, licences and deployment dependencies. The UK has strong research talent but no demonstrated domestically controlled frontier model in this review.</div>
-              <div className="flex flex-wrap gap-3 items-center">
+<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Compute, Models and Data</h2><p className="text-sm text-slate-300">Compare editorial scores for compute access, model control and data governance. Expand a country for evidence; project status is shown separately below.</p></div>
+<div className="flex flex-wrap gap-3 items-center">
                 <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
                   {['map', 'bars'].map(m => (
                     <button key={m} onClick={() => setMode(m)}
@@ -2284,8 +2252,7 @@
                   <option value="data">Sort: Data Score</option>
                 </select>
               </div>
-
-              {mode === 'bars' && (
+{mode === 'bars' && (
                 <div className="glass-panel rounded-xl p-5 shadow-lg">
                   <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-6">Editorial compute / model / data control scores</div>
                   <div className="h-[350px] w-full">
@@ -2309,8 +2276,7 @@
                   </div>
                 </div>
               )}
-
-              {mode === 'map' && (
+{mode === 'map' && (
                 <div className="space-y-3">
                   {sorted.map((d, i) => (
                     <div key={d.country} className="glass-panel rounded-xl border border-slate-800 overflow-hidden shadow-sm transition-all hover:border-slate-600">
@@ -2367,8 +2333,7 @@
                   ))}
                 </div>
               )}
-
-              <div className="glass-panel rounded-xl p-5 shadow-lg overflow-hidden">
+<div className="glass-panel rounded-xl p-5 shadow-lg overflow-hidden">
                 <h3 className="text-sm font-bold text-slate-100 tracking-tight mb-2">Selected Compute Projects — Status and Scope</h3><p className="text-xs text-slate-400 mb-4">These are projects and access pools, not national inventories. Different accelerators, precisions, memory sizes and availability cannot be compared by GPU count alone. Planned, licensed and operational quantities are not additive. “Year” dates the cited milestone; a future delivery year appears in the notes.</p>
                 <div className="overflow-x-auto -mx-5 px-5">
                   <table className="w-full text-xs min-w-[700px]">
@@ -2395,8 +2360,7 @@
                   </table>
                 </div>
               </div>
-
-              <div className="grid grid-cols-3 gap-4">
+<div className="grid grid-cols-3 gap-4">
                 <div className="glass-panel border-amber-900/30 rounded-xl p-4 text-center flex flex-col justify-center">
                   <div className="text-3xl font-bold text-amber-500 font-mono drop-shadow-sm">{new Set(CAPACITY_EXAMPLES.map(d => d.country)).size}</div>
                   <div className="text-[11px] uppercase tracking-wider text-amber-600/80 font-bold mt-1">Jurisdictions in selected<br/>capacity examples</div>
@@ -2410,7 +2374,38 @@
                   <div className="text-[11px] uppercase tracking-wider text-violet-600/80 font-bold mt-1">Jurisdictions with stronger<br/>editorial model-control scores</div>
                 </div>
               </div>
-            </div>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Definitions, dependencies and EU framework</summary><div className="mt-4 space-y-4"><div className="glass-panel rounded-xl p-5 shadow-lg">
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">Compute, Models and Data</h2>
+                <p className="text-sm text-slate-400 mb-4 leading-relaxed">
+                  This view assesses control over compute, models and data.
+                  All countries depend on external suppliers. The scores describe the degree of control supported by the available evidence.
+                </p>
+                <div className="grid md:grid-cols-3 gap-4 mb-4">
+                  {[
+                    { label: 'Compute Sovereignty', desc: 'Access to working infrastructure, reliable power and software, with options to replace suppliers.', color: '#3b82f6' },
+                    { label: 'Model Control', desc: 'Controls model deployment and adaptation rights. Domestic training and local-language alignment help, but licences and base-model provenance also matter.', color: '#8b5cf6' },
+                    { label: 'Data Sovereignty', desc: 'Controls data collection, use and access through law, contracts and technical safeguards. Data protection does not automatically confer model ownership.', color: '#10b981' },
+                  ].map(d => (
+                    <div key={d.label} className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
+                      <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: d.color }}>{d.label}</div>
+                      <p className="text-xs text-slate-400 leading-relaxed">{d.desc}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-amber-950/30 border border-amber-900/50 rounded-lg p-4">
+                  <div className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-1.5">Supplier dependencies</div>
+                  <p className="text-xs text-amber-200/70 leading-relaxed">
+                    NVIDIA partnerships can expand domestic compute access while retaining dependencies on accelerator design, software and export permissions. Assess who operates the systems, who can access data, and how easily workloads can move to another supplier.
+                  </p>
+                </div>
+              </div>
+<div className="glass-panel rounded-xl p-5 text-sm text-slate-300">
+                <h3 className="font-bold text-white mb-2">EU sovereignty framework: procurement and proposed law</h3>
+                <p>The Cloud Sovereignty Framework scores 48 criteria across eight objectives: strategic; legal and jurisdictional; data and AI; operational; supply chain; technological; security and compliance; environmental sustainability. Its weighted score is separate from SEAL assurance thresholds. April cloud contracts require SEAL-2 data sovereignty, not SEAL-4 full sovereignty. The June Cloud and AI Development Act proposes a wider EU framework; it is not enacted law. This dashboard does not calculate SEAL ratings, and national scores are not interchangeable with provider procurement assessments.</p>
+                <div className="flex flex-wrap gap-4 mt-3 text-xs"><a className="text-blue-400 underline" href="https://commission.europa.eu/news-and-media/news/sovereign-cloud-framework-explained-2026-06-01_en" target="_blank" rel="noopener noreferrer">Commission framework ↗</a><a className="text-blue-400 underline" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM%3A2026%3A0502%3AFIN" target="_blank" rel="noopener noreferrer">Legislative proposal ↗</a></div>
+              </div>
+<div className="glass-panel rounded-xl p-4 text-xs text-slate-400">Model scores assess ownership and deployment rights. See Models &amp; Control for a separate frontier assessment, named models, ownership, licences and deployment dependencies. The UK has strong research talent but no demonstrated domestically controlled frontier model in this review.</div></div></details>
+</div>
           );
         }
 
@@ -2424,12 +2419,8 @@
 
           return (
             <div className="space-y-5">
-              <div className="glass-panel rounded-xl p-5 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-1">Selected Programme Posture Scorer</h2>
-                <p className="text-sm text-slate-400">Adjust dimension weights to reflect your priorities. Scores summarise selected programmes; they are not national capability rankings. Programme mix affects the result—for example, averaging the AI Act with infrastructure projects lowers the EU infrastructure mean because these programmes have different purposes.</p>
-              </div>
-              
-              <div className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3">
+<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Selected Programme Posture Scorer</h2><p className="text-sm text-slate-300">Change the weights to see how the selected programmes compare. These are editorial programme scores; coverage differs by country.</p></div>
+<div className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3">
                 <div className="flex flex-wrap gap-2"><button className="border border-slate-600 rounded px-3 py-2" onClick={()=>setWeights({...DEFAULT_WEIGHTS})}>Reset default weights</button><button className="border border-slate-600 rounded px-3 py-2" onClick={()=>setWeights(Object.fromEntries(Object.keys(DIM_LABELS).map(k=>[k,1])))}>Equal weights</button></div>
                 <details><summary className="cursor-pointer font-bold text-blue-300">Choose programme coverage ({selectedInitiatives.length} of {INITIATIVES.length})</summary>
                   <p className="text-xs text-slate-400 my-3">Use this to inspect programme-selection sensitivity, not to treat a favoured subset as an objective national ranking. Countries with no selected programme are omitted, not scored zero.</p>
@@ -2437,7 +2428,7 @@
                   <button className="mt-3 text-blue-300 underline" onClick={()=>setSelectedPrograms(INITIATIVES.map(i=>i.initiative))}>Restore all programmes</button>
                 </details>
               </div>
-              <div className="glass-panel rounded-xl p-6 shadow-lg">
+<div className="glass-panel rounded-xl p-6 shadow-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
                     {Object.entries(DIM_LABELS).map(([key, label]) => (
                     <div key={key}>
@@ -2452,29 +2443,7 @@
                     ))}
                 </div>
               </div>
-
-              <div className="glass-panel rounded-xl p-5 space-y-4 text-sm text-slate-300">
-                <h3 className="text-lg font-bold text-white">Scoring methodology and weighting</h3>
-                <p>Each programme has six editorial scores from 1 to 10. First average the selected programmes within each country for each dimension; then apply your normalized weights. Programmes receive equal weight within a country, regardless of budget. Countries with different programme coverage are not measured on an identical evidence base.</p>
-                <p className="font-mono text-xs bg-slate-950 rounded p-3">Score / 100 = round(10 × Σ(country dimension mean × weight / sum of weights))</p>
-                <p>Defaults: infrastructure 20%, regulatory maturity 12%, tech sovereignty 16%, openness 12%, execution speed 20%, talent 20%. These are editorial starting preferences, not statistically calibrated weights. A zero weight excludes a dimension. If every weight is zero, the score is undefined and the comparison is hidden. Rounding can create ties; small gaps are not evidence of significant national differences.</p>
-                <p>Score bands: 1–3 early; 4–6 developing; 7–8 strong; 9–10 leading within the sample. The criteria below guide judgment; they are not a mechanical conversion of budgets or benchmark results. Individual scores are judgments; no statistical margin of error has been calculated. A release date or licence may be well documented even when country scores are difficult to compare. Sources support the facts used in scoring, not the precise number chosen. Sources and programme notes are in Inventory.</p>
-                <div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr className="text-slate-400"><th className="py-2 pr-4">Dimension</th><th>Evidence considered</th></tr></thead><tbody className="divide-y divide-slate-800">
-                  {[
-                    ['Infrastructure','Accessible compute, commissioning, power and grid delivery. Working capacity carries more weight than plans or announced budgets.'],
-                    ['Regulatory maturity','Implemented rules, accountable institutions and enforceable guidance. More restrictive rules do not automatically mean a higher score.'],
-                    ['Tech sovereignty','Domestic developer control, model deployment rights, supplier diversity and exit options. Foreign-owned local research is not domestic frontier ownership.'],
-                    ['Openness / collaboration','Usable model licences, shared compute access and cross-border partnerships; openness can coexist with external dependencies.'],
-                    ['Execution speed','Delivered milestones and elapsed implementation; pauses and unfulfilled targets reduce confidence.'],
-                    ['Talent depth','Research institutions, engineering teams and retention of skilled staff, assessed separately from model ownership.']
-                  ].map(([label,evidence])=><tr key={label}><th className="py-3 pr-4 font-semibold">{label}</th><td>{evidence}</td></tr>)}
-                </tbody></table></div>
-                <p><strong>UK worked example at default weights:</strong> 10 × (5×0.20 + 7×0.12 + 4×0.16 + 8×0.12 + 5×0.20 + 9×0.20) = 62.4 → <strong>62/100</strong>. Infrastructure 5 and speed 5 reflect the Stargate pause while retaining delivered public compute credit. Sovereignty 4 reflects foreign frontier dependence and early domestic development; talent 9 reflects research strengths. Previously 66, before sovereignty was revised 6→4.</p>
-                <p>Model capability/control scores in Models &amp; Control are separate. Frontier capability does not enter this six-factor formula directly; domestic control and external dependencies inform the sovereignty judgment. The announced £500M UK fund does not by itself raise the score. Radar and heatmap values use the same country programme means at full programme coverage.</p>
-                <details><summary className="cursor-pointer font-bold text-blue-300">Inspect country inputs and current weighted results</summary><div className="overflow-x-auto mt-3"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Country / programmes</th>{Object.values(DIM_LABELS).map(label=><th key={label} className="p-2">{label}</th>)}<th className="p-2">Current /100</th></tr></thead><tbody>{scored.map(row=>{const items=selectedInitiatives.filter(i=>i.country===row.country);return <tr key={row.country} className="border-t border-slate-800"><th className="p-2">{row.country} ({items.length})</th>{Object.keys(DIM_LABELS).map(k=><td className="p-2" key={k}>{(items.reduce((sum,i)=>sum+i[k],0)/items.length).toFixed(2)}</td>)}<td className="p-2 font-bold">{row.score ?? "Not scored"}</td></tr>;})}</tbody></table></div></details>
-              </div>
-
-              <div className="glass-panel rounded-xl p-5 shadow-lg">
+<div className="glass-panel rounded-xl p-5 shadow-lg">
                 <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-4">Selected programme comparison · custom weights</div>
                 {!weightSum || !scored.length ? <p className="text-sm text-amber-300">{!weightSum ? "Choose at least one non-zero weight to calculate a score." : "Select at least one programme to compare."}</p> : <div className="h-[380px] w-full">
                     <ResponsiveContainer width="100%" height="100%">
@@ -2495,8 +2464,7 @@
                     </ResponsiveContainer>
                 </div>}
               </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {(weightSum ? scored : []).map((s, i) => (
                   <div key={s.country} className="glass-panel rounded-xl p-4 flex items-center gap-3 hover:border-slate-600 transition">
                     <span className="text-2xl drop-shadow-md">{s.flag}</span>
@@ -2508,7 +2476,27 @@
                   </div>
                 ))}
               </div>
-            </div>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Scoring methodology, weights and country inputs</summary><div className="mt-4 space-y-4"><div className="glass-panel rounded-xl p-5 space-y-4 text-sm text-slate-300">
+                <h3 className="text-lg font-bold text-white">Scoring methodology and weighting</h3>
+                <p>Each programme has six editorial scores from 1 to 10. First average the selected programmes within each country for each dimension; then apply your normalized weights. Programmes receive equal weight within a country, regardless of budget. Countries with different programme coverage are not measured on an identical evidence base.</p>
+                <p className="font-mono text-xs bg-slate-950 rounded p-3">Score / 100 = round(10 × Σ(country dimension mean × weight / sum of weights))</p>
+                <p>Defaults: infrastructure 20%, regulatory maturity 12%, tech sovereignty 16%, openness 12%, execution speed 20%, talent 20%. These are editorial starting preferences, not statistically calibrated weights. A zero weight excludes a dimension. If every weight is zero, the score is undefined and the comparison is hidden. Rounding can create ties; small gaps are not evidence of significant national differences.</p>
+                <p>Score bands: 1–3 early; 4–6 developing; 7–8 strong; 9–10 leading within the sample. The criteria below guide judgment; they are not a mechanical conversion of budgets or benchmark results. Individual scores are judgments; no statistical margin of error has been calculated. A release date or licence may be well documented even when country scores are difficult to compare. Sources support the facts used in scoring, not the precise number chosen. Sources and programme notes are in Inventory.</p>
+                <div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr className="text-slate-400"><th className="py-2 pr-4">Dimension</th><th>Evidence considered</th></tr></thead><tbody className="divide-y divide-slate-800">
+                  {[
+                    ['Infrastructure','Accessible compute, commissioning, power and grid delivery. Working capacity carries more weight than plans or announced budgets.'],
+                    ['Regulatory maturity','Implemented rules, accountable institutions and enforceable guidance. More restrictive rules do not automatically mean a higher score.'],
+                    ['Tech sovereignty','Domestic developer control, model deployment rights, supplier diversity and exit options. Foreign-owned local research is not domestic frontier ownership.'],
+                    ['Openness / collaboration','Usable model licences, shared compute access and cross-border partnerships; openness can coexist with external dependencies.'],
+                    ['Execution speed','Delivered milestones and elapsed implementation; pauses and unfulfilled targets reduce confidence.'],
+                    ['Talent depth','Research institutions, engineering teams and retention of skilled staff, assessed separately from model ownership.']
+                  ].map(([label,evidence])=><tr key={label}><th className="py-3 pr-4 font-semibold">{label}</th><td>{evidence}</td></tr>)}
+                </tbody></table></div>
+                <p><strong>UK worked example at default weights:</strong> 10 × (5×0.20 + 7×0.12 + 4×0.16 + 8×0.12 + 5×0.20 + 9×0.20) = 62.4 → <strong>62/100</strong>. Infrastructure 5 and speed 5 reflect the Stargate pause while retaining delivered public compute credit. Sovereignty 4 reflects foreign frontier dependence and early domestic development; talent 9 reflects research strengths. Previously 66, before sovereignty was revised 6→4.</p>
+                <p>Model capability/control scores in Models &amp; Control are separate. Frontier capability does not enter this six-factor formula directly; domestic control and external dependencies inform the sovereignty judgment. The announced £500M UK fund does not by itself raise the score. Radar and heatmap values use the same country programme means at full programme coverage.</p>
+                <details><summary className="cursor-pointer font-bold text-blue-300">Inspect country inputs and current weighted results</summary><div className="overflow-x-auto mt-3"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Country / programmes</th>{Object.values(DIM_LABELS).map(label=><th key={label} className="p-2">{label}</th>)}<th className="p-2">Current /100</th></tr></thead><tbody>{scored.map(row=>{const items=selectedInitiatives.filter(i=>i.country===row.country);return <tr key={row.country} className="border-t border-slate-800"><th className="p-2">{row.country} ({items.length})</th>{Object.keys(DIM_LABELS).map(k=><td className="p-2" key={k}>{(items.reduce((sum,i)=>sum+i[k],0)/items.length).toFixed(2)}</td>)}<td className="p-2 font-bold">{row.score ?? "Not scored"}</td></tr>;})}</tbody></table></div></details>
+              </div></div></details>
+</div>
           );
         }
 
@@ -2781,11 +2769,11 @@
           const hardware = [["Accelerator design \u2014 Netherlands / Japan", "Axelera Metis targets edge inference; Preferred Networks develops MN-Core AI processors. Domestic design exists beyond the US and China.", "These examples do not establish a complete substitute for leading frontier-training systems.", "https://axelera.ai/ai-accelerators/aipu/metis", "https://www.preferred.jp/en/business/chips"], ["Fabrication \u2014 Taiwan / overseas plants", "TSMC reports its first Arizona 4nm fab entered high-volume production in Q4 2024. Its manufacturing operations span several countries.", "Fab location, process capability, packaging, equipment and corporate control are separate dependencies.", "https://investor.tsmc.com/static/annualReports/2025/english/index.html"], ["Lithography \u2014 Netherlands", "ASML supplies EUV lithography systems used in advanced chip production.", "Supplying key equipment gives the Netherlands influence, although it still relies on other countries for a complete accelerator supply chain.", "https://www.asml.com/en/products/euv-lithography-systems"], ["Memory \u2014 South Korea", "SK hynix reported completed HBM4 development and readiness for mass production on 12 September 2025.", "This dated readiness announcement is not a shipment count. Memory is a separate dependency from accelerator design.", "https://news.skhynix.com/en/sk-hynix-completes-worlds-first-hbm4-development-and-readies-mass-production/"]];
           const access = [["13 May 2025 \u2014 AI Diffusion Rule", "BIS announced rescission and non-enforcement of the January 2025 framework. Other export controls remained; the announcement is not evidence that all restrictions disappeared.", "https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens"], ["19 November 2025 \u2014 Gulf authorisations", "Commerce approved exports for G42 and HUMAIN, each up to the equivalent of 35,000 GB300 chips, subject to security and reporting conditions. Authorised ceilings are not delivered or operational capacity and must not be added to overlapping project announcements.", "https://www.commerce.gov/news/press-releases/2025/11/statement-uae-and-saudi-chip-exports"], ["13 January 2026 \u2014 China licensing", "BIS moved H200, MI325X and similar exports to China to conditional case-by-case review. This is neither unrestricted access nor evidence that particular shipments or installations occurred.", "https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china"]];
           return <div className="space-y-5">
-            <section className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3"><h2 className="text-lg font-bold text-white">Supply Chains &amp; Access Conditions</h2><p>AI hardware relies on several industries: chip design, fabrication, lithography, memory, packaging and software, as well as electricity. The examples below show where some of these capabilities sit. They are selective and carry no additional score.</p></section>
-            <section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Selected capabilities and their limits</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-3">Layer / example</th><th className="p-3">Evidence</th><th className="p-3">Sovereignty implication</th></tr></thead><tbody>{hardware.map(([layer,fact,limit,...sources])=><tr key={layer} className="border-t border-slate-800"><th className="p-3 text-slate-200">{layer}</th><td className="p-3 text-slate-300">{fact}<div className="flex gap-3 mt-2">{sources.map((url,i)=><a key={url} className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">Primary source {i+1} ↗</a>)}</div></td><td className="p-3 text-slate-300">{limit}</td></tr>)}</tbody></table></div></section>
-            <section className="glass-panel rounded-xl p-5 space-y-4"><h3 className="font-bold text-white">Export Permissions and Conditions</h3>{access.map(([title,note,url])=><div key={title} className="text-sm text-slate-300"><h4 className="font-semibold text-slate-100">{title}</h4><p className="my-1">{note}</p><a className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">Official policy source ↗</a></div>)}</section>
-            <section className="glass-panel rounded-xl p-5 space-y-3 text-sm text-slate-300"><h3 className="font-bold text-white">How this affects sovereignty</h3><p>Assess whether operators can obtain and maintain hardware, keep power and networking available, run licensed weights locally, control administrators and encryption keys, and change suppliers. Check the contracts and operating arrangements as well as the location. An API service can be withdrawn even while a domestic data centre remains operational.</p><p>Domestic frontier capability gives more control over training, capability development and future releases. Locally deployable specialist or imported models can support useful sovereign services, but cannot automatically substitute for frontier performance on every task. The July 2026 EU expert report discusses both domestic frontier development and trusted access; it is expert advice, not an adopted Commission position.</p><a className="text-blue-400 underline" href="https://digital-strategy.ec.europa.eu/en/library/ai-office-publishes-frontier-ai-expert-findings-eu-competitiveness-sovereignty-and-security" target="_blank" rel="noopener noreferrer">EU frontier expert findings ↗</a><p>These dependencies inform the existing scores. The examples above do not add or subtract points.</p></section>
-          </div>;
+<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Supply Chains &amp; Access Conditions</h2><p className="text-sm text-slate-300">Chip supply depends on several countries. Export permission, physical delivery and working capacity are separate stages.</p></div>
+<section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Selected capabilities and their limits</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-3">Layer / example</th><th className="p-3">Evidence</th><th className="p-3">Sovereignty implication</th></tr></thead><tbody>{hardware.map(([layer,fact,limit,...sources])=><tr key={layer} className="border-t border-slate-800"><th className="p-3 text-slate-200">{layer}</th><td className="p-3 text-slate-300">{fact}<div className="flex gap-3 mt-2">{sources.map((url,i)=><a key={url} className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">Primary source {i+1} ↗</a>)}</div></td><td className="p-3 text-slate-300">{limit}</td></tr>)}</tbody></table></div></section>
+<section className="glass-panel rounded-xl p-5 space-y-4"><h3 className="font-bold text-white">Export Permissions and Conditions</h3>{access.map(([title,note,url])=><div key={title} className="text-sm text-slate-300"><h4 className="font-semibold text-slate-100">{title}</h4><p className="my-1">{note}</p><a className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">Official policy source ↗</a></div>)}</section>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Scope and implications for sovereignty</summary><div className="mt-4 space-y-4"><section className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3"><h2 className="text-lg font-bold text-white">Supply Chains &amp; Access Conditions</h2><p>AI hardware relies on several industries: chip design, fabrication, lithography, memory, packaging and software, as well as electricity. The examples below show where some of these capabilities sit. They are selective and carry no additional score.</p></section><section className="glass-panel rounded-xl p-5 space-y-3 text-sm text-slate-300"><h3 className="font-bold text-white">How this affects sovereignty</h3><p>Assess whether operators can obtain and maintain hardware, keep power and networking available, run licensed weights locally, control administrators and encryption keys, and change suppliers. Check the contracts and operating arrangements as well as the location. An API service can be withdrawn even while a domestic data centre remains operational.</p><p>Domestic frontier capability gives more control over training, capability development and future releases. Locally deployable specialist or imported models can support useful sovereign services, but cannot automatically substitute for frontier performance on every task. The July 2026 EU expert report discusses both domestic frontier development and trusted access; it is expert advice, not an adopted Commission position.</p><a className="text-blue-400 underline" href="https://digital-strategy.ec.europa.eu/en/library/ai-office-publishes-frontier-ai-expert-findings-eu-competitiveness-sovereignty-and-security" target="_blank" rel="noopener noreferrer">EU frontier expert findings ↗</a><p>These dependencies inform the existing scores. The examples above do not add or subtract points.</p></section></div></details>
+</div>;
         }
 
         function ReviewView() {
@@ -2805,11 +2793,12 @@
             ['South Korea / Switzerland','Added model-only profiles for K-EXAONE and Apertus. No posture scores assigned without comparable programme review; Switzerland is outside the EU.']
           ];
           return <div className="space-y-5">
-            <section className="glass-panel rounded-xl p-5 space-y-3 text-sm text-slate-300"><h2 className="text-lg font-bold text-white">Evidence review — 9 October 2026</h2><p>The review checks project status, model rights and scoring assumptions. Sources support the factual claims; the scores remain editorial judgments about the programmes covered.</p><p>The strategy sample has {new Set(INITIATIVES.map(i=>i.country)).size-1} countries plus the EU, across {INITIATIVES.length} programmes. Models &amp; Control covers {MODEL_CAPABILITIES.length-1} countries plus the EU. The hardware examples and timeline include other countries whose programmes have not been scored.</p><p>The review does not yet cover: Germany and Spain beyond model examples; Italy and other EU national strategies; Israel, Taiwan, Australia, Brazil and African economies; complete domestic model inventories; procurement contracts, switching rights, installed accelerator totals, utilisation, energy prices and outcomes measured on a common basis. The EU overlaps with France, Germany and Spain in model coverage. The coverage is too limited for a global ranking.</p></section>
-            <section className="glass-panel rounded-xl p-5"><h3 className="text-base font-bold text-white mb-3">What changed and why</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead className="text-slate-400"><tr><th className="p-2">Coverage</th><th className="p-2">Review finding / score rationale</th></tr></thead><tbody className="divide-y divide-slate-800">{notes.map(([country,note])=><tr key={country}><th className="p-3 text-slate-200">{country}</th><td className="p-3 text-slate-300 leading-relaxed">{note}</td></tr>)}</tbody></table></div></section>
-            <section className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3"><h3 className="font-bold text-white">How evidence is treated</h3><p>Government sources document policy, announced budgets and reported results. Operators and developers describe their own facilities, releases and terms; their claims require attribution. Model cards specify the rights for each release. Independent evaluations compare performance on particular tasks at a given date. Missing evidence is marked as unknown.</p><p>Countries can develop their own frontier or specialist models, run licensed imported models locally, or use several foreign providers. Each choice gives different rights and dependencies. The review checks where research took place, who controls the company, how the model was trained and how it may be deployed. ASML’s minority stake in Mistral is assessed separately from Alphabet’s controlling ownership of Google DeepMind. Pending acquisitions remain pending until completion is confirmed.</p><p>Compute scores assess working capacity and access. Model-control scores assess ownership and the rights to deploy and adapt models. Data scores assess laws, contracts and access safeguards; they do not rate privacy quality or democratic accountability, or guarantee protection from foreign lawful access.</p><p>Unresolved evidence includes Stargate UAE commissioning at announced scale; a Stargate UK restart; M3 reference-model provenance and production rights; complete disbursement totals for headline funds; and the delivery status of every announced GPU partnership. Target dates are preserved without claiming completion.</p></section>
-            <section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Coverage and default programme posture</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Jurisdiction</th><th className="p-2">Model category</th><th className="p-2">Strategy programmes</th><th className="p-2">Default /100</th></tr></thead><tbody>{MODEL_CAPABILITIES.map(m=>{const row=weightedScores(INITIATIVES,DEFAULT_WEIGHTS).find(r=>r.country===m.country);return <tr className="border-t border-slate-800" key={m.country}><th className="p-2">{m.country}</th><td className="p-2">{m.category}</td><td className="p-2">{row?.count ?? 'Not reviewed'}</td><td className="p-2">{row?.score ?? 'Not scored'}</td></tr>})}</tbody></table></div></section>
-          </div>;
+<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Evidence review: 9 October 2026</h2><p className="text-sm text-slate-300">Start with the corrections and score changes below. Coverage is selective, and the scores remain editorial judgments.</p></div>
+<section className="glass-panel rounded-xl p-5"><h3 className="text-base font-bold text-white mb-3">What changed and why</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead className="text-slate-400"><tr><th className="p-2">Coverage</th><th className="p-2">Review finding / score rationale</th></tr></thead><tbody className="divide-y divide-slate-800">{notes.map(([country,note])=><tr key={country}><th className="p-3 text-slate-200">{country}</th><td className="p-3 text-slate-300 leading-relaxed">{note}</td></tr>)}</tbody></table></div></section>
+<section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Coverage and default programme posture</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Jurisdiction</th><th className="p-2">Model category</th><th className="p-2">Strategy programmes</th><th className="p-2">Default /100</th></tr></thead><tbody>{MODEL_CAPABILITIES.map(m=>{const row=weightedScores(INITIATIVES,DEFAULT_WEIGHTS).find(r=>r.country===m.country);return <tr className="border-t border-slate-800" key={m.country}><th className="p-2">{m.country}</th><td className="p-2">{m.category}</td><td className="p-2">{row?.count ?? 'Not reviewed'}</td><td className="p-2">{row?.score ?? 'Not scored'}</td></tr>})}</tbody></table></div></section>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Coverage and limitations</summary><div className="mt-4 space-y-4"><section className="glass-panel rounded-xl p-5 space-y-3 text-sm text-slate-300"><h2 className="text-lg font-bold text-white">Evidence review — 9 October 2026</h2><p>The review checks project status, model rights and scoring assumptions. Sources support the factual claims; the scores remain editorial judgments about the programmes covered.</p><p>The strategy sample has {new Set(INITIATIVES.map(i=>i.country)).size-1} countries plus the EU, across {INITIATIVES.length} programmes. Models &amp; Control covers {MODEL_CAPABILITIES.length-1} countries plus the EU. The hardware examples and timeline include other countries whose programmes have not been scored.</p><p>The review does not yet cover: Germany and Spain beyond model examples; Italy and other EU national strategies; Israel, Taiwan, Australia, Brazil and African economies; complete domestic model inventories; procurement contracts, switching rights, installed accelerator totals, utilisation, energy prices and outcomes measured on a common basis. The EU overlaps with France, Germany and Spain in model coverage. The coverage is too limited for a global ranking.</p></section></div></details>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">How evidence is assessed</summary><div className="mt-4 space-y-4"><section className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3"><h3 className="font-bold text-white">How evidence is treated</h3><p>Government sources document policy, announced budgets and reported results. Operators and developers describe their own facilities, releases and terms; their claims require attribution. Model cards specify the rights for each release. Independent evaluations compare performance on particular tasks at a given date. Missing evidence is marked as unknown.</p><p>Countries can develop their own frontier or specialist models, run licensed imported models locally, or use several foreign providers. Each choice gives different rights and dependencies. The review checks where research took place, who controls the company, how the model was trained and how it may be deployed. ASML’s minority stake in Mistral is assessed separately from Alphabet’s controlling ownership of Google DeepMind. Pending acquisitions remain pending until completion is confirmed.</p><p>Compute scores assess working capacity and access. Model-control scores assess ownership and the rights to deploy and adapt models. Data scores assess laws, contracts and access safeguards; they do not rate privacy quality or democratic accountability, or guarantee protection from foreign lawful access.</p><p>Unresolved evidence includes Stargate UAE commissioning at announced scale; a Stargate UK restart; M3 reference-model provenance and production rights; complete disbursement totals for headline funds; and the delivery status of every announced GPU partnership. Target dates are preserved without claiming completion.</p></section></div></details>
+</div>;
         }
 
         // 4. MAIN APP
@@ -2872,8 +2861,21 @@
                 {tab === 'archetypes' && <ArchetypeCompare />}
               </main>
 
-              <footer className="max-w-6xl mx-auto px-4 mt-8">
-                  <div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
+              <footer className="max-w-6xl mx-auto px-4 mt-8 text-xs text-slate-400 border-t border-slate-800 pt-5">
+                <p>Reviewed 9 October 2026 · Sources accompany the claims. Scores are editorial assessments.</p>
+                <div className="flex flex-wrap gap-4 mt-3"><a className="text-blue-300 underline" href="#review">Sources, corrections and coverage</a><a className="text-blue-300 underline" href="#scorer">Scoring methodology</a><a className="text-blue-300 underline" href="#models">Model capability and ownership</a></div>
+              </footer>
+            </div>
+          );
+        }
+
+        // 5. RENDER
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+<details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Source directory and funding notes</summary><div className="mt-4 space-y-4"><div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
                     <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 9 October 2026</h2>
                     <p className="text-slate-400 mb-3">See Review &amp; Coverage for corrections and gaps. Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 9 October 2026. Coverage is selective.</p>
                     <p className="text-slate-400 mb-3">Scores use a 1–10 scale: 1–3 early capability, 4–6 developing, 7–8 strong and 9–10 leading within this sample. They reflect editorial judgment. The Posture Scorer shows the inputs, weights and calculation; Review &amp; Coverage explains score changes. Radar and heatmap values use the same programme averages as the default scorer. Model capability and control are assessed separately in Models &amp; Control; capability does not enter the six-factor programme score directly.</p>
@@ -2899,16 +2901,5 @@
                       <a className="text-blue-400 underline" href="https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing" target="_blank" rel="noopener noreferrer">RIKEN / FugakuNEXT ↗</a>
                     </div>
                     <span className="text-slate-400 mt-3 block">Sources and scoring assumptions are provided for readers to assess the conclusions.</span>
-                  </div>
-              </footer>
-            </div>
-          );
-        }
-
-        // 5. RENDER
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
-</body>
-</html>
+                  </div></div></details>
 
