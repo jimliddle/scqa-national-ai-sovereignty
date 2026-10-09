@@ -7,7 +7,7 @@ const code = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/)[1];
 const context = {};
 vm.createContext(context);
 vm.runInContext(code.slice(code.indexOf('const TABS'), code.indexOf('// 3. COMPONENTS')) +
-  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, DEFAULT_WEIGHTS, weightedScores};', context);
+  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
 vm.runInContext(code.slice(code.indexOf('function timelineKey'), code.indexOf('function TimelineView')) + '\nthis.timelineKey = timelineKey;', context);
 const d = context.data;
 for (const rows of [d.MODEL_CAPABILITIES, d.SOVEREIGN_DATA]) {
@@ -58,3 +58,21 @@ assert(!html.includes('domesticChipDesign'), 'Binary chip-design label must not 
 assert(!/Earthmade|Greg(?:ory)? Lui|smuggling-more-300-million/i.test(html), 'Excluded criminal case must not be published');
 assert(d.TABS.some(t => t.id === 'supply'));
 console.log('PASS: cross-view control consistency, model-only coverage, capacity status and supply-chain view.');
+
+// Scenarios must recalculate without altering the published assessment.
+const baseline = JSON.stringify({models:d.MODEL_CAPABILITIES, sovereign:d.SOVEREIGN_DATA, programmes:d.INITIATIVES});
+const uk = d.SOVEREIGN_DATA.find(r=>r.country==='United Kingdom');
+assert.equal(d.sovereignAverage(uk), 16/3);
+assert.equal(d.sovereignAverage(uk,{compute:0,model:1,data:0}),4);
+assert.equal(d.sovereignAverage(uk,{compute:0,model:0,data:0}),null);
+const ukProgramme = d.INITIATIVES.find(r=>r.country==='United Kingdom');
+const scenario = d.scenarioRows({models:{'United Kingdom':{control:8}},sovereign:{'United Kingdom':{compute:9}},programmes:{[ukProgramme.initiative]:{infra:10}}});
+assert.equal(scenario.sovereign.find(r=>r.country==='United Kingdom').model,8);
+assert.equal(scenario.models.find(r=>r.country==='United Kingdom').control,8);
+assert.equal(d.sovereignAverage(scenario.sovereign.find(r=>r.country==='United Kingdom')),(9+8+7)/3);
+assert.equal(d.weightedScores(scenario.programmes,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,72);
+assert.equal(d.countryMeans(scenario.programmes).find(r=>r.country==='United Kingdom').infra,10);
+assert.equal(JSON.stringify({models:d.MODEL_CAPABILITIES, sovereign:d.SOVEREIGN_DATA, programmes:d.INITIATIVES}),baseline);
+assert.equal(d.scenarioRows({}).sovereign.find(r=>r.country==='United Kingdom').model,4);
+assert.equal(d.weightedScores(d.scenarioRows({}).programmes,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,62);
+console.log('PASS: custom weights, zero-weight handling, shared model control, programme recalculation and baseline preservation.');
