@@ -7,7 +7,7 @@ const code = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/)[1];
 const context = {};
 vm.createContext(context);
 vm.runInContext(code.slice(code.indexOf('const TABS'), code.indexOf('// 3. COMPONENTS')) +
-  '\nthis.data = {TABS, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, DEFAULT_WEIGHTS, weightedScores};', context);
+  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, DEFAULT_WEIGHTS, weightedScores};', context);
 vm.runInContext(code.slice(code.indexOf('function timelineKey'), code.indexOf('function TimelineView')) + '\nthis.timelineKey = timelineKey;', context);
 const d = context.data;
 for (const rows of [d.MODEL_CAPABILITIES, d.SOVEREIGN_DATA]) {
@@ -30,7 +30,7 @@ assert.equal(d.weightedScores([], d.DEFAULT_WEIGHTS).length, 0);
 // Synthetic mixed programmes verify equal averaging rather than budget weighting.
 const fixture = [1, 9].map((value, i) => ({country:'Example',flag:'',archetype:'Example',investment:i?1000:1,...Object.fromEntries(dimensions.map(k=>[k,value]))}));
 assert.equal(d.weightedScores(fixture, d.DEFAULT_WEIGHTS)[0].score, 50);
-for (const country of ['South Korea', 'Switzerland']) {
+for (const country of ['South Korea', 'Switzerland', 'Germany', 'Spain']) {
   assert(d.MODEL_CAPABILITIES.some(r => r.country === country));
   assert(!scores.some(r => r.country === country), 'Unreviewed strategy must not be scored');
 }
@@ -42,3 +42,19 @@ assert.equal(events[0].date, '2026-10-06');
 assert.equal(events.at(-1).date, '2017');
 assert(html.includes('timelineKey(b.date) - timelineKey(a.date)'), 'UI must sort newest first');
 console.log(`PASS: coverage, sources, score bounds, arithmetic, undefined weights, programme selection and ${events.length} newest-first milestones.`);
+
+for (const row of d.SOVEREIGN_DATA) {
+  assert.equal(row.model, d.MODEL_CAPABILITIES.find(m => m.country === row.country).control, 'Model control must agree across views');
+}
+assert.equal(d.MODEL_CAPABILITIES.find(r => r.country === 'Japan').control, 8);
+for (const row of d.CAPACITY_EXAMPLES) {
+  assert(row.status && row.quantity && row.notes, 'Capacity needs status, quantity scope and notes');
+  assert.match(row.sourceUrl, /^https:\/\//);
+}
+assert.equal(d.CAPACITY_EXAMPLES.find(r => r.country === 'Norway').status, 'Planned for 2027');
+assert(d.CAPACITY_EXAMPLES.some(r => r.quantity.includes('5,448 NVIDIA GH200') && r.status.startsWith('Operational')));
+assert(d.CAPACITY_EXAMPLES.some(r => r.quantity.includes('1,024 Intel Max 1550') && r.status.startsWith('Operational')));
+assert(!html.includes('domesticChipDesign'), 'Binary chip-design label must not return');
+assert(!/Earthmade|Greg(?:ory)? Lui|smuggling-more-300-million/i.test(html), 'Excluded criminal case must not be published');
+assert(d.TABS.some(t => t.id === 'supply'));
+console.log('PASS: cross-view control consistency, model-only coverage, capacity status and supply-chain view.');
