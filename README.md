@@ -4,11 +4,11 @@ An interactive, evidence-linked SCQA review of AI capability, delivery and sover
 
 Published page: https://jimliddle.github.io/scqa-national-ai-sovereignty/
 
-## Independent review — 9 October 2026
+## Evidence review — 9 October 2026
 
-The selected strategy sample covers ten countries plus the European Union across 14 programmes. Models & Control covers twelve countries plus the EU; South Korea and Switzerland have model-only profiles. This is not a complete global inventory or a defensible national league table. France and the EU overlap. The Review & Coverage view explains corrections, evidence limits and missing coverage.
+The selected strategy sample covers ten countries plus the European Union across 14 programmes. Models & Control covers fourteen countries plus the EU; South Korea, Switzerland, Germany and Spain have model-only profiles. This is not a complete global inventory or a defensible national league table. France and the EU overlap. The Review & Coverage view explains corrections, evidence limits and missing coverage.
 
-The 46-milestone timeline runs newest first, from October 2026 back to 2017. Source links accompany every milestone. Exact dates are used where supported; month, quarter and year-only records retain their precision. Future targets remain in the announcement record and are not shown as completed events.
+The 60-milestone timeline runs newest first, from October 2026 back to 2017. Source links accompany every milestone. Exact dates are used where supported; month, quarter and year-only records retain their precision. Future targets remain in the announcement record and are not shown as completed events.
 
 ## Findings and corrections
 
@@ -25,6 +25,16 @@ The 46-milestone timeline runs newest first, from October 2026 back to 2017. Sou
 - Fable/Mythos government export controls and their lifting are distinguished from Astra and Gemini provider-managed safety access. No blanket US embargo is inferred for the latter.
 
 Government and operator claims are attributed as such. Primary sources document policy, releases and reported delivery; they do not independently validate the precise editorial score. The dashboard cannot certify complete independence from foreign hardware, licensing, corporate control or lawful access.
+
+## Additional evidence review
+
+- Japan’s LLM-jp4.1 release changes model control **6→8**; capability stays **4/10**. Research-model production cautions remain explicit.
+- German Kolibri and Spanish ALIA-40B add specialist/base-model coverage. Their licences and deployment limits are shown without awarding frontier or unreviewed programme scores.
+- The Cohere–Aleph Alpha agreement remains subject to regulatory approval. Mistral’s international minority investment is distinguished from a foreign controlling parent.
+- UK operational AIRR capacity is now explicit: **5,448 GH200** in Isambard-AI and **1,024 Intel Max 1550** in Dawn. UK default posture stays **62/100**; the Stargate pause does not negate existing public compute.
+- Germany’s Industrial AI Cloud is operational. Norway’s newer Nscale announcement covers more than **30,000 additional Rubin GPUs for Microsoft in 2027**. The 14 compute-project examples distinguish operation, plans and authorisations, and do not sum unlike hardware.
+- Supply & Access replaces the misleading binary chip-design indicator with sourced examples across design, fabrication, lithography and memory. It explains the AI Diffusion policy change, conditional China licensing and Gulf authorisations without treating permissions as delivery.
+- India’s data-protection rules have phased commencement. The timeline also adds relevant releases, policy and project milestones, remaining newest first.
 
 ## Methodology and sensitivity
 
@@ -46,7 +56,7 @@ The single-page application uses React, Recharts, Babel and Tailwind from extern
 
 Run `node tests/validate.cjs` from the repository root. This dependency-free check covers source/coverage integrity, score bounds, UK/UAE/Canada/Saudi arithmetic, programme averaging and selection, undefined zero weights, partial-date handling and newest-first timeline ordering. JSX compilation and published browser checks supplement these data checks.
 
-Direct view links use hashes, for example `/#review`, `/#timeline`, `/#models` and `/#scorer`.
+Direct view links use hashes, for example `/#review`, `/#timeline`, `/#models`, `/#supply` and `/#scorer`.
 
 ## Maintenance
 
