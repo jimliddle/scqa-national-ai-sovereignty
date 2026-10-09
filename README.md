@@ -48,6 +48,20 @@ Radar and heatmap share the full-coverage programme means with the default score
 
 Domestic model capability, model control and compute/data control are separate editorial assessments. A country can run licensed imported models under local control without developing a frontier model. Domestic frontier ownership strengthens control but does not automatically remove accelerator, energy or other dependencies. Data-control scores do not measure privacy quality or democratic accountability.
 
+## Editable scores and unofficial status
+
+All scores are the dashboard editor’s assessments, not official ratings issued by a government, the EU, OECD or another institution. Source links support the underlying facts; they do not certify the score assigned. The 1–10 inputs are judgments, with no formula that proves one adjacent point is correct.
+
+Each scored comparison has a visible formula and an expandable **How these scores are calculated** editor. Readers can inspect published values, criteria, supporting notes and sources, then adjust inputs from 1 to 10:
+
+- **Sovereign AI:** edit compute, model control and data inputs, plus their overall weights. Overall = sum(input × weight) / sum(weights), initially an equal-weight average. Zero total weight is undefined. Individual dimension scores are unaffected by weight changes.
+- **Models & Control:** edit capability and control separately. There is no combined score. Model control stays in sync with Sovereign AI for countries covered in both views.
+- **Programme views:** edit each programme’s six inputs. Changes update the Posture Scorer, Inventory, Strategic Heatmap and Archetypes. Heatmap and radar use all programme inputs, averaged by country; scorer selection and weights apply only to posture results.
+
+A worked calculation uses the selected country and current inputs. Published values remain visible beside personal inputs. Categories, explanatory notes and the Review & Coverage audit record retain the published assessment. They are not rewritten to endorse a personal scenario. Model scores are not automatically substituted for programme sovereignty inputs.
+
+Personal adjustments persist across tabs while the page is open, but are not saved or published. Reloading the page or choosing **Reset all scores, weights and programme selection** restores the published defaults.
+
 ## Running locally and validation
 
 Serve the repository with `python3 -m http.server 8000` and open http://localhost:8000.
