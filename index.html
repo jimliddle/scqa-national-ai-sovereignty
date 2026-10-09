@@ -2065,7 +2065,79 @@
   }
 ];
 
-        // 3. COMPONENTS
+                const SOVEREIGN_LABELS = {compute:'Compute',model:'Model control',data:'Data'};
+        const DEFAULT_SOVEREIGN_WEIGHTS = {compute:1,model:1,data:1};
+        function sovereignAverage(row, weights = DEFAULT_SOVEREIGN_WEIGHTS) {
+          const total = Object.values(weights).reduce((a,b)=>a+b,0);
+          return total ? Object.keys(SOVEREIGN_LABELS).reduce((sum,key)=>sum+row[key]*weights[key],0)/total : null;
+        }
+        function scenarioRows(overrides) {
+          const models = MODEL_CAPABILITIES.map(r=>({...r,...overrides.models?.[r.country]}));
+          const sovereign = SOVEREIGN_DATA.map(r=>({...r,...overrides.sovereign?.[r.country],model:models.find(m=>m.country===r.country).control}));
+          const programmes = INITIATIVES.map(r=>({...r,...overrides.programmes?.[r.initiative]}));
+          return {models,sovereign,programmes};
+        }
+
+// 3. COMPONENTS
+        const ScenarioContext = React.createContext(null);
+
+        function ScoringWorkbench({kind, fullCoverage = false, rawInputs = false}) {
+          const s = React.useContext(ScenarioContext);
+          const programme = kind === 'programmes';
+          const bases = programme ? INITIATIVES : kind === 'models' ? MODEL_CAPABILITIES : SOVEREIGN_DATA;
+          const rows = programme ? s.programmes : kind === 'models' ? s.models : s.sovereign;
+          const rowKey = r => programme ? r.initiative : r.country;
+          const [chosen, setChosen] = useState(rowKey(bases.find(r=>r.country==='United Kingdom') || bases[0]));
+          const base = bases.find(r=>rowKey(r)===chosen) || bases[0];
+          const active = rows.find(r=>rowKey(r)===chosen) || rows[0];
+          const labels = programme ? DIM_LABELS : kind === 'models' ? {capability:'Domestic model capability',control:'Model control'} : {compute:'Compute control',model:'Model control',data:'Data control'};
+          const criteria = programme ? {
+            infra:'Working compute, power and grid delivery; plans carry less weight than operation.',
+            regulation:'Implemented rules, accountable institutions and enforceable guidance.',
+            sovereignty:'Domestic developer control, deployment rights and supplier alternatives.',
+            openness:'Usable licences, shared compute and cross-border collaboration.',
+            speed:'Delivered milestones and elapsed implementation; delays reduce confidence.',
+            talent:'Research institutions, engineering teams and retention of skilled staff.'
+          } : kind === 'models' ? {
+            capability:'9–10 leading frontier developers; 7–8 frontier challengers; 4–6 released domestic or specialist models; 1–3 adaptation, preview or early development.',
+            control:'7–10 substantial domestic developer and deployment options; 4–6 material ownership, licence or access dependencies; 1–3 mostly external services.'
+          } : {
+            compute:'Accessible working capacity, operator control, reliable power and dependence on outside suppliers.',
+            model:'The same ownership and deployment-rights assessment used in Models & Control. It is separate from model capability.',
+            data:'Laws, contracts and technical access safeguards. This does not rate privacy quality or democratic accountability.'
+          };
+          const evidence = programme ? Object.fromEntries(Object.keys(labels).map(k=>[k,base.verifiedNotes])) : kind === 'models' ? {capability:base.evidence+' '+base.implication,control:base.ownership+' '+base.weights+' '+base.dependencies} : {compute:base.computeNotes,model:base.modelNotes,data:base.dataNotes};
+          const formula = programme ? (rawInputs ? 'Programme inputs are six separate editorial judgments, each out of 10. The inventory does not combine them into a total.' : fullCoverage ? 'Each plotted dimension /10 = sum of that country’s programme inputs for the dimension / number of programmes. No dimension weighting is applied in this view.' : 'Country dimension = mean of its selected programme inputs. Posture /100 = round(10 × Σ(dimension mean × weight) / Σweights).') : kind === 'models' ? 'Two separate 1–10 judgments. There is no combined model score or benchmark-to-score formula.' : 'Overall /10 = (compute × its weight + model control × its weight + data × its weight) / total weight. Default weights are 1 : 1 : 1.';
+          const selectedRows = s.programmes.filter(r=>s.selectedPrograms.includes(r.initiative));
+          const workedRows = fullCoverage ? s.programmes : selectedRows;
+          const mean = programme ? countryMeans(workedRows).find(r=>r.country===base.country) : null;
+          const weightTotal = Object.values(s.programmeWeights).reduce((a,b)=>a+b,0);
+          const raw = mean && weightTotal ? 10*Object.keys(DIM_LABELS).reduce((sum,k)=>sum+mean[k]*s.programmeWeights[k],0)/weightTotal : null;
+          return <section className="rounded-xl border border-blue-900/60 bg-slate-900/60 p-4 text-sm text-slate-300">
+            <p className="font-semibold text-amber-300">Unofficial scores: editorial assessments, not government, EU, OECD or other official ratings.</p>
+            <p className="mt-2 text-xs">{s.changed ? 'Your scenario is active. Adjustments follow you across tabs until you reload or reset.' : 'Showing the published editorial assessment.'} Personal changes are not saved or published. Descriptions, categories and source notes continue to describe the published assessment.</p>
+            <p className="mt-2 text-xs font-mono text-blue-200">{formula}</p>
+            <details className="mt-3">
+              <summary className="cursor-pointer font-semibold text-blue-300">How these scores are calculated · Adjust scores and inspect the rationale</summary>
+              <div className="mt-4 space-y-4">
+                <p className="text-xs">The starting inputs are editorial judgments, not measured quantities. Sources support the evidence, but do not prescribe a precise point value. General bands: 1–3 early, 4–6 developing, 7–8 strong, 9–10 leading within this sample. Model capability and control use the specific criteria below. No statistical confidence interval is claimed.</p>
+                <label className="block text-xs">{programme?'Programme to inspect and adjust':'Country to inspect and adjust'}<select aria-label={programme?'Scoring programme':'Scoring country'} value={chosen} onChange={e=>setChosen(e.target.value)} className="block mt-2 w-full max-w-xl bg-slate-950 border border-slate-600 rounded p-2">{bases.map(r=><option key={rowKey(r)} value={rowKey(r)}>{r.country}{programme?' — '+r.initiative:''}</option>)}</select></label>
+                <div className="grid md:grid-cols-2 gap-4">{Object.entries(labels).map(([key,label])=><div key={key} className="rounded-lg border border-slate-700 p-3">
+                  <label className="flex justify-between gap-3 text-xs font-semibold"><span>{label}</span><span>{active[key]}/10 <span className="text-slate-400">(published {base[key]})</span></span></label>
+                  <input className="w-full mt-3 accent-blue-500" aria-label={label+' input score'} type="range" min="1" max="10" step="1" value={active[key]} onChange={e=>s.adjust(kind,rowKey(base),key,Number(e.target.value))}/>
+                  <p className="text-xs mt-2">{criteria[key]}</p>
+                  <details className="mt-2 text-xs"><summary className="cursor-pointer text-blue-300">Published rationale for {base[key]}/10</summary><p className="mt-2 leading-relaxed">{evidence[key]}</p><p className="mt-2 text-slate-400">This evidence informed the published judgment. It does not mathematically distinguish {base[key]} from an adjacent score; use the slider to test your own assessment.</p></details>
+                </div>)}</div>
+                <div className="flex flex-wrap gap-3 text-xs">{(base.sources || []).map(([label,url])=><a key={label+url} href={url} target="_blank" rel="noopener noreferrer" className="text-blue-300 underline">{label} ↗</a>)}</div>
+                {kind==='sovereign' && <div className="space-y-3"><h3 className="font-semibold">Weights for the overall comparison</h3><div className="grid sm:grid-cols-3 gap-4">{Object.entries(SOVEREIGN_LABELS).map(([key,label])=><label className="text-xs" key={key}>{label} weight: {s.sovereignWeights[key]}<input aria-label={label+' overall weight'} className="block w-full mt-2 accent-blue-500" type="range" min="0" max="10" step="1" value={s.sovereignWeights[key]} onChange={e=>s.setSovereignWeights(w=>({...w,[key]:Number(e.target.value)}))}/></label>)}</div><p className="font-mono text-xs" aria-live="polite">{base.country}: ({active.compute} × {s.sovereignWeights.compute} + {active.model} × {s.sovereignWeights.model} + {active.data} × {s.sovereignWeights.data}) / {Object.values(s.sovereignWeights).reduce((a,b)=>a+b,0)} = {sovereignAverage(active,s.sovereignWeights)?.toFixed(2) ?? 'undefined (choose a non-zero weight)'}</p><p className="text-xs">Weights affect the overall value and overall sorting; the three individual scores remain visible. Ranking uses the unrounded value. The displayed overall is rounded to two decimals.</p></div>}
+                {programme && <div className="text-xs space-y-2"><p>{fullCoverage?'This view uses all programmes.':'The Posture Scorer uses your selected programmes.'} Heatmap and radar show dimension means without weight multipliers. Changes to programme inputs update the scorer, inventory, heatmap and radar.</p><p className="font-mono" aria-live="polite">{base.country}: {mean ? Object.keys(DIM_LABELS).map(k=>`${DIM_LABELS[k]} mean ${mean[k].toFixed(2)}`).join('; ') : 'No selected programme for this country.'}</p>{mean && <p className="font-mono">At current posture weights: 10 × ({Object.keys(DIM_LABELS).map(k=>`${mean[k].toFixed(2)} × ${s.programmeWeights[k]}`).join(' + ')}) / {weightTotal} = {raw===null?'undefined':raw.toFixed(2)+' → '+Math.round(raw)+'/100'}. Means shown here are rounded for display; calculation uses full precision.</p>}<a className="text-blue-300 underline" href="#scorer">Change posture weights and programme selection →</a></div>}
+                {kind==='models' && <p className="text-xs">Model control changes also appear in Sovereign AI for countries covered there. Capability changes affect this view only. Neither number is automatically substituted for a programme’s tech-sovereignty input.</p>}
+                <button className="border border-slate-500 rounded px-3 py-2 text-xs" onClick={s.reset}>Reset all scores, weights and programme selection</button>
+              </div>
+            </details>
+          </section>;
+        }
+
         function SCQAView() {
           const [expanded, setExpanded] = useState('situation');
           const order = ['situation', 'complication', 'question', 'answer'];
@@ -2155,14 +2227,17 @@
         }
 
         function ModelCapabilityView() {
+          const {models} = React.useContext(ScenarioContext);
           const [filter, setFilter] = useState('All');
           const [selected, setSelected] = useState(null);
           const groups = ['All', 'Frontier', 'Regional / specialist'];
-          const filtered = MODEL_CAPABILITIES.filter(d => filter === 'All' || (filter === 'Frontier' ? d.category.toLowerCase().includes('frontier') : !d.category.toLowerCase().includes('frontier')));
+          const filtered = models.filter(d => filter === 'All' || (filter === 'Frontier' ? d.category.toLowerCase().includes('frontier') : !d.category.toLowerCase().includes('frontier')));
           const sorted = [...filtered].sort((a,b) => b.capability - a.capability || a.country.localeCompare(b.country));
           return (
             <div className="space-y-5">
 <div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Model Capability and Ownership</h2><p className="text-sm text-slate-300">The US and China lead this review. France has a frontier challenger in Mistral; the UK has no demonstrated domestically controlled frontier model.</p></div>
+<ScoringWorkbench kind="models" fullCoverage={false} />
+
 <div className="overflow-x-auto mt-4">
                   <table className="w-full text-xs text-left">
                     <caption className="text-left text-sm font-bold text-slate-200 mb-2">Which jurisdictions have domestic frontier models?</caption>
@@ -2208,18 +2283,19 @@
         }
 
         function SovereignAIView() {
+          const {sovereign,sovereignWeights,changed} = React.useContext(ScenarioContext);
           const [selected, setSelected] = useState(null);
           const [mode, setMode] = useState('map');
           const [sortDim, setSortDim] = useState('model');
 
           const sorted = useMemo(() =>
-            [...SOVEREIGN_DATA].sort((a, b) => {
-              const aScore = (a.compute + a.model + a.data) / 3;
-              const bScore = (b.compute + b.model + b.data) / 3;
-              if (sortDim === 'overall') return bScore - aScore;
-              return b[sortDim] - a[sortDim];
+            [...sovereign].sort((a, b) => {
+              const aScore = sovereignAverage(a,sovereignWeights);
+              const bScore = sovereignAverage(b,sovereignWeights);
+              if (sortDim === 'overall') return (bScore ?? 0) - (aScore ?? 0) || a.country.localeCompare(b.country);
+              return b[sortDim] - a[sortDim] || a.country.localeCompare(b.country);
             }),
-            [sortDim]
+            [sortDim,sovereign,sovereignWeights]
           );
 
           const flagMap = { CN: '🇨🇳', EU: '🇪🇺', US: '🇺🇸', AE: '🇦🇪', IN: '🇮🇳', SG: '🇸🇬', FR: '🇫🇷', GB: '🇬🇧', JP: '🇯🇵', CA: '🇨🇦', SA: '🇸🇦' };
@@ -2234,6 +2310,8 @@
           return (
             <div className="space-y-5">
 <div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Compute, Models and Data</h2><p className="text-sm text-slate-300">Compare editorial scores for compute access, model control and data governance. Expand a country for evidence; project status is shown separately below.</p></div>
+<ScoringWorkbench kind="sovereign" fullCoverage={false} />
+
 <div className="flex flex-wrap gap-3 items-center">
                 <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
                   {['map', 'bars'].map(m => (
@@ -2246,7 +2324,7 @@
                 <div className="flex-1" />
                 <select value={sortDim} onChange={e => setSortDim(e.target.value)}
                   className="text-xs bg-slate-800 text-slate-300 border border-slate-700 rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition">
-                  <option value="overall">Sort: Overall Average</option>
+                  <option value="overall">Sort: Weighted Overall</option>
                   <option value="compute">Sort: Compute Score</option>
                   <option value="model">Sort: Model Control</option>
                   <option value="data">Sort: Data Score</option>
@@ -2254,7 +2332,7 @@
               </div>
 {mode === 'bars' && (
                 <div className="glass-panel rounded-xl p-5 shadow-lg">
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-6">Editorial compute / model / data control scores</div>
+                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-6">{changed?'Your scenario: compute / model / data':'Published editorial compute / model / data'}</div>
                   <div className="h-[350px] w-full">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={barData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
@@ -2281,7 +2359,7 @@
                   {sorted.map((d, i) => (
                     <div key={d.country} className="glass-panel rounded-xl border border-slate-800 overflow-hidden shadow-sm transition-all hover:border-slate-600">
                       <button onClick={() => setSelected(selected === d.country ? null : d.country)} aria-expanded={selected === d.country}
-                        className="w-full p-4 flex items-center gap-4 hover:bg-slate-800/30 transition text-left">
+                        className="w-full p-4 flex flex-wrap items-center gap-4 hover:bg-slate-800/30 transition text-left">
                         <span className="text-2xl shrink-0 drop-shadow-md">{flagMap[d.flag]}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2.5 flex-wrap">
@@ -2298,6 +2376,7 @@
                             </div>
                           ))}
                         </div>
+                        <span className="text-xs text-blue-300 shrink-0">Overall<br/>{sovereignAverage(d,sovereignWeights)?.toFixed(2) ?? 'Not scored'}</span>
                         <span className="text-slate-500 ml-2 text-xl font-light shrink-0">{selected === d.country ? '−' : '+'}</span>
                       </button>
                       {selected === d.country && (
@@ -2370,8 +2449,8 @@
                   <div className="text-[11px] uppercase tracking-wider text-emerald-600/80 font-bold mt-1">Compute project / access-pool<br/>examples (not a national total)</div>
                 </div>
                 <div className="glass-panel border-violet-900/30 rounded-xl p-4 text-center flex flex-col justify-center">
-                  <div className="text-3xl font-bold text-violet-500 font-mono drop-shadow-sm">{SOVEREIGN_DATA.filter(d => d.model >= 7).length}</div>
-                  <div className="text-[11px] uppercase tracking-wider text-violet-600/80 font-bold mt-1">Jurisdictions with stronger<br/>editorial model-control scores</div>
+                  <div className="text-3xl font-bold text-violet-500 font-mono drop-shadow-sm">{sovereign.filter(d => d.model >= 7).length}</div>
+                  <div className="text-[11px] uppercase tracking-wider text-violet-600/80 font-bold mt-1">Jurisdictions with stronger<br/>current model-control scores</div>
                 </div>
               </div>
 <details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Definitions, dependencies and EU framework</summary><div className="mt-4 space-y-4"><div className="glass-panel rounded-xl p-5 shadow-lg">
@@ -2410,16 +2489,17 @@
         }
 
         function PostureScorer() {
-          const [weights, setWeights] = useState({...DEFAULT_WEIGHTS});
-          const [selectedPrograms, setSelectedPrograms] = useState(INITIATIVES.map(i=>i.initiative));
-          const selectedInitiatives = INITIATIVES.filter(i=>selectedPrograms.includes(i.initiative));
+          const {programmes,programmeWeights:weights,setProgrammeWeights:setWeights,selectedPrograms,setSelectedPrograms} = React.useContext(ScenarioContext);
+          const selectedInitiatives = programmes.filter(i=>selectedPrograms.includes(i.initiative));
           const weightSum = Object.values(weights).reduce((a,b)=>a+b,0);
           const totalWeight = weightSum || 1;
-          const scored = useMemo(()=>weightedScores(selectedInitiatives,weights),[weights,selectedPrograms]);
+          const scored = useMemo(()=>weightedScores(selectedInitiatives,weights),[weights,selectedPrograms,programmes]);
 
           return (
             <div className="space-y-5">
 <div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Selected Programme Posture Scorer</h2><p className="text-sm text-slate-300">Change the weights to see how the selected programmes compare. These are editorial programme scores; coverage differs by country.</p></div>
+<ScoringWorkbench kind="programmes" fullCoverage={false} />
+
 <div className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3">
                 <div className="flex flex-wrap gap-2"><button className="border border-slate-600 rounded px-3 py-2" onClick={()=>setWeights({...DEFAULT_WEIGHTS})}>Reset default weights</button><button className="border border-slate-600 rounded px-3 py-2" onClick={()=>setWeights(Object.fromEntries(Object.keys(DIM_LABELS).map(k=>[k,1])))}>Equal weights</button></div>
                 <details><summary className="cursor-pointer font-bold text-blue-300">Choose programme coverage ({selectedInitiatives.length} of {INITIATIVES.length})</summary>
@@ -2501,9 +2581,10 @@
         }
 
         function StrategicHeatmap() {
+          const {programmes} = React.useContext(ScenarioContext);
           const [dim, setDim] = useState('speed');
 
-          const byCountry = useMemo(()=>countryMeans().map(d=>({...d,dimVal:Math.round(d[dim]*10)/10})).sort((a,b)=>b.dimVal-a.dimVal||a.country.localeCompare(b.country)),[dim]);
+          const byCountry = useMemo(()=>countryMeans(programmes).map(d=>({...d,dimVal:Math.round(d[dim]*10)/10})).sort((a,b)=>b.dimVal-a.dimVal||a.country.localeCompare(b.country)),[dim,programmes]);
           const tier = v => v >= 9 ? 'Leading' : v >= 7 ? 'Strong' : v >= 4 ? 'Developing' : 'Early';
 
           const tierBorderLeft = { Leading: 'border-l-emerald-500', Strong: 'border-l-blue-500', Developing: 'border-l-amber-500', Early: 'border-l-slate-500' };
@@ -2513,7 +2594,7 @@
             <div className="space-y-5">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Selected Programme Heatmap — October 2026</h2>
-                <p className="text-xs text-slate-400 mb-3">Full programme coverage; country means match the default scorer and radar. Band labels describe this editorial sample, not national leadership. Programme counts and mix matter.</p>
+                <p className="text-xs text-slate-400 mb-3">Full programme coverage; country means use your current inputs, as does the radar. Band labels describe this editorial sample, not national leadership. Programme counts and mix matter.</p>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(DIM_LABELS).map(([k, label]) => (
                     <button key={k} onClick={() => setDim(k)}
@@ -2523,6 +2604,8 @@
                   ))}
                 </div>
               </div>
+<ScoringWorkbench kind="programmes" fullCoverage={true} />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {byCountry.map(r => {
                   const t = tier(r.dimVal);
@@ -2555,6 +2638,7 @@
         }
 
         function InitiativeInventory() {
+          const {programmes} = React.useContext(ScenarioContext);
           const [sortKey, setSortKey] = useState('country');
           const [sortDir, setSortDir] = useState('asc');
           const [filter, setFilter] = useState('All');
@@ -2563,12 +2647,12 @@
           const archetypes = ['All', ...Object.keys(ARCHETYPE_COLORS)];
 
           const sorted = useMemo(() => {
-            let rows = filter === 'All' ? INITIATIVES : INITIATIVES.filter(r => r.archetype === filter);
+            let rows = filter === 'All' ? programmes : programmes.filter(r => r.archetype === filter);
             return [...rows].sort((a, b) => {
               if (typeof a[sortKey] === 'number') return sortDir === 'desc' ? b[sortKey] - a[sortKey] : a[sortKey] - b[sortKey];
               return sortDir === 'desc' ? String(b[sortKey]).localeCompare(String(a[sortKey])) : String(a[sortKey]).localeCompare(String(b[sortKey]));
             });
-          }, [sortKey, sortDir, filter]);
+          }, [sortKey, sortDir, filter, programmes]);
 
           return (
             <div className="space-y-5">
@@ -2584,11 +2668,13 @@
                   ))}
                 </div>
               </div>
+<ScoringWorkbench kind="programmes" fullCoverage={true} rawInputs />
+
               <div className="space-y-3">
                 {sorted.map((r, i) => (
                   <div key={i} className="glass-panel rounded-xl border border-slate-800 overflow-hidden shadow-sm transition hover:border-slate-600">
                     <button onClick={() => setExpanded(expanded === r.initiative ? null : r.initiative)} aria-expanded={expanded === r.initiative}
-                      className="w-full p-4 flex items-center gap-4 hover:bg-slate-800/30 transition text-left">
+                      className="w-full p-4 flex flex-wrap items-center gap-4 hover:bg-slate-800/30 transition text-left">
                       <span className="text-2xl shrink-0 drop-shadow-md">{r.flag}</span>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1.5">
@@ -2632,19 +2718,19 @@
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="glass-panel border-slate-700 rounded-xl p-4 text-center flex flex-col justify-center">
-                  <div className="text-3xl font-bold text-slate-100 font-mono drop-shadow-sm">{INITIATIVES.length}</div>
+                  <div className="text-3xl font-bold text-slate-100 font-mono drop-shadow-sm">{programmes.length}</div>
                   <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mt-1">Initiatives tracked</div>
                 </div>
                 <div className="glass-panel border-emerald-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
-                  <div className="text-3xl font-bold text-emerald-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'teal').length}</div>
+                  <div className="text-3xl font-bold text-emerald-500 font-mono drop-shadow-sm">{programmes.filter(r => r.statusColor === 'teal').length}</div>
                   <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-600/80 mt-1">Active / mixed delivery</div>
                 </div>
                 <div className="glass-panel border-amber-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
-                  <div className="text-3xl font-bold text-amber-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'amber').length}</div>
+                  <div className="text-3xl font-bold text-amber-500 font-mono drop-shadow-sm">{programmes.filter(r => r.statusColor === 'amber').length}</div>
                   <div className="text-[11px] font-bold uppercase tracking-wider text-amber-600/80 mt-1">Plans / pauses / partial</div>
                 </div>
                 <div className="glass-panel border-red-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
-                  <div className="text-3xl font-bold text-red-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'red').length}</div>
+                  <div className="text-3xl font-bold text-red-500 font-mono drop-shadow-sm">{programmes.filter(r => r.statusColor === 'red').length}</div>
                   <div className="text-[11px] font-bold uppercase tracking-wider text-red-600/80 mt-1">Restructured</div>
                 </div>
               </div>
@@ -2653,9 +2739,10 @@
         }
 
         function ArchetypeCompare() {
+          const {programmes} = React.useContext(ScenarioContext);
           const ARCHETYPE_DIMS = ['Infrastructure', 'Regulation', 'Sovereignty', 'Openness', 'Speed', 'Talent'];
           const profiles = {'US (Infrastructure)':'United States','EU (Regulation)':'European Union','China (Sovereignty)':'China','India (Inclusion)':'India','Singapore (Regional)':'Singapore'};
-          const means = countryMeans();
+          const means = countryMeans(programmes);
           const ARCHETYPE_SCORES = Object.fromEntries(Object.entries(profiles).map(([label,country])=>[label,Object.keys(DIM_LABELS).map(k=>means.find(r=>r.country===country)[k])]));
           const ARCHETYPE_RADAR_COLORS = {
             'US (Infrastructure)':  '#3b82f6', // blue
@@ -2709,6 +2796,8 @@
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">Five National AI Approaches: October 2026</h2>
                 <p className="text-sm text-slate-400">Archetypes describe strategic emphasis. Radar values use the same full-coverage programme means as the scorer and heatmap; they are editorial profiles, not separate measurements of national performance.</p>
               </div>
+<ScoringWorkbench kind="programmes" fullCoverage={true} />
+
               <div className="glass-panel rounded-xl p-5 shadow-lg flex justify-center items-center">
                 <div className="w-full max-w-2xl h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
@@ -2793,9 +2882,9 @@
             ['South Korea / Switzerland','Added model-only profiles for K-EXAONE and Apertus. No posture scores assigned without comparable programme review; Switzerland is outside the EU.']
           ];
           return <div className="space-y-5">
-<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Evidence review: 9 October 2026</h2><p className="text-sm text-slate-300">Start with the corrections and score changes below. Coverage is selective, and the scores remain editorial judgments.</p></div>
+<div className="glass-panel rounded-xl p-5"><h2 className="text-lg font-bold text-white mb-2">Evidence review: 9 October 2026</h2><p className="text-sm text-slate-300">Start with the corrections and score changes below. This is the published assessment: unofficial editorial scores. Personal scenarios do not change this review record.</p></div>
 <section className="glass-panel rounded-xl p-5"><h3 className="text-base font-bold text-white mb-3">What changed and why</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead className="text-slate-400"><tr><th className="p-2">Coverage</th><th className="p-2">Review finding / score rationale</th></tr></thead><tbody className="divide-y divide-slate-800">{notes.map(([country,note])=><tr key={country}><th className="p-3 text-slate-200">{country}</th><td className="p-3 text-slate-300 leading-relaxed">{note}</td></tr>)}</tbody></table></div></section>
-<section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Coverage and default programme posture</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Jurisdiction</th><th className="p-2">Model category</th><th className="p-2">Strategy programmes</th><th className="p-2">Default /100</th></tr></thead><tbody>{MODEL_CAPABILITIES.map(m=>{const row=weightedScores(INITIATIVES,DEFAULT_WEIGHTS).find(r=>r.country===m.country);return <tr className="border-t border-slate-800" key={m.country}><th className="p-2">{m.country}</th><td className="p-2">{m.category}</td><td className="p-2">{row?.count ?? 'Not reviewed'}</td><td className="p-2">{row?.score ?? 'Not scored'}</td></tr>})}</tbody></table></div></section>
+<section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Coverage and default programme posture</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Jurisdiction</th><th className="p-2">Model category</th><th className="p-2">Strategy programmes</th><th className="p-2">Published /100</th></tr></thead><tbody>{MODEL_CAPABILITIES.map(m=>{const row=weightedScores(INITIATIVES,DEFAULT_WEIGHTS).find(r=>r.country===m.country);return <tr className="border-t border-slate-800" key={m.country}><th className="p-2">{m.country}</th><td className="p-2">{m.category}</td><td className="p-2">{row?.count ?? 'Not reviewed'}</td><td className="p-2">{row?.score ?? 'Not scored'}</td></tr>})}</tbody></table></div></section>
 <details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Coverage and limitations</summary><div className="mt-4 space-y-4"><section className="glass-panel rounded-xl p-5 space-y-3 text-sm text-slate-300"><h2 className="text-lg font-bold text-white">Evidence review — 9 October 2026</h2><p>The review checks project status, model rights and scoring assumptions. Sources support the factual claims; the scores remain editorial judgments about the programmes covered.</p><p>The strategy sample has {new Set(INITIATIVES.map(i=>i.country)).size-1} countries plus the EU, across {INITIATIVES.length} programmes. Models &amp; Control covers {MODEL_CAPABILITIES.length-1} countries plus the EU. The hardware examples and timeline include other countries whose programmes have not been scored.</p><p>The review does not yet cover: Germany and Spain beyond model examples; Italy and other EU national strategies; Israel, Taiwan, Australia, Brazil and African economies; complete domestic model inventories; procurement contracts, switching rights, installed accelerator totals, utilisation, energy prices and outcomes measured on a common basis. The EU overlaps with France, Germany and Spain in model coverage. The coverage is too limited for a global ranking.</p></section></div></details>
 <details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">How evidence is assessed</summary><div className="mt-4 space-y-4"><section className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3"><h3 className="font-bold text-white">How evidence is treated</h3><p>Government sources document policy, announced budgets and reported results. Operators and developers describe their own facilities, releases and terms; their claims require attribution. Model cards specify the rights for each release. Independent evaluations compare performance on particular tasks at a given date. Missing evidence is marked as unknown.</p><p>Countries can develop their own frontier or specialist models, run licensed imported models locally, or use several foreign providers. Each choice gives different rights and dependencies. The review checks where research took place, who controls the company, how the model was trained and how it may be deployed. ASML’s minority stake in Mistral is assessed separately from Alphabet’s controlling ownership of Google DeepMind. Pending acquisitions remain pending until completion is confirmed.</p><p>Compute scores assess working capacity and access. Model-control scores assess ownership and the rights to deploy and adapt models. Data scores assess laws, contracts and access safeguards; they do not rate privacy quality or democratic accountability, or guarantee protection from foreign lawful access.</p><p>Unresolved evidence includes Stargate UAE commissioning at announced scale; a Stargate UK restart; M3 reference-model provenance and production rights; complete disbursement totals for headline funds; and the delivery status of every announced GPU partnership. Target dates are preserved without claiming completion.</p></section></div></details>
 <details className="glass-panel rounded-xl p-5 text-sm text-slate-300"><summary className="cursor-pointer font-semibold text-blue-300">Source directory and funding notes</summary><div className="mt-4 space-y-4"><div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
@@ -2830,11 +2919,24 @@
 
         // 4. MAIN APP
         function App() {
+          const [overrides,setOverrides] = useState({});
+          const [programmeWeights,setProgrammeWeights] = useState({...DEFAULT_WEIGHTS});
+          const [sovereignWeights,setSovereignWeights] = useState({...DEFAULT_SOVEREIGN_WEIGHTS});
+          const [selectedPrograms,setSelectedPrograms] = useState(INITIATIVES.map(i=>i.initiative));
+          const rows = useMemo(()=>scenarioRows(overrides),[overrides]);
+          const adjust = (kind,id,key,value) => {
+            if(kind==='sovereign' && key==='model'){kind='models';key='control';}
+            const bounded = Math.max(1,Math.min(10,Math.round(value)));
+            setOverrides(o=>({...o,[kind]:{...o[kind],[id]:{...o[kind]?.[id],[key]:bounded}}}));
+          };
+          const reset = () => {setOverrides({});setProgrammeWeights({...DEFAULT_WEIGHTS});setSovereignWeights({...DEFAULT_SOVEREIGN_WEIGHTS});setSelectedPrograms(INITIATIVES.map(i=>i.initiative));};
+          const changed = JSON.stringify(rows)!==JSON.stringify(scenarioRows({})) || Object.keys(DEFAULT_WEIGHTS).some(k=>programmeWeights[k]!==DEFAULT_WEIGHTS[k]) || Object.keys(DEFAULT_SOVEREIGN_WEIGHTS).some(k=>sovereignWeights[k]!==1) || selectedPrograms.length!==INITIATIVES.length;
+          const scenario = {...rows,adjust,reset,changed,programmeWeights,setProgrammeWeights,sovereignWeights,setSovereignWeights,selectedPrograms,setSelectedPrograms};
           const [tab, setTab] = useState(()=>TABS.some(t=>t.id===window.location.hash.slice(1))?window.location.hash.slice(1):'scqa');
           useEffect(()=>{window.history.replaceState(null,'','#'+tab);},[tab]);
           useEffect(()=>{const change=()=>{const id=window.location.hash.slice(1);if(TABS.some(t=>t.id===id))setTab(id);};window.addEventListener('hashchange',change);return()=>window.removeEventListener('hashchange',change);},[]);
           return (
-            <div className="text-slate-100 font-sans pb-12">
+            <ScenarioContext.Provider value={scenario}><div className="text-slate-100 font-sans pb-12">
               <header className="px-4 py-8 border-b border-slate-800/80 relative overflow-hidden"
                 style={{ background: 'radial-gradient(ellipse at top right, #1e3a8a 0%, #020617 70%)' }}>
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
@@ -2889,10 +2991,10 @@
               </main>
 
               <footer className="max-w-6xl mx-auto px-4 mt-8 text-xs text-slate-400 border-t border-slate-800 pt-5">
-                <p>Reviewed 9 October 2026 · Sources accompany the claims. Scores are editorial assessments.</p>
+                <p>Reviewed 9 October 2026 · Sources accompany the claims. Scores are unofficial editorial assessments, not ratings issued by a public body.</p>
                 <div className="flex flex-wrap gap-4 mt-3"><a className="text-blue-300 underline" href="#review">Sources, corrections and coverage</a><a className="text-blue-300 underline" href="#scorer">Scoring methodology</a><a className="text-blue-300 underline" href="#models">Model capability and ownership</a></div>
               </footer>
-            </div>
+            </div></ScenarioContext.Provider>
           );
         }
 
