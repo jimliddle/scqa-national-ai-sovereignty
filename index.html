@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>National AI Strategies Dashboard</title>
+    <meta name="description" content="Evidence-linked review of national AI strategies, domestic model capability, sovereign control and programme scoring. Reviewed 9 October 2026.">
 
     <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,6 +66,7 @@
 </head>
 <body class="antialiased min-h-screen selection:bg-blue-900 selection:text-blue-100">
 
+    <noscript>This dashboard needs JavaScript. Read the evidence and methodology in the <a href="https://github.com/jimliddle/scqa-national-ai-sovereignty">repository README</a>.</noscript>
     <div id="root"></div>
 
     <script type="text/babel">
@@ -75,6 +77,7 @@
         // 2. CONSTANTS & DATA
         const TABS = [
           { id: 'scqa',       label: 'SCQA Summary' },
+          { id: 'review',     label: 'Review & Coverage' },
           { id: 'timeline',   label: 'Timeline' },
           { id: 'sovereign',  label: 'Sovereign AI' },
           { id: 'models',     label: 'Models & Control' },
@@ -91,7 +94,7 @@
                     "capability": 10,
                     "control": 7,
                     "models": "OpenAI GPT / Anthropic Claude / Google Gemini; Meta open-weight models",
-                    "evidence": "Multiple US labs appear among leading independent general-capability evaluations. Review: 7 October 2026.",
+                    "evidence": "Multiple US labs appear among leading independent general-capability evaluations. Evaluation snapshot checked 9 October 2026.",
                     "ownership": "Domestic private developers; company control is not a national guarantee of access.",
                     "weights": "Mixed: leading proprietary APIs alongside selected downloadable models; rights depend on the named release.",
                     "dependencies": "12 June: US export controls caused Fable/Mythos access suspension; lifted 30 June, restored 1 July. Astra advanced cyber access and Google Fairwind are managed-access programmes, not verified blanket export embargoes. Domestic private ownership still does not guarantee public access.",
@@ -113,7 +116,8 @@
                                         "Gemini managed access",
                                         "https://deepmind.google/fairwind-program/"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "China",
@@ -121,7 +125,7 @@
                     "capability": 9,
                     "control": 8,
                     "models": "Qwen / Kimi / GLM / DeepSeek",
-                    "evidence": "Independent evaluations show globally competitive Chinese model developers, including leading open-weight offerings. Review: 7 October 2026.",
+                    "evidence": "Independent evaluations show globally competitive Chinese model developers, including leading open-weight offerings. Evaluation snapshot checked 9 October 2026.",
                     "ownership": "Domestic private model developers; national ecosystem capability is distinct from state ownership.",
                     "weights": "Selected models have downloadable weights; licences differ across releases and developers.",
                     "dependencies": "Downloaded weights reduce API withdrawal exposure; training provenance and accelerator supply remain separate dependencies.",
@@ -135,7 +139,8 @@
                                         "DeepSeek releases",
                                         "https://www.deepseek.com/en/transparency/"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "United Kingdom",
@@ -143,7 +148,7 @@
                     "capability": 3,
                     "control": 4,
                     "models": "Ineffable Intelligence — development stage; Gemini — US-controlled supplier",
-                    "evidence": "No UK-controlled, publicly demonstrated broad frontier model is established in this review. Ineffable describes a research mission, not a released frontier system. Gemini capability is attributed to Google in the US, not to UK sovereign capability.",
+                    "evidence": "No UK-controlled, publicly demonstrated broad frontier model is established in this review. Ineffable describes a research mission, not a released frontier system. Gemini capability is attributed to Google in the US, not to UK sovereign capability. This is a general-purpose frontier assessment, not a claim that Britain lacks specialist AI. Stability AI has UK operations, but the UK entity records a US-incorporated controlling parent.",
                     "ownership": "DeepMind was UK-founded and retains major UK research operations, but is part of Google under US parent Alphabet. Research location does not confer UK ownership or guaranteed model access.",
                     "weights": "Gemini service access is not equivalent to ownership of its weights. Other Google model releases have separate terms.",
                     "dependencies": "Gemini access and roadmap remain under Google control. The June Fable/Mythos suspension demonstrates foreign-jurisdiction continuity risk; fund backing does not remove it.",
@@ -164,8 +169,13 @@
                               [
                                         "Access withdrawal precedent",
                                         "https://www.anthropic.com/news/redeploying-fable-5"
+                              ],
+                              [
+                                        "Stability AI controlling parent",
+                                        "https://find-and-update.company-information.service.gov.uk/company/12295325/persons-with-significant-control"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "France",
@@ -173,7 +183,7 @@
                     "capability": 7,
                     "control": 7,
                     "models": "Mistral Large 4 Preview / wider Mistral family",
-                    "evidence": "Large 4 preview released 6 October 2026. Artificial Analysis reports Intelligence Index 38 and leading capability outside US/China; this is not the overall global lead.",
+                    "evidence": "Mistral Large 4 public preview announced 6 October 2026; independent Artificial Analysis release table shows Intelligence Index 38 at review. This is an evaluator-specific result, not the dashboard 7/10 score. Mistral reports training in its own European data centres.",
                     "ownership": "French private developer; domestic corporate presence does not mean public ownership.",
                     "weights": "Large 4 preview API available; weights planned for end-October, not yet released as of this review. Older releases have their own licences.",
                     "dependencies": "Local control of Large 4 cannot be inferred from planned weights; preview service and future terms matter.",
@@ -187,7 +197,8 @@
                                         "Independent model evaluation",
                                         "https://artificialanalysis.ai/models/releases"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "European Union",
@@ -209,7 +220,8 @@
                                         "OpenEuroLLM programme",
                                         "https://digital-strategy.ec.europa.eu/en/news/pioneering-ai-project-awarded-opening-large-language-models-european-languages"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "Canada",
@@ -227,7 +239,8 @@
                                         "Model, date and licence",
                                         "https://docs.cohere.com/docs/command-a-plus"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "India",
@@ -249,7 +262,8 @@
                                         "Weights and licence",
                                         "https://huggingface.co/sarvamai/sarvam-105b"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "United Arab Emirates",
@@ -271,7 +285,8 @@
                                         "Falcon licensing",
                                         "https://www.tii.ae/news/middle-easts-leading-ai-powerhouse-tii-launches-two-new-ai-models-falcon-arabic-first-arabic"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "Japan",
@@ -289,15 +304,16 @@
                                         "Model card and terms",
                                         "https://huggingface.co/llm-jp/llm-jp-3-172b"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "Singapore",
                     "category": "Regional adaptation",
                     "capability": 3,
                     "control": 6,
-                    "models": "SEA-LION v4.5; regional safety and embedding models",
-                    "evidence": "SEA-LION v4.5 adapts Gemma and Qwen variants. Regional evaluation and language alignment do not establish an independent broad frontier model.",
+                    "models": "SEA-LION v4.8 / v4.5; regional safety and embedding models",
+                    "evidence": "The current developer repository lists v4.8 continued-pretraining/fine-tuning of NVIDIA Nemotron variants and v4.5 Gemma/Qwen adaptations. Earlier v1 included training from scratch. Released regional capability is distinct from a broad frontier lead.",
                     "ownership": "AI Singapore develops regional adaptations of international base models.",
                     "weights": "Selected weights available; base-model restrictions and variant-specific terms apply.",
                     "dependencies": "Existing local weights can support continuity; future base-model access, provenance and licence obligations remain dependencies.",
@@ -307,19 +323,20 @@
                                         "Releases, provenance and licensing",
                                         "https://github.com/aisingapore/sealion"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
           },
           {
                     "country": "Saudi Arabia",
-                    "category": "Regional preview",
-                    "capability": 3,
-                    "control": 4,
-                    "models": "HUMAIN M3 limited preview",
-                    "evidence": "Preview terms effective 31 August 2026. Arabic benchmark results are provider evaluations of a preview checkpoint; independent broad frontier status is not established.",
+                    "category": "Regional developer / separate preview",
+                    "capability": 4,
+                    "control": 6,
+                    "models": "SDAIA ALLaM-7B-Instruct-preview weights; HUMAIN M3 limited service preview",
+                    "evidence": "The ALLaM model card describes a 7B Arabic/English release trained from scratch and provides downloadable weights. HUMAIN M3 is a different, larger preview checkpoint with developer-reported Arabic evaluations. Neither establishes broad global frontier leadership.",
                     "ownership": "PIF-owned HUMAIN; provider describes Arabic post-training of a reference model.",
-                    "weights": "Preview API/playground access; weights not released. Future weight plans are not current deployment rights.",
-                    "dependencies": "Access depends on preview terms and the provider; underlying reference-model provenance is a separate question.",
-                    "implication": "Domestic adaptation ambition is visible, but current preview access provides limited operational independence.",
+                    "weights": "ALLaM has downloadable Apache 2.0-labelled weights; use the release licence. HUMAIN M3 terms grant no weights and allow evaluation/non-production prototyping only.",
+                    "dependencies": "ALLaM can run locally with suitable hardware. HUMAIN M3 remains provider-dependent and its underlying reference-model provenance is not fully identified in the reviewed description.",
+                    "implication": "Saudi capability cannot be reduced to one restricted preview: ALLaM provides a separate local-deployment route. Capability 3→4 and control 4→6 reflect that omitted evidence.",
                     "sources": [
                               [
                                         "Model description",
@@ -328,317 +345,1001 @@
                               [
                                         "Preview rights",
                                         "https://node.humain.com/legal/model-terms"
+                              ],
+                              [
+                                        "ALLaM weights, training and licence",
+                                        "https://huggingface.co/humain-ai/ALLaM-7B-Instruct-preview"
                               ]
-                    ]
+                    ],
+                    "checked": "9 October 2026"
+          },
+          {
+                    "country": "South Korea",
+                    "category": "Domestic / regional developer",
+                    "capability": 5,
+                    "control": 8,
+                    "models": "LG K-EXAONE 2.0; selected domestic example",
+                    "evidence": "LG released K-EXAONE 2.0 on 31 July 2026 under the Korean Sovereign AI Foundation Model Project. Its benchmark gains are developer evaluations; no broad global frontier lead is established here.",
+                    "ownership": "Korean private developer LG AI Research; domestic corporate development is distinct from public ownership.",
+                    "weights": "Downloadable K-EXAONE 2.0 weights under Apache 2.0, according to its developer release.",
+                    "dependencies": "Local deployment needs substantial compute; model parameter count is not a capability ranking. Korea remains dependent on international hardware and software supply chains.",
+                    "implication": "Domestic development and usable weights support sovereignty without establishing overall frontier leadership. Model-only coverage here; no six-factor posture score is assigned.",
+                    "sources": [
+                              [
+                                        "Developer release and licence",
+                                        "https://www.lgresearch.ai/news/view?seq=678"
+                              ],
+                              [
+                                        "Model repository",
+                                        "https://github.com/LG-AI-EXAONE/K-EXAONE-2.0"
+                              ]
+                    ],
+                    "checked": "9 October 2026"
+          },
+          {
+                    "country": "Switzerland",
+                    "category": "Open research developer",
+                    "capability": 5,
+                    "control": 9,
+                    "models": "Swiss AI Initiative Apertus 1.5, 8B / 70B",
+                    "evidence": "Swiss AI documentation lists Apertus 1.5 8B/70B. The initiative is led by ETH Zurich and EPFL; published materials emphasise transparent development, not broad global frontier leadership.",
+                    "ownership": "Swiss academic collaboration, with CSCS infrastructure. Switzerland is outside the EU and is not counted in the EU row.",
+                    "weights": "Apache 2.0 weights, with published code and data reconstruction resources; model rights and dataset rights remain separate.",
+                    "dependencies": "Transparency and local deployment reduce provider dependence, while accelerators, energy and maintenance remain external or operational dependencies.",
+                    "implication": "Open development can deliver high control without a leading frontier score. Model-only coverage here; no six-factor posture score is assigned.",
+                    "sources": [
+                              [
+                                        "Current releases and development resources",
+                                        "https://www.apertus-ai.org/pages/documentation/"
+                              ],
+                              [
+                                        "Initiative and governance",
+                                        "https://www.apertus-ai.org/pages/about/"
+                              ]
+                    ],
+                    "checked": "9 October 2026"
           }
 ];
 
         const SOVEREIGN_DATA = [
           {
-            country: 'China', flag: 'CN',
-            compute: 9, model: 8, data: 10,
-            domesticChipDesign: true,
-            computeNotes: "Huawei Ascend and domestic accelerators provide alternatives to imported GPUs. Domestic capacity is growing, but no complete independence from global fabrication, equipment or software supply chains is established here.",
-            modelNotes: "DeepSeek V4 released 24 April 2026, alongside the broader Qwen, ERNIE, MiniMax and Kimi ecosystem. A domestic model ecosystem does not by itself establish chip or supply-chain independence.",
-            dataNotes: "China has cybersecurity, personal-information and generative-AI rules. Localization and cross-border requirements depend on data type and operator; it is inaccurate to claim all training data must remain domestic.",
-            nvidiaPartnered: false,
-            tier: "Domestic stack, supply-chain dependencies",
-            tierColor: '#059669',
-            sourceUrl: "https://www.deepseek.com/en/transparency/",
+                    "country": "China",
+                    "flag": "CN",
+                    "compute": 9,
+                    "model": 8,
+                    "data": 8,
+                    "domesticChipDesign": true,
+                    "computeNotes": "Huawei Ascend and domestic accelerators provide alternatives to imported GPUs. Domestic capacity is growing, but no complete independence from global fabrication, equipment or software supply chains is established here.",
+                    "modelNotes": "DeepSeek V4 released 24 April 2026, alongside the broader Qwen, ERNIE, MiniMax and Kimi ecosystem. A domestic model ecosystem does not by itself establish chip or supply-chain independence.",
+                    "dataNotes": "China has cybersecurity, personal-information and generative-AI rules. Localization and cross-border requirements depend on data type and operator; it is inaccurate to claim all training data must remain domestic. Data control 10→8: extensive governance supports a strong assessment, but does not establish complete control over every dataset or deployment.",
+                    "nvidiaPartnered": false,
+                    "tier": "Domestic stack, supply-chain dependencies",
+                    "tierColor": "#059669",
+                    "sourceUrl": "https://www.deepseek.com/en/transparency/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.deepseek.com/en/transparency/"
+                              ],
+                              [
+                                        "Independent evaluations",
+                                        "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3"
+                              ],
+                              [
+                                        "DeepSeek releases",
+                                        "https://www.deepseek.com/en/transparency/"
+                              ],
+                              [
+                                        "Generative AI governance",
+                                        "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm"
+                              ]
+                    ]
           },
           {
-            country: 'European Union', flag: 'EU',
-            compute: 6, model: 7, data: 10,
-            domesticChipDesign: false,
-            computeNotes: "EuroHPC lists 19 AI Factories and 13 Antennas. A Gigafactories tender launched 30 July 2026, with proposals due 12 November. Selection and implementation do not mean every system is operational.",
-            modelNotes: 'Mistral is a major European model developer. OpenEuroLLM is a collaborative multilingual model programme, distinct from commercial offerings.',
-            dataNotes: "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework. Cloud Sovereignty Framework: 48 criteria across eight objectives, plus SEAL assurance thresholds. The April procurement requires SEAL-2 (data sovereignty), not full supply-chain independence. The 3 June Cloud and AI Development Act proposes an EU-wide sovereignty framework; this is a legislative proposal, not enacted law.",
-            nvidiaPartnered: true,
-            tier: "Governance-led, compute expanding",
-            tierColor: '#7c3aed',
-            sourceUrl: "https://www.eurohpc-ju.europa.eu/ai-factories_en",
+                    "country": "European Union",
+                    "flag": "EU",
+                    "compute": 6,
+                    "model": 7,
+                    "data": 8,
+                    "domesticChipDesign": false,
+                    "computeNotes": "EuroHPC lists 19 AI Factories and 13 Antennas. A Gigafactories tender launched 30 July 2026, with proposals due 12 November. Selection and implementation do not mean every system is operational.",
+                    "modelNotes": "Mistral is a major European model developer. OpenEuroLLM is a collaborative multilingual model programme, distinct from commercial offerings.",
+                    "dataNotes": "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework. Cloud Sovereignty Framework: 48 criteria across eight objectives, plus SEAL assurance thresholds. The April procurement requires SEAL-2 (data sovereignty), not full supply-chain independence. The 3 June Cloud and AI Development Act proposes an EU-wide sovereignty framework; this is a legislative proposal, not enacted law. Data control 10→8: extensive governance supports a strong assessment, but does not establish complete data control. The EU and France now share the same data assessment for their common legal framework.",
+                    "nvidiaPartnered": true,
+                    "tier": "Governance-led, compute expanding",
+                    "tierColor": "#7c3aed",
+                    "sourceUrl": "https://www.eurohpc-ju.europa.eu/ai-factories_en",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.eurohpc-ju.europa.eu/ai-factories_en"
+                              ],
+                              [
+                                        "Mistral preview",
+                                        "https://mistral.ai/news/mistral-large-4/"
+                              ],
+                              [
+                                        "OpenEuroLLM programme",
+                                        "https://digital-strategy.ec.europa.eu/en/news/pioneering-ai-project-awarded-opening-large-language-models-european-languages"
+                              ]
+                    ]
           },
           {
-            country: 'United States', flag: 'US',
-            compute: 10, model: 7, data: 4,
-            domesticChipDesign: true,
-            computeNotes: "OpenAI reported on 29 April 2026 that it had surpassed its goal of securing 10GW of US Stargate infrastructure. Secured capacity is not the same as commissioned power. Abilene supports model training; chip-design leadership still depends on international fabrication and equipment.",
-            modelNotes: "OpenAI, Anthropic, Google and Meta support a large private-sector model ecosystem. Company ownership, deployment control and national public-interest access are different questions.",
-            dataNotes: "Data location, provider jurisdiction and lawful access are separate considerations. Hosting domestically does not automatically eliminate foreign legal or contractual exposure.",
-            nvidiaPartnered: true,
-            tier: "Chip-design and model leadership",
-            tierColor: '#2563eb',
-            sourceUrl: "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/",
+                    "country": "United States",
+                    "flag": "US",
+                    "compute": 10,
+                    "model": 7,
+                    "data": 4,
+                    "domesticChipDesign": true,
+                    "computeNotes": "OpenAI reported on 29 April 2026 that it had surpassed its goal of securing 10GW of US Stargate infrastructure. Secured capacity is not the same as commissioned power. Abilene supports model training; chip-design leadership still depends on international fabrication and equipment.",
+                    "modelNotes": "OpenAI, Anthropic, Google and Meta support a large private-sector model ecosystem. Company ownership, deployment control and national public-interest access are different questions.",
+                    "dataNotes": "Data location, provider jurisdiction and lawful access are separate considerations. Hosting domestically does not automatically eliminate foreign legal or contractual exposure.",
+                    "nvidiaPartnered": true,
+                    "tier": "Chip-design and model leadership",
+                    "tierColor": "#2563eb",
+                    "sourceUrl": "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/"
+                              ],
+                              [
+                                        "Independent evaluations",
+                                        "https://artificialanalysis.ai/models/releases"
+                              ],
+                              [
+                                        "Anthropic suspension and restoration",
+                                        "https://www.anthropic.com/news/redeploying-fable-5"
+                              ],
+                              [
+                                        "Astra access controls",
+                                        "https://openai.com/index/path-to-astra/"
+                              ],
+                              [
+                                        "Gemini managed access",
+                                        "https://deepmind.google/fairwind-program/"
+                              ]
+                    ]
           },
           {
-            country: 'United Arab Emirates', flag: 'AE',
-            compute: 8, model: 7, data: 6,
-            domesticChipDesign: false,
-            computeNotes: "Stargate UAE is a planned 1GW cluster within a wider 5GW campus. OpenAI announced a 200MW first phase expected in 2026; that schedule is not proof of commissioning.",
-            modelNotes: "TII released Falcon-H1 Arabic in January 2026. Its leaderboard leadership is a dated developer claim; the Falcon programme demonstrates domestic model capability without proving independence in every layer.",
-            dataNotes: "UAE data governance and domestic hosting support control, but operator jurisdiction, contractual terms and model access must also be assessed.",
-            nvidiaPartnered: true,
-            tier: 'Domestic model capability, compute plans',
-            tierColor: '#2563eb',
-            sourceUrl: "https://openai.com/index/introducing-stargate-uae/",
+                    "country": "United Arab Emirates",
+                    "flag": "AE",
+                    "compute": 6,
+                    "model": 7,
+                    "data": 6,
+                    "domesticChipDesign": false,
+                    "computeNotes": "Stargate UAE is a planned 1GW cluster within a wider 5GW campus. OpenAI announced a 200MW first phase expected in 2026; that schedule is not proof of commissioning. Compute 8→6: the plan is not evidence of commissioned capacity at its announced scale.",
+                    "modelNotes": "TII released Falcon-H1 Arabic in January 2026. Its leaderboard leadership is a dated developer claim; the Falcon programme demonstrates domestic model capability without proving independence in every layer.",
+                    "dataNotes": "UAE data governance and domestic hosting support control, but operator jurisdiction, contractual terms and model access must also be assessed.",
+                    "nvidiaPartnered": true,
+                    "tier": "Domestic model capability, compute plans",
+                    "tierColor": "#2563eb",
+                    "sourceUrl": "https://openai.com/index/introducing-stargate-uae/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://openai.com/index/introducing-stargate-uae/"
+                              ],
+                              [
+                                        "Arabic model release",
+                                        "https://falconllm.tii.ae/abu-dhabi-tii-launches-falcon-h1-arabic-establishing-the-worlds-leading-arabic-ai-model.html"
+                              ],
+                              [
+                                        "Falcon licensing",
+                                        "https://www.tii.ae/news/middle-easts-leading-ai-powerhouse-tii-launches-two-new-ai-models-falcon-arabic-first-arabic"
+                              ]
+                    ]
           },
           {
-            country: 'India', flag: 'IN',
-            compute: 6, model: 8, data: 7,
-            domesticChipDesign: false,
-            computeNotes: "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, 237 projects had been approved for 9.318 million subsidised GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure.",
-            modelNotes: "Sarvam released open-weight 30B and 105B reasoning models on 6 March 2026, reporting training entirely in India on IndiaAI compute. ",
-            dataNotes: "The DPDP framework and IndiaAI data initiatives address governance and access. Domestic training is evidence of local capability, not a blanket legal requirement that every dataset stay in India.",
-            nvidiaPartnered: true,
-            tier: 'Domestic models, compute access expanding',
-            tierColor: '#059669',
-            sourceUrl: "https://www.sarvam.ai/blogs/sarvam-30b-105b",
+                    "country": "India",
+                    "flag": "IN",
+                    "compute": 6,
+                    "model": 8,
+                    "data": 7,
+                    "domesticChipDesign": false,
+                    "computeNotes": "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, 237 projects had been approved for 9.318 million subsidised GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure.",
+                    "modelNotes": "Sarvam released open-weight 30B and 105B reasoning models on 6 March 2026, reporting training entirely in India on IndiaAI compute. ",
+                    "dataNotes": "The DPDP framework and IndiaAI data initiatives address governance and access. Domestic training is evidence of local capability, not a blanket legal requirement that every dataset stay in India.",
+                    "nvidiaPartnered": true,
+                    "tier": "Domestic models, compute access expanding",
+                    "tierColor": "#059669",
+                    "sourceUrl": "https://www.sarvam.ai/blogs/sarvam-30b-105b",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.sarvam.ai/blogs/sarvam-30b-105b"
+                              ],
+                              [
+                                        "Training and release",
+                                        "https://www.sarvam.ai/blogs/sarvam-30b-105b"
+                              ],
+                              [
+                                        "Weights and licence",
+                                        "https://huggingface.co/sarvamai/sarvam-105b"
+                              ]
+                    ]
           },
           {
-            country: 'Singapore', flag: 'SG',
-            compute: 6, model: 6, data: 8,
-            domesticChipDesign: false,
-            computeNotes: 'National Supercomputing Centre (NSCC) as backbone. S$70M National Multimodal LLM Programme. Regional AI hub ambition - hosts hyperscaler APAC infrastructure. Punches above weight given size.',
-            modelNotes: "SEA-LION now lists v4.5 models, alongside v4, SEA-Guard and the March 2026 embedding suite. Many variants adapt Gemma, Qwen or other base models; regional language control and base-model independence should be distinguished.",
-            dataNotes: "Singapore combines PDPA data protection with model AI governance guidance. Governance guidance and enforceable data-protection rules are different instruments.",
-            nvidiaPartnered: true,
-            tier: 'Domestic model capability, data governance',
-            tierColor: '#0891b2',
-            sourceUrl: "https://github.com/aisingapore/sealion",
+                    "country": "Singapore",
+                    "flag": "SG",
+                    "compute": 6,
+                    "model": 6,
+                    "data": 8,
+                    "domesticChipDesign": false,
+                    "computeNotes": "Public supercomputing and regional commercial cloud services support access. S$70M funds the National Multimodal LLM Programme; it is not a national compute expenditure total. Domestic hosting does not confer ownership of foreign cloud operators.",
+                    "modelNotes": "SEA-LION now lists v4.8 and v4.5 models, alongside v4, SEA-Guard and the March 2026 embedding suite. Many variants adapt Gemma, Qwen or other base models; regional language control and base-model independence should be distinguished.",
+                    "dataNotes": "Singapore combines PDPA data protection with model AI governance guidance. Governance guidance and enforceable data-protection rules are different instruments.",
+                    "nvidiaPartnered": true,
+                    "tier": "Domestic model capability, data governance",
+                    "tierColor": "#0891b2",
+                    "sourceUrl": "https://github.com/aisingapore/sealion",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://github.com/aisingapore/sealion"
+                              ],
+                              [
+                                        "Releases, provenance and licensing",
+                                        "https://github.com/aisingapore/sealion"
+                              ]
+                    ]
           },
           {
-            country: 'France', flag: 'FR',
-            compute: 6, model: 7, data: 8,
-            domesticChipDesign: false,
-            computeNotes: "Mistral reports production GB200 compute from February 2026 and first external customers in March. Its Sweden expansion is in development and its 1GW EU capacity is a 2030 ambition.",
-            modelNotes: "Mistral is a major European model developer with open-weight and commercial offerings. Availability, licence terms and deployment control vary by model.",
-            dataNotes: 'GDPR enforcement via CNIL (one of EU\'s most active regulators). EU AI Act data transparency requirements. France has historically led on digital sovereignty within EU - "nuage souverain" (sovereign cloud) a long-standing policy priority.',
-            nvidiaPartnered: true,
-            tier: 'Domestic model capability, data governance',
-            tierColor: '#0891b2',
-            sourceUrl: "https://mistral.ai/compute/",
+                    "country": "France",
+                    "flag": "FR",
+                    "compute": 6,
+                    "model": 7,
+                    "data": 8,
+                    "domesticChipDesign": false,
+                    "computeNotes": "Mistral reports production GB200 compute from February 2026 and first external customers in March. Its Sweden expansion is in development and its 1GW EU capacity is a 2030 ambition.",
+                    "modelNotes": "Mistral is a major European model developer with open-weight and commercial offerings. Availability, licence terms and deployment control vary by model.",
+                    "dataNotes": "GDPR and the EU AI Act frame data protection and model transparency. These laws do not imply ownership of training data, model weights or immunity from foreign lawful access.",
+                    "nvidiaPartnered": true,
+                    "tier": "Domestic model capability, data governance",
+                    "tierColor": "#0891b2",
+                    "sourceUrl": "https://mistral.ai/cloud/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://mistral.ai/cloud/"
+                              ],
+                              [
+                                        "Release and preview status",
+                                        "https://mistral.ai/news/mistral-large-4/"
+                              ],
+                              [
+                                        "Independent model evaluation",
+                                        "https://artificialanalysis.ai/models/releases"
+                              ]
+                    ]
           },
           {
-            country: 'United Kingdom', flag: 'GB',
-            compute: 5, model: 4, data: 7,
-            domesticChipDesign: false,
-            computeNotes: "Isambard-AI launched in July 2025. The January 2026 government update reported five AI Growth Zones and a £2B plan for twentyfold public compute expansion by 2030. Targets and procurement plans are not delivered capacity. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. No confirmed restart was identified in this review. Editorial compute score reduced from 6 to 5: the paused project weakens accessible-capacity expectations, while delivered public compute retains credit.",
-            modelNotes: "The £500M Sovereign AI fund launched 16 April 2026. This is an announced fund envelope, not £500M disbursed or a dedicated frontier-model training budget. Its typical £1M–£10M equity investments span five areas; compute, procurement and visas are additional support levers. DeepMind remains Google-owned; research strengths and domestic company support do not establish a national general-purpose model.",
-            dataNotes: "UK GDPR and domestic data governance remain relevant to AI deployment. Sovereignty also depends on licences, operator access and supply-chain resilience.",
-            nvidiaPartnered: true,
-            tier: 'Compute ambition, model gap',
-            tierColor: '#d97706',
-            sourceUrl: "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
+                    "country": "United Kingdom",
+                    "flag": "GB",
+                    "compute": 5,
+                    "model": 4,
+                    "data": 7,
+                    "domesticChipDesign": false,
+                    "computeNotes": "Isambard-AI launched in July 2025. The January 2026 government update reported five AI Growth Zones and a £2B plan for twentyfold public compute expansion by 2030. Targets and procurement plans are not delivered capacity. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. No confirmed restart was identified in this review. Editorial compute score reduced from 6 to 5: the paused project weakens accessible-capacity expectations, while delivered public compute retains credit.",
+                    "modelNotes": "The £500M Sovereign AI fund launched 16 April 2026. This is an announced fund envelope, not £500M disbursed or a dedicated frontier-model training budget. Its typical £1M–£10M equity investments span five areas; compute, procurement and visas are additional support levers. DeepMind remains Google-owned; research strengths and domestic company support do not establish a national general-purpose model.",
+                    "dataNotes": "UK GDPR remains in force; most DUAA data-protection/privacy amendments commenced on 5 February 2026. Data governance, model licences, operator access and supply-chain resilience remain separate controls.",
+                    "nvidiaPartnered": true,
+                    "tier": "Compute ambition, model gap",
+                    "tierColor": "#d97706",
+                    "sourceUrl": "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai"
+                              ],
+                              [
+                                        "Google DeepMind organisation",
+                                        "https://deepmind.google/about/"
+                              ],
+                              [
+                                        "Domestic development mission",
+                                        "https://www.ineffable.ai/"
+                              ],
+                              [
+                                        "UK fund scope",
+                                        "https://www.sovereignai.gov.uk/faqs"
+                              ],
+                              [
+                                        "Access withdrawal precedent",
+                                        "https://www.anthropic.com/news/redeploying-fable-5"
+                              ],
+                              [
+                                        "Stability AI controlling parent",
+                                        "https://find-and-update.company-information.service.gov.uk/company/12295325/persons-with-significant-control"
+                              ],
+                              [
+                                        "DUAA commencement",
+                                        "https://www.gov.uk/guidance/data-use-and-access-act-2025-plans-for-commencement"
+                              ],
+                              [
+                                        "Public compute and targets",
+                                        "https://www.gov.uk/government/publications/ai-opportunities-action-plan-one-year-on/ai-opportunities-action-plan-one-year-on"
+                              ],
+                              [
+                                        "Stargate pause",
+                                        "https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/"
+                              ]
+                    ]
           },
           {
-            country: 'Japan', flag: 'JP',
-            compute: 7, model: 6, data: 7,
-            domesticChipDesign: false,
-            computeNotes: "RIKEN announced two Blackwell systems totalling 2,140 GPUs, scheduled for spring 2026. FugakuNEXT is a Fujitsu/NVIDIA development programme aimed at operation by 2030, not a current deployed system.",
-            modelNotes: 'Some domestic LLM activity but no globally prominent national model. Strong in physical AI, robotics, and semiconductor - less prominent in foundation LLM. NEC, Fujitsu, SoftBank have internal model programs.',
-            dataNotes: 'Act on Protection of Personal Information (APPI) with 2022 amendments strengthening data rights. Japan is active in G7 AI governance. Human-centric AI framing emphasises privacy and dignity over raw capability.',
-            nvidiaPartnered: true,
-            tier: "Domestic HPC capability, imported GPUs",
-            tierColor: '#d97706',
-            sourceUrl: "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing",
+                    "country": "Japan",
+                    "flag": "JP",
+                    "compute": 7,
+                    "model": 6,
+                    "data": 7,
+                    "domesticChipDesign": false,
+                    "computeNotes": "RIKYU’s current operator guide documents 1,600 Blackwell GPUs installed and early-access production operation. An earlier 2,140-GPU announcement spans two RIKEN systems. FugakuNEXT targets 2030; neither the combined announcement nor that roadmap is a national installed GPU total.",
+                    "modelNotes": "NII LLM-jp-3 172B is a documented domestic research example with permission and redistribution restrictions. Japan also has other domestic developers; this selected evidence does not establish a broad global frontier lead.",
+                    "dataNotes": "Act on Protection of Personal Information (APPI) with 2022 amendments strengthening data rights. Japan is active in G7 AI governance. Human-centric AI framing emphasises privacy and dignity over raw capability.",
+                    "nvidiaPartnered": true,
+                    "tier": "Domestic HPC capability, imported GPUs",
+                    "tierColor": "#d97706",
+                    "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing"
+                              ],
+                              [
+                                        "Model card and terms",
+                                        "https://huggingface.co/llm-jp/llm-jp-3-172b"
+                              ],
+                              [
+                                        "RIKYU operation",
+                                        "https://docs.r-ccs.riken.jp/rikyu/en/"
+                              ]
+                    ]
           },
           {
-            country: 'Canada', flag: 'CA',
-            compute: 5, model: 8, data: 7,
-            domesticChipDesign: false,
-            computeNotes: "The Canadian Sovereign AI Compute Strategy allocates up to C$2B across commercial capacity, public infrastructure and access. The public supercomputing application call launched April 2026. This is separate from Pan-Canadian research-strategy funding.",
-            modelNotes: 'Cohere is a Canadian enterprise model developer; CIFAR, Vector, Mila and Amii anchor research. Research strength, company control and publicly accessible compute are distinct capabilities.',
-            dataNotes: "PIPEDA and provincial privacy laws govern data protection. The former Bill C-27 proposal should not be presented as enacted AI law; privacy governance and model autonomy remain separate.",
-            nvidiaPartnered: true,
-            tier: 'Research strength, compute expansion',
-            tierColor: '#6366f1',
-            sourceUrl: "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy",
+                    "country": "Canada",
+                    "flag": "CA",
+                    "compute": 6,
+                    "model": 8,
+                    "data": 7,
+                    "domesticChipDesign": false,
+                    "computeNotes": "The Canadian Sovereign AI Compute Strategy allocates up to C$2B across commercial capacity, public infrastructure and access. The public supercomputing application call launched April 2026. This is separate from Pan-Canadian research-strategy funding. TELUS reports Rimouski operational from September 2025; expansion targets remain prospective. Compute 5→6 credits this operational evidence.",
+                    "modelNotes": "Cohere is a Canadian enterprise model developer; CIFAR, Vector, Mila and Amii anchor research. Research strength, company control and publicly accessible compute are distinct capabilities.",
+                    "dataNotes": "PIPEDA and provincial privacy laws govern data protection. The former Bill C-27 proposal should not be presented as enacted AI law; privacy governance and model autonomy remain separate.",
+                    "nvidiaPartnered": true,
+                    "tier": "Research strength, compute expansion",
+                    "tierColor": "#6366f1",
+                    "sourceUrl": "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy"
+                              ],
+                              [
+                                        "Model, date and licence",
+                                        "https://docs.cohere.com/docs/command-a-plus"
+                              ],
+                              [
+                                        "TELUS operator evidence",
+                                        "https://www.telus.com/en/about/news-and-events/media-releases/telus-opens-canadas-first-fully-sovereign-ai-factory"
+                              ]
+                    ]
           },
           {
-            country: 'Saudi Arabia', flag: 'SA',
-            compute: 6, model: 4, data: 5,
-            domesticChipDesign: false,
-            computeNotes: "HUMAIN and NVIDIA announced a planned 18,000-GB300 first phase and up to 500MW over five years in May 2025. These are announced programme targets; verified commissioning is not established by the announcement.",
-            modelNotes: "HUMAIN M3 is available in limited preview on HUMAIN Node. The provider reports Arabic post-training of a reference model; open weights are planned rather than released. Preview benchmark claims are vendor evaluations.",
-            dataNotes: "Domestic hosting and Saudi data-protection rules support control, but model provenance, access terms and imported accelerators create separate dependencies.",
-            nvidiaPartnered: true,
-            tier: "Compute plans, Arabic model preview",
-            tierColor: '#94a3b8',
-            sourceUrl: "https://node.humain.com/",
-          },
-        ];
+                    "country": "Saudi Arabia",
+                    "flag": "SA",
+                    "compute": 6,
+                    "model": 6,
+                    "data": 5,
+                    "domesticChipDesign": false,
+                    "computeNotes": "HUMAIN and NVIDIA announced a planned 18,000-GB300 first phase and up to 500MW over five years in May 2025. These are announced programme targets; verified commissioning is not established by the announcement.",
+                    "modelNotes": "ALLaM-7B provides downloadable Arabic/English weights separately from HUMAIN M3’s evaluation-only service preview. Model control 4→6 credits that omitted local deployment route; licences and hardware still matter.",
+                    "dataNotes": "Domestic hosting and Saudi data-protection rules support control, but model provenance, access terms and imported accelerators create separate dependencies.",
+                    "nvidiaPartnered": true,
+                    "tier": "Compute plans, Arabic model preview",
+                    "tierColor": "#94a3b8",
+                    "sourceUrl": "https://node.humain.com/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://node.humain.com/"
+                              ],
+                              [
+                                        "Model description",
+                                        "https://node.humain.com/"
+                              ],
+                              [
+                                        "Preview rights",
+                                        "https://node.humain.com/legal/model-terms"
+                              ],
+                              [
+                                        "ALLaM weights, training and licence",
+                                        "https://huggingface.co/humain-ai/ALLaM-7B-Instruct-preview"
+                              ]
+                    ]
+          }
+];
 
         const NVIDIA_DEPLOYMENTS = [
-          {"country": "South Korea", "gpus": 260000, "year": 2025, "partners": "MSIT, Samsung, SK, Hyundai, NAVER", "notes": "Announced over 260,000 GPUs on 30 October 2025 across government and industry; staged deployment, not a single installed cluster.", "sourceUrl": "https://nvidianews.nvidia.com/news/south-korea-ai-infrastructure"},
-          {"country": "UAE", "gpus": null, "year": 2025, "partners": "G42, OpenAI, Oracle, SoftBank, Cisco", "notes": "Planned 1GW Stargate cluster inside wider 5GW campus; first 200MW expected in 2026. Commissioning not established by this announcement.", "sourceUrl": "https://openai.com/index/introducing-stargate-uae/"},
-          {"country": "India", "gpus": 45000, "year": 2026, "partners": "IndiaAI empanelled compute providers", "notes": "PIB reports over 45,000 shared GPUs as of June 2026; 237 projects approved for 9.318M GPU hours by August. Mixed-provider access, not a single NVIDIA installation.", "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"},
-          {"country": "Germany", "gpus": 10000, "year": 2025, "partners": "NVIDIA, industrial software partners", "notes": "June 2025 industrial AI cloud announcement specified 10,000 GPUs. Announcement count; commissioning should be checked separately.", "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-builds-worlds-first-industrial-ai-cloud-to-advance-european-manufacturing"},
-          {"country": "United Kingdom", "gpus": null, "year": 2026, "partners": "OpenAI, Nscale, NVIDIA", "notes": "Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Paused project, not commissioned capacity; separate from public compute and Sovereign AI funding.", "sourceUrl": "https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/"},
-          {"country": "Italy", "gpus": null, "year": 2024, "partners": "Fastweb, NVIDIA", "notes": "Fastweb announced its NeXXt AI Factory and MIIA model operational in July 2024; later NVIDIA announcements include broader telco partnerships.", "sourceUrl": "https://investor.nvidia.com/news/press-release-details/2025/Europe-Builds-AI-Infrastructure-With-NVIDIA-to-Fuel-Regions-Next-Industrial-Transformation/default.aspx"},
-          {"country": "France", "gpus": null, "year": 2026, "partners": "Mistral, NVIDIA", "notes": "Mistral reports GB200 production in February 2026 and first external customers in March; 1GW EU-wide capacity is a 2030 target.", "sourceUrl": "https://mistral.ai/compute/"},
-          {"country": "Saudi Arabia", "gpus": 18000, "year": 2025, "partners": "HUMAIN, NVIDIA", "notes": "First phase planned with 18,000 GB300 GPUs; up to 500MW projected over five years. Partnership announced May 2025.", "sourceUrl": "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia"},
-          {"country": "Canada", "gpus": null, "year": 2025, "partners": "TELUS, NVIDIA", "notes": "TELUS announced a Quebec AI factory in March 2025, targeting summer deployment. Schedule is not independent confirmation of delivery.", "sourceUrl": "https://www.telus.com/en/about/news-and-events/media-releases/telus-to-launch-canadas-leading-sovereign-ai-factory-powered-by-nividia-to-drive-the-nations-ai-future"},
-          {"country": "Japan", "gpus": 2140, "year": 2025, "partners": "RIKEN, NVIDIA, Fujitsu", "notes": "Two scientific systems announced with 2,140 Blackwell GPUs, scheduled for spring 2026. FugakuNEXT separately targets 2030.", "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing"},
-          {"country": "Indonesia", "gpus": null, "year": 2025, "partners": "Indosat, Cisco, NVIDIA, Komdigi", "notes": "AI Center of Excellence announced July 2025, including an AI factory and local-language services. No consolidated GPU count asserted.", "sourceUrl": "https://blogs.nvidia.com/blog/indonesia-ai-center-of-excellence/"},
-          {"country": "Norway", "gpus": 100000, "year": 2025, "partners": "Nscale, Aker, OpenAI", "notes": "Stargate Norway targets 100,000 GPUs by end-2026 and 230MW initially. Aker/Nscale partnership, distinct from Telenor projects.", "sourceUrl": "https://openai.com/index/introducing-stargate-norway/"},
-        ];
+          {
+                    "country": "South Korea",
+                    "gpus": 260000,
+                    "year": 2025,
+                    "partners": "MSIT, Samsung, SK, Hyundai, NAVER",
+                    "notes": "Announced over 260,000 GPUs on 31 October 2025 across government and industry; staged deployment, not a single installed cluster.",
+                    "sourceUrl": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-South-Korea-Government-and-Industrial-Giants-Build-AI-Infrastructure-and-Ecosystem-to-Fuel-Korea-Innovation-Industries-and-Jobs/default.aspx"
+          },
+          {
+                    "country": "UAE",
+                    "gpus": null,
+                    "year": 2025,
+                    "partners": "G42, OpenAI, Oracle, SoftBank, Cisco",
+                    "notes": "Planned 1GW Stargate cluster inside wider 5GW campus; first 200MW expected in 2026. Commissioning not established by this announcement.",
+                    "sourceUrl": "https://openai.com/index/introducing-stargate-uae/"
+          },
+          {
+                    "country": "India",
+                    "gpus": 45000,
+                    "year": 2026,
+                    "partners": "IndiaAI empanelled compute providers",
+                    "notes": "PIB reports over 45,000 shared GPUs as of June 2026; PIB reports 237 projects accessing 9.318M GPU hours by August. Mixed-provider access, not a single NVIDIA installation.",
+                    "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"
+          },
+          {
+                    "country": "Germany",
+                    "gpus": 10000,
+                    "year": 2025,
+                    "partners": "NVIDIA, industrial software partners",
+                    "notes": "June 2025 industrial AI cloud announcement specified 10,000 GPUs. Announcement count; commissioning should be checked separately.",
+                    "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-builds-worlds-first-industrial-ai-cloud-to-advance-european-manufacturing"
+          },
+          {
+                    "country": "United Kingdom",
+                    "gpus": null,
+                    "year": 2026,
+                    "partners": "OpenAI, Nscale, NVIDIA",
+                    "notes": "Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Paused project, not commissioned capacity; separate from public compute and Sovereign AI funding.",
+                    "sourceUrl": "https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/"
+          },
+          {
+                    "country": "Italy",
+                    "gpus": null,
+                    "year": 2024,
+                    "partners": "Fastweb, NVIDIA",
+                    "notes": "Fastweb announced its NeXXt AI Factory and MIIA model operational in July 2024; later NVIDIA announcements include broader telco partnerships.",
+                    "sourceUrl": "https://www.fastweb.it/corporate/media/comunicati-stampa/fastweb-apre-la-via-allintelligenza-artificiale-in-italia-e-accende-nexxt-ai-factory-il-primo-e-piu-potente-supercomputer-ai-nvidia-dgx-superpod-dedicato-allintelligenza-artificiale-generativa-nel-paese/?lng=EN"
+          },
+          {
+                    "country": "France",
+                    "gpus": null,
+                    "year": 2026,
+                    "partners": "Mistral, NVIDIA",
+                    "notes": "Mistral reports GB200 production in February 2026 and first external customers in March; 1GW EU-wide capacity is a 2030 target.",
+                    "sourceUrl": "https://mistral.ai/cloud/"
+          },
+          {
+                    "country": "Saudi Arabia",
+                    "gpus": 18000,
+                    "year": 2025,
+                    "partners": "HUMAIN, NVIDIA",
+                    "notes": "First phase planned with 18,000 GB300 GPUs; up to 500MW projected over five years. Partnership announced May 2025.",
+                    "sourceUrl": "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia"
+          },
+          {
+                    "country": "Canada",
+                    "gpus": null,
+                    "year": 2025,
+                    "partners": "TELUS, NVIDIA",
+                    "notes": "TELUS reports Rimouski operational and serving customers since 24 September 2025. Future British Columbia expansion and 2032 targets are separate plans.",
+                    "sourceUrl": "https://www.telus.com/en/about/news-and-events/media-releases/telus-opens-canadas-first-fully-sovereign-ai-factory"
+          },
+          {
+                    "country": "Japan",
+                    "gpus": 1600,
+                    "year": 2026,
+                    "partners": "RIKEN, NVIDIA",
+                    "notes": "RIKYU installed system, 1,600 Blackwell GPUs; operator guide documents early-access production operation. Earlier 2,140-GPU announcement spans two systems; not a national total.",
+                    "sourceUrl": "https://docs.r-ccs.riken.jp/rikyu/en/"
+          },
+          {
+                    "country": "Indonesia",
+                    "gpus": null,
+                    "year": 2025,
+                    "partners": "Indosat, Cisco, NVIDIA, Komdigi",
+                    "notes": "AI Center of Excellence announced July 2025, including an AI factory and local-language services. No consolidated GPU count asserted.",
+                    "sourceUrl": "https://blogs.nvidia.com/blog/indonesia-ai-center-of-excellence/"
+          },
+          {
+                    "country": "Norway",
+                    "gpus": 100000,
+                    "year": 2025,
+                    "partners": "Nscale, Aker, OpenAI",
+                    "notes": "Stargate Norway targets 100,000 GPUs by end-2026 and 230MW initially. Aker/Nscale partnership, distinct from Telenor projects.",
+                    "sourceUrl": "https://openai.com/index/introducing-stargate-norway/"
+          }
+];
 
         const INITIATIVES = [
           {
-            country: 'United States', flag: '🇺🇸',
-            initiative: 'Stargate Project',
-            archetype: 'Infrastructure-led', region: 'Americas', year: 2025,
-            investment: 500, investmentUnit: "$B announced investment ambition",
-            status: "Buildout - planned and live capacity differ",
-            statusColor: 'amber',
-            verifiedNotes: "January 2025 announcement set a $500B ambition. On 29 April 2026 OpenAI reported surpassing its goal of securing 10GW of US infrastructure, with more than 3GW added in the preceding 90 days. These are company-reported secured-capacity figures, not a verified total of operational power. Abilene supports model training.",
-            infra: 10, regulation: 3, sovereignty: 7, openness: 5, speed: 9, talent: 9,
-            sourceUrl: "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/",
+                    "country": "United States",
+                    "flag": "🇺🇸",
+                    "initiative": "Stargate Project",
+                    "archetype": "Infrastructure-led",
+                    "region": "Americas",
+                    "year": 2025,
+                    "investment": 500,
+                    "investmentUnit": "$B announced investment ambition",
+                    "status": "Buildout - planned and live capacity differ",
+                    "statusColor": "amber",
+                    "verifiedNotes": "January 2025 announcement set a $500B ambition. On 29 April 2026 OpenAI reported surpassing its goal of securing 10GW of US infrastructure, with more than 3GW added in the preceding 90 days. These are company-reported secured-capacity figures, not a verified total of operational power. Abilene supports model training.",
+                    "infra": 10,
+                    "regulation": 3,
+                    "sovereignty": 7,
+                    "openness": 5,
+                    "speed": 9,
+                    "talent": 9,
+                    "sourceUrl": "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/"
+                              ]
+                    ]
           },
           {
-            country: 'United States', flag: '🇺🇸',
-            initiative: 'CHIPS and Science Act',
-            archetype: 'Infrastructure-led', region: 'Americas', year: 2022,
-            investment: 52.7, investmentUnit: '$B public',
-            status: 'Active - fabs under construction',
-            statusColor: 'teal',
-            verifiedNotes: "The 2022 CHIPS Act provided $52.7B for semiconductor manufacturing, research and workforce programmes. It is broader than an AI budget and does not establish full supply-chain independence. Export-control rules evolve and should be checked for each transaction.",
-            infra: 9, regulation: 4, sovereignty: 8, openness: 5, speed: 7, talent: 8,
-            sourceUrl: "https://www.nist.gov/chips",
+                    "country": "United States",
+                    "flag": "🇺🇸",
+                    "initiative": "CHIPS and Science Act",
+                    "archetype": "Infrastructure-led",
+                    "region": "Americas",
+                    "year": 2022,
+                    "investment": 52.7,
+                    "investmentUnit": "$B public",
+                    "status": "Active - fabs under construction",
+                    "statusColor": "teal",
+                    "verifiedNotes": "The 2022 CHIPS Act provided $52.7B for semiconductor manufacturing, research and workforce programmes. It is broader than an AI budget and does not establish full supply-chain independence. Export-control rules evolve and should be checked for each transaction.",
+                    "infra": 9,
+                    "regulation": 4,
+                    "sovereignty": 8,
+                    "openness": 5,
+                    "speed": 7,
+                    "talent": 8,
+                    "sourceUrl": "https://www.nist.gov/chips",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.nist.gov/chips"
+                              ]
+                    ]
           },
           {
-            country: 'European Union', flag: '🇪🇺',
-            initiative: 'AI Factories Initiative',
-            archetype: 'Regulation-led', region: 'Europe', year: 2024,
-            investment: null, investmentUnit: "Programme funding varies by call",
-            status: "19 Factories + 13 Antennas",
-            statusColor: 'teal',
-            verifiedNotes: "EuroHPC lists 19 AI Factories and 13 Antennas. The AI Gigafactories tender launched 30 July 2026 with a 12 November deadline. Factory selection, service access and hardware commissioning are separate milestones; no single comparable total budget is asserted here.",
-            infra: 7, regulation: 9, sovereignty: 8, openness: 8, speed: 5, talent: 7,
-            sourceUrl: "https://www.eurohpc-ju.europa.eu/ai-factories_en",
+                    "country": "European Union",
+                    "flag": "🇪🇺",
+                    "initiative": "AI Factories Initiative",
+                    "archetype": "Infrastructure-led",
+                    "region": "Europe",
+                    "year": 2024,
+                    "investment": null,
+                    "investmentUnit": "Programme funding varies by call",
+                    "status": "19 Factories + 13 Antennas",
+                    "statusColor": "teal",
+                    "verifiedNotes": "EuroHPC lists 19 AI Factories and 13 Antennas. The AI Gigafactories tender launched 30 July 2026 with a 12 November deadline. Factory selection, service access and hardware commissioning are separate milestones; no single comparable total budget is asserted here. InvestAI was announced in February 2025 with a €200B mobilisation ambition including a €20B gigafactory fund. These are initiative ambitions, not expenditure totals.",
+                    "infra": 7,
+                    "regulation": 9,
+                    "sovereignty": 8,
+                    "openness": 8,
+                    "speed": 5,
+                    "talent": 7,
+                    "sourceUrl": "https://www.eurohpc-ju.europa.eu/ai-factories_en",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.eurohpc-ju.europa.eu/ai-factories_en"
+                              ],
+                              [
+                                        "Gigafactories tender",
+                                        "https://www.eurohpc-ju.europa.eu/call-tenders-selection-artificial-intelligence-gigafactory-consortia-and-establishment-ai_en"
+                              ],
+                              [
+                                        "InvestAI ambition",
+                                        "https://digital-strategy.ec.europa.eu/en/news/eu-launches-investai-initiative-mobilise-eu200-billion-investment-artificial-intelligence"
+                              ]
+                    ]
           },
           {
-            country: 'European Union', flag: '🇪🇺',
-            initiative: 'EU AI Act',
-            archetype: 'Regulation-led', region: 'Europe', year: 2024,
-            investment: 0, investmentUnit: 'Regulatory instrument',
-            status: "Enforcement active; high-risk phases later",
-            statusColor: "teal",
-            verifiedNotes: "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework. Cloud Sovereignty Framework: 48 criteria across eight objectives, plus SEAL assurance thresholds. The April procurement requires SEAL-2 (data sovereignty), not full supply-chain independence. The 3 June Cloud and AI Development Act proposes an EU-wide sovereignty framework; this is a legislative proposal, not enacted law.",
-            infra: 3, regulation: 10, sovereignty: 9, openness: 9, speed: 4, talent: 6,
-            sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act",
+                    "country": "European Union",
+                    "flag": "🇪🇺",
+                    "initiative": "EU AI Act",
+                    "archetype": "Regulation-led",
+                    "region": "Europe",
+                    "year": 2024,
+                    "investment": 0,
+                    "investmentUnit": "Regulatory instrument",
+                    "status": "Enforcement active; high-risk phases later",
+                    "statusColor": "teal",
+                    "verifiedNotes": "GPAI obligations began on 2 August 2025; enforcement powers and transparency rules apply from 2 August 2026. The Commission now lists Annex III high-risk rules from 2 December 2027 and regulated-product rules from 2 August 2028. GDPR remains a separate data-protection framework. The AI Omnibus entered into force on 27 July 2026; pre-August-2026 systems have a 2 December 2026 transition for certain marking/detection obligations. Cloud sovereignty procurement is a separate instrument, described in Sovereign AI.",
+                    "infra": 3,
+                    "regulation": 10,
+                    "sovereignty": 9,
+                    "openness": 9,
+                    "speed": 4,
+                    "talent": 6,
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act"
+                              ],
+                              [
+                                        "Current application timeline",
+                                        "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+                              ],
+                              [
+                                        "Transparency transition",
+                                        "https://ai-act-service-desk.ec.europa.eu/en/ai-act/faq/when-does-enforcement-start"
+                              ]
+                    ]
           },
           {
-            country: 'European Union', flag: '🇪🇺',
-            initiative: "OpenEuroLLM",
-            archetype: 'Sovereignty-led', region: 'Europe', year: 2025,
-            investment: 0.0374, investmentUnit: "€B total project budget",
-            status: 'Early stage',
-            statusColor: 'slate',
-            verifiedNotes: "European Commission announcement of 3 February 2025 gives a €37.4M project budget, including €20.6M from Digital Europe. The project aims to build an open multilingual model family. ",
-            infra: 5, regulation: 8, sovereignty: 9, openness: 10, speed: 4, talent: 7,
-            sourceUrl: "https://digital-strategy.ec.europa.eu/en/news/pioneering-ai-project-awarded-opening-large-language-models-european-languages",
+                    "country": "European Union",
+                    "flag": "🇪🇺",
+                    "initiative": "OpenEuroLLM",
+                    "archetype": "Sovereignty-led",
+                    "region": "Europe",
+                    "year": 2025,
+                    "investment": 0.0374,
+                    "investmentUnit": "€B total project budget",
+                    "status": "Early stage",
+                    "statusColor": "slate",
+                    "verifiedNotes": "European Commission announcement of 3 February 2025 gives a €37.4M project budget, including €20.6M from Digital Europe. The project aims to build an open multilingual model family. ",
+                    "infra": 5,
+                    "regulation": 8,
+                    "sovereignty": 9,
+                    "openness": 10,
+                    "speed": 4,
+                    "talent": 7,
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/news/pioneering-ai-project-awarded-opening-large-language-models-european-languages",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://digital-strategy.ec.europa.eu/en/news/pioneering-ai-project-awarded-opening-large-language-models-european-languages"
+                              ]
+                    ]
           },
           {
-            country: 'China', flag: '🇨🇳',
-            initiative: 'New Generation AI Development Plan',
-            archetype: 'Sovereignty-led', region: 'Asia-Pacific', year: 2017,
-            investment: null, investmentUnit: "No comparable verified programme total",
-            status: 'Accelerating - domestic stack maturing',
-            statusColor: 'teal',
-            verifiedNotes: "The 2017 plan remains a strategic framework. DeepSeek V4 released 24 April 2026. Domestic model and accelerator ecosystems are substantial, but platform token usage is not a global market-share measure. ",
-            infra: 10, regulation: 7, sovereignty: 10, openness: 3, speed: 10, talent: 9,
-            sourceUrl: "https://www.deepseek.com/en/transparency/",
+                    "country": "China",
+                    "flag": "🇨🇳",
+                    "initiative": "New Generation AI Development Plan",
+                    "archetype": "Sovereignty-led",
+                    "region": "Asia-Pacific",
+                    "year": 2017,
+                    "investment": null,
+                    "investmentUnit": "No comparable verified programme total",
+                    "status": "Accelerating - domestic stack maturing",
+                    "statusColor": "teal",
+                    "verifiedNotes": "The 2017 plan remains a strategic framework. DeepSeek V4 released 24 April 2026. Domestic model and accelerator ecosystems are substantial, but platform token usage is not a global market-share measure.  Audit correction: infrastructure 10→9, tech sovereignty 10→8 and speed 10→8. Strong domestic ecosystems retain credit, but no complete supply-chain independence or harmonised evidence of maximum national delivery speed is established.",
+                    "infra": 9,
+                    "regulation": 7,
+                    "sovereignty": 8,
+                    "openness": 3,
+                    "speed": 8,
+                    "talent": 9,
+                    "sourceUrl": "https://www.deepseek.com/en/transparency/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.deepseek.com/en/transparency/"
+                              ],
+                              [
+                                        "National strategy",
+                                        "https://app.www.gov.cn/govdata/gov/201707/20/408540/article.html"
+                              ],
+                              [
+                                        "Governance scope",
+                                        "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm"
+                              ]
+                    ]
           },
           {
-            country: 'India', flag: '🇮🇳',
-            initiative: 'IndiaAI Mission',
-            archetype: 'Inclusion-led', region: 'Asia-Pacific', year: 2024,
-            investment: 1.25, investmentUnit: '$B public (Rs10,372 crore)',
-            status: 'Significantly exceeding targets',
-            statusColor: 'teal',
-            verifiedNotes: "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, 237 projects had been approved for 9.318 million subsidised GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure. Sarvam released 30B and 105B models in March 2026. The approved mission budget is Rs10,371.92 crore; the dollar value shown is approximate.",
-            infra: 6, regulation: 4, sovereignty: 7, openness: 8, speed: 8, talent: 9,
-            sourceUrl: "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3",
+                    "country": "India",
+                    "flag": "🇮🇳",
+                    "initiative": "IndiaAI Mission",
+                    "archetype": "Inclusion-led",
+                    "region": "Asia-Pacific",
+                    "year": 2024,
+                    "investment": null,
+                    "investmentUnit": "Approved mission outlay; five-year programme",
+                    "status": "Significantly exceeding targets",
+                    "statusColor": "teal",
+                    "verifiedNotes": "PIB reports shared IndiaAI compute capacity above 45,000 GPUs as of June 2026. By August, PIB reports 237 projects had accessed subsidised compute, covering 9.318 million GPU hours. These measure programme access and allocation, not a single government-owned installation. February investment expectations remain forecasts rather than expenditure. Sarvam released 30B and 105B models in March 2026. The approved mission budget is Rs10,371.92 crore; the budget is displayed in its original currency, without a dollar conversion.",
+                    "infra": 6,
+                    "regulation": 4,
+                    "sovereignty": 7,
+                    "openness": 8,
+                    "speed": 8,
+                    "talent": 9,
+                    "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"
+                              ]
+                    ],
+                    "investmentDisplay": "₹10,371.92 crore"
           },
           {
-            country: 'Singapore', flag: '🇸🇬',
-            initiative: 'SEA-LION / National Multimodal LLM Programme',
-            archetype: 'Regional cooperation', region: 'Asia-Pacific', year: 2023,
-            investment: 0.07, investmentUnit: 'SGD$70M public',
-            status: 'Active - rapid capability expansion',
-            statusColor: 'teal',
-            verifiedNotes: "SEA-LION lists v4.5 releases, SEA-Guard and the March 2026 embedding suite. Its variants combine regional training with international base models. IMDA launched NAIIP in March 2026 targeting 10,000 enterprises and 100,000 workers over three years; targets are not completed adoption.",
-            infra: 6, regulation: 9, sovereignty: 6, openness: 10, speed: 9, talent: 8,
-            sourceUrl: "https://github.com/aisingapore/sealion",
+                    "country": "Singapore",
+                    "flag": "🇸🇬",
+                    "initiative": "SEA-LION / National Multimodal LLM Programme",
+                    "archetype": "Regional cooperation",
+                    "region": "Asia-Pacific",
+                    "year": 2023,
+                    "investment": 0.07,
+                    "investmentUnit": "SGD$70M public",
+                    "status": "Active - rapid capability expansion",
+                    "statusColor": "teal",
+                    "verifiedNotes": "SEA-LION lists v4.8 and v4.5 releases, SEA-Guard and the March 2026 embedding suite. Its variants combine regional training with international base models. IMDA launched NAIIP in March 2026 targeting 10,000 enterprises and 100,000 workers over three years; targets are not completed adoption.",
+                    "infra": 6,
+                    "regulation": 9,
+                    "sovereignty": 6,
+                    "openness": 10,
+                    "speed": 9,
+                    "talent": 8,
+                    "sourceUrl": "https://github.com/aisingapore/sealion",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://github.com/aisingapore/sealion"
+                              ],
+                              [
+                                        "Adoption programme and targets",
+                                        "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/national-ai-impact-programme"
+                              ]
+                    ],
+                    "investmentDisplay": "S$70M"
           },
           {
-            country: 'France', flag: '🇫🇷',
-            initiative: 'National AI Strategy',
-            archetype: 'Sovereignty-led', region: 'Europe', year: 2018,
-            investment: null, investmentUnit: "Multiple public and private programmes",
-            status: 'Active - Mistral as national champion',
-            statusColor: 'teal',
-            verifiedNotes: "France combines Mistral model development, domestic cloud infrastructure and participation in EuroHPC. Mistral reports GB200 production from February 2026 and first external compute customers in March; its 1GW EU compute goal is for 2030.",
-            infra: 6, regulation: 8, sovereignty: 8, openness: 7, speed: 6, talent: 8,
-            sourceUrl: "https://mistral.ai/compute/",
+                    "country": "France",
+                    "flag": "🇫🇷",
+                    "initiative": "National AI Strategy",
+                    "archetype": "Sovereignty-led",
+                    "region": "Europe",
+                    "year": 2018,
+                    "investment": null,
+                    "investmentUnit": "Multiple public and private programmes",
+                    "status": "Active - Mistral as national champion",
+                    "statusColor": "teal",
+                    "verifiedNotes": "France combines Mistral model development, domestic cloud infrastructure and participation in EuroHPC. Mistral reports GB200 production from February 2026 and first external compute customers in March; its 1GW EU compute goal is for 2030.",
+                    "infra": 6,
+                    "regulation": 8,
+                    "sovereignty": 8,
+                    "openness": 7,
+                    "speed": 6,
+                    "talent": 8,
+                    "sourceUrl": "https://mistral.ai/cloud/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Compute delivery",
+                                        "https://mistral.ai/cloud/"
+                              ],
+                              [
+                                        "Large 4 preview",
+                                        "https://mistral.ai/news/mistral-large-4/"
+                              ]
+                    ]
           },
           {
-            country: 'United Kingdom', flag: '🇬🇧',
-            initiative: 'AI Opportunities Action Plan 2025',
-            archetype: 'Infrastructure-led', region: 'Europe', year: 2025,
-            investment: 14, investmentUnit: '£B private committed',
-            status: "Stargate UK paused; other programmes active",
-            statusColor: 'amber',
-            verifiedNotes: "January 2026 update reported 38 of 50 action commitments met and five Growth Zones. £500M Sovereign AI launched on 16 April 2026: announced fund size, not a verified disbursement total or dedicated frontier-model budget. The fund spans five areas with typical £1M–£10M equity investments and access to existing public compute. Initial support includes Callosum equity and compute for six startups; these are distinct from delivered national frontier capability. The £14B figure is the original private investment announcement, not a public budget or delivered spending total. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Parliament acknowledged the pause on 29 April; the government described it as wider programme recalibration. No confirmed restart was identified by this review. Editorial infrastructure score reduced 6→5 and execution speed 7→5 to reflect the flagship pause and delivery risk; public compute and company support retain credit. Tech sovereignty is revised 6→4: foreign-controlled frontier access and early domestic model development limit autonomy. The £500M envelope earns no automatic model or infrastructure uplift; talent retains 9 for research strengths.",
-            infra: 5, regulation: 7, sovereignty: 4, openness: 8, speed: 5, talent: 9,
-            sourceUrl: "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
+                    "country": "United Kingdom",
+                    "flag": "🇬🇧",
+                    "initiative": "AI Opportunities Action Plan 2025",
+                    "archetype": "Infrastructure-led",
+                    "region": "Europe",
+                    "year": 2025,
+                    "investment": 14,
+                    "investmentUnit": "£B private committed",
+                    "status": "Stargate UK paused; other programmes active",
+                    "statusColor": "amber",
+                    "verifiedNotes": "January 2026 update reported 38 of 50 action commitments met and five Growth Zones. £500M Sovereign AI launched on 16 April 2026: announced fund size, not a verified disbursement total or dedicated frontier-model budget. The fund spans five areas with typical £1M–£10M equity investments and access to existing public compute. Initial support includes Callosum equity and compute for six startups; these are distinct from delivered national frontier capability. The £14B figure is the original private investment announcement, not a public budget or delivered spending total. Stargate UK paused on 9 April 2026; OpenAI cited energy costs and regulation. Parliament acknowledged the pause on 29 April; the government described it as wider programme recalibration. No confirmed restart was identified by this review. Editorial infrastructure score reduced 6→5 and execution speed 7→5 to reflect the flagship pause and delivery risk; public compute and company support retain credit. Tech sovereignty is revised 6→4: foreign-controlled frontier access and early domestic model development limit autonomy. The £500M envelope earns no automatic model or infrastructure uplift; talent retains 9 for research strengths.",
+                    "infra": 5,
+                    "regulation": 7,
+                    "sovereignty": 4,
+                    "openness": 8,
+                    "speed": 5,
+                    "talent": 9,
+                    "sourceUrl": "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai"
+                              ],
+                              [
+                                        "Action Plan delivery claims",
+                                        "https://www.gov.uk/government/publications/ai-opportunities-action-plan-one-year-on/ai-opportunities-action-plan-one-year-on"
+                              ],
+                              [
+                                        "Stargate pause",
+                                        "https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/"
+                              ],
+                              [
+                                        "Fund scope",
+                                        "https://www.sovereignai.gov.uk/faqs"
+                              ]
+                    ]
           },
           {
-            country: 'Japan', flag: '🇯🇵',
-            initiative: 'Society 5.0 / AI Strategy',
-            archetype: 'Human-centric', region: 'Asia-Pacific', year: 2019,
-            investment: null, investmentUnit: "No comparable verified programme total",
-            status: 'Active - G7 Hiroshima Process',
-            statusColor: 'teal',
-            verifiedNotes: "Society 5.0 and the Hiroshima AI Process frame a human-centric approach. RIKEN announced 2,140 Blackwell GPUs across two scientific systems, scheduled for spring 2026; FugakuNEXT is aimed at 2030. Neither schedule proves completed commissioning.",
-            infra: 7, regulation: 7, sovereignty: 7, openness: 7, speed: 5, talent: 7,
-            sourceUrl: "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing",
+                    "country": "Japan",
+                    "flag": "🇯🇵",
+                    "initiative": "Society 5.0 / AI Strategy",
+                    "archetype": "Human-centric",
+                    "region": "Asia-Pacific",
+                    "year": 2019,
+                    "investment": null,
+                    "investmentUnit": "No comparable verified programme total",
+                    "status": "Active - G7 Hiroshima Process",
+                    "statusColor": "teal",
+                    "verifiedNotes": "Japan’s AI Strategy 2019 builds on Society 5.0, first proposed in 2016. RIKYU’s operator guide documents 1,600 Blackwell GPUs installed and early-access production operation through mid-October 2026. The earlier NVIDIA announcement covered 2,140 GPUs across two systems; do not equate that combined announcement with RIKYU alone. FugakuNEXT remains a 2030 target. Existing infrastructure score 7 is retained with stronger operational evidence.",
+                    "infra": 7,
+                    "regulation": 7,
+                    "sovereignty": 7,
+                    "openness": 7,
+                    "speed": 5,
+                    "talent": 7,
+                    "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing"
+                              ],
+                              [
+                                        "RIKYU operational user guide",
+                                        "https://docs.r-ccs.riken.jp/rikyu/en/"
+                              ],
+                              [
+                                        "AI Strategy 2019",
+                                        "https://www8.cao.go.jp/cstp/ai/aistratagy2019en.pdf"
+                              ]
+                    ]
           },
           {
-            country: 'Canada', flag: '🇨🇦',
-            initiative: "Pan-Canadian AI / Sovereign Compute Strategy",
-            archetype: 'Research-led', region: 'Americas', year: 2017,
-            investment: 2, investmentUnit: "CAD$B compute-strategy allocation",
-            status: 'Active - research depth, deployment lag',
-            statusColor: 'teal',
-            verifiedNotes: "Pan-Canadian AI Strategy began in 2017; its research phases are distinct from the up-to-C$2B Sovereign AI Compute Strategy launched in December 2024. Public supercomputing applications opened in April 2026. ",
-            infra: 5, regulation: 7, sovereignty: 5, openness: 9, speed: 5, talent: 10,
-            sourceUrl: "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy",
+                    "country": "Canada",
+                    "flag": "🇨🇦",
+                    "initiative": "Pan-Canadian AI / Sovereign Compute Strategy",
+                    "archetype": "Research-led",
+                    "region": "Americas",
+                    "year": 2017,
+                    "investment": 2,
+                    "investmentUnit": "CAD$B compute-strategy allocation",
+                    "status": "Active; commercial compute operating",
+                    "statusColor": "teal",
+                    "verifiedNotes": "Pan-Canadian AI Strategy began in 2017; its research phases are distinct from the up-to-C$2B Sovereign AI Compute Strategy launched in December 2024. Public supercomputing applications opened in April 2026.  TELUS reports its Rimouski facility operational and serving customers from 24 September 2025; its British Columbia expansion and over-60,000-GPU/150MW goal by 2032 are plans. These are private operator assets, distinct from the federal public supercomputer programme. Infrastructure and speed 5→6 acknowledge the previously omitted operational evidence.",
+                    "infra": 6,
+                    "regulation": 7,
+                    "sovereignty": 5,
+                    "openness": 9,
+                    "speed": 6,
+                    "talent": 10,
+                    "sourceUrl": "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy"
+                              ],
+                              [
+                                        "TELUS operational evidence",
+                                        "https://www.telus.com/en/about/news-and-events/media-releases/telus-opens-canadas-first-fully-sovereign-ai-factory"
+                              ],
+                              [
+                                        "TELUS expansion plan",
+                                        "https://www.telus.com/en/about/news-and-events/media-releases/TELUS-and-Government-of-Canada-advance-work-to-scale-Canadas-sovereign-AI-infrastructure"
+                              ],
+                              [
+                                        "Original national strategy",
+                                        "https://www.ised-isde.canada.ca/site/ised/en/pan-canadian-artificial-intelligence-strategy"
+                              ]
+                    ],
+                    "investmentDisplay": "Up to C$2B"
           },
           {
-            country: 'UAE', flag: '🇦🇪',
-            initiative: 'UAE AI Strategy 2031 / G42 / Falcon',
-            archetype: 'Infrastructure-led', region: 'Middle East', year: 2017,
-            investment: null, investmentUnit: "Multiple public and private programmes",
-            status: "Planned 1GW Stargate cluster",
-            statusColor: 'teal',
-            verifiedNotes: "OpenAI announced a 1GW Stargate UAE cluster in May 2025, with a 200MW first phase expected in 2026, within a wider 5GW campus. Expected dates do not establish operational delivery. TII model development is a separate domestic capability.",
-            infra: 9, regulation: 5, sovereignty: 7, openness: 7, speed: 9, talent: 6,
-            sourceUrl: "https://openai.com/index/introducing-stargate-uae/",
+                    "country": "United Arab Emirates",
+                    "flag": "🇦🇪",
+                    "initiative": "UAE AI Strategy 2031 / G42 / Falcon",
+                    "archetype": "Infrastructure-led",
+                    "region": "Middle East",
+                    "year": 2017,
+                    "investment": null,
+                    "investmentUnit": "Multiple public and private programmes",
+                    "status": "Planned cluster; commissioning not established",
+                    "statusColor": "amber",
+                    "verifiedNotes": "OpenAI announced a 1GW Stargate UAE cluster in May 2025, with a 200MW first phase expected in 2026, within a wider 5GW campus. Expected dates do not establish operational delivery. TII model development is a separate domestic capability. Audit correction: infrastructure 9→6 and speed 9→5. Existing regional activity retains credit; the announced Stargate scale and target date alone do not justify leading delivery scores.",
+                    "infra": 6,
+                    "regulation": 5,
+                    "sovereignty": 7,
+                    "openness": 7,
+                    "speed": 5,
+                    "talent": 6,
+                    "sourceUrl": "https://openai.com/index/introducing-stargate-uae/",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://openai.com/index/introducing-stargate-uae/"
+                              ],
+                              [
+                                        "Falcon release",
+                                        "https://www.tii.ae/news/abu-dhabis-tii-launches-falcon-h1-arabic-establishing-worlds-leading-arabic-ai-model"
+                              ],
+                              [
+                                        "National strategy",
+                                        "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/government-services-and-digital-transformation/uae-strategy-for-artificial-intelligence"
+                              ]
+                    ]
           },
           {
-            country: 'Saudi Arabia', flag: '🇸🇦',
-            initiative: "HUMAIN / Vision 2030 AI",
-            archetype: 'Infrastructure-led', region: 'Middle East', year: 2025,
-            investment: null, investmentUnit: "No comparable verified AI budget",
-            status: "Infrastructure buildout; model preview",
-            statusColor: "amber",
-            verifiedNotes: "PIF launched HUMAIN on 12 May 2025. NVIDIA partnership announced 13 May 2025: up to 500MW over five years, with an 18,000-GB300 first phase planned. HUMAIN M3 is now in limited preview; weights are not yet available. These developments should be assessed separately from NEOM construction.",
-            infra: 6, regulation: 3, sovereignty: 7, openness: 4, speed: 4, talent: 5,
-            sourceUrl: "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia",
-          },
-        ];
+                    "country": "Saudi Arabia",
+                    "flag": "🇸🇦",
+                    "initiative": "HUMAIN / Vision 2030 AI",
+                    "archetype": "Infrastructure-led",
+                    "region": "Middle East",
+                    "year": 2025,
+                    "investment": null,
+                    "investmentUnit": "No comparable verified AI budget",
+                    "status": "Infrastructure buildout; model preview",
+                    "statusColor": "amber",
+                    "verifiedNotes": "PIF launched HUMAIN on 12 May 2025. NVIDIA partnership announced 13 May 2025: up to 500MW over five years, with an 18,000-GB300 first phase planned. HUMAIN M3 is now in limited preview; weights are not yet available. These developments should be assessed separately from NEOM construction. Separately, ALLaM 7B weights provide an Arabic/English local deployment route. On 31 August 2026 HUMAIN/DataVolt announced construction of 100MW within a 360MW Oxagon phase; construction is not operational compute. A January financing framework of up to $1.2B for up to 250MW is explicitly non-binding, not disbursed funding. Tech sovereignty 7→6 reflects useful domestic models alongside preview, provenance and hardware dependencies.",
+                    "infra": 6,
+                    "regulation": 3,
+                    "sovereignty": 6,
+                    "openness": 4,
+                    "speed": 4,
+                    "talent": 5,
+                    "sourceUrl": "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia",
+                    "checked": "9 October 2026",
+                    "sources": [
+                              [
+                                        "Programme evidence",
+                                        "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia"
+                              ],
+                              [
+                                        "ALLaM release",
+                                        "https://huggingface.co/humain-ai/ALLaM-7B-Instruct-preview"
+                              ],
+                              [
+                                        "Construction milestone",
+                                        "https://www.neom.com/en-us/newsroom/HUMAIN-and-DataVolt-to-develop-AI-data-center-in-NEOM"
+                              ],
+                              [
+                                        "Non-binding financing",
+                                        "https://infra.gov.sa/en/MediaCenter/News/News-01"
+                              ],
+                              [
+                                        "M3 preview rights",
+                                        "https://node.humain.com/legal/model-terms"
+                              ]
+                    ]
+          }
+];
 
         const ARCHETYPE_COLORS = {
           'Infrastructure-led':   '#3b82f6', // blue-500
@@ -666,9 +1367,25 @@
           speed: 'Execution Speed', talent: 'Talent Depth',
         };
 
+        const DEFAULT_WEIGHTS = { infra: 5, regulation: 3, sovereignty: 4, openness: 3, speed: 5, talent: 5 };
+        function countryMeans(initiatives = INITIATIVES) {
+          const countries = [...new Set(initiatives.map(i => i.country))];
+          return countries.map(country => {
+            const items = initiatives.filter(i => i.country === country);
+            const archetypes = [...new Set(items.map(i => i.archetype))];
+            return { country, flag: items[0].flag, count: items.length, archetype: archetypes.length === 1 ? archetypes[0] : 'Mixed strategy',
+              ...Object.fromEntries(Object.keys(DIM_LABELS).map(k => [k, items.reduce((sum,i)=>sum+i[k],0)/items.length])) };
+          });
+        }
+        function weightedScores(initiatives, weights) {
+          const total = Object.values(weights).reduce((a,b)=>a+b,0);
+          return countryMeans(initiatives).map(row => ({...row, score: total ? Math.round(10 * Object.keys(weights).reduce((sum,k)=>sum+row[k]*weights[k]/total,0)) : null}))
+            .sort((a,b)=>(b.score ?? 0)-(a.score ?? 0)||a.country.localeCompare(b.country));
+        }
+
         const SCQA = {
           situation: { title: 'Situation', color: 'bg-slate-800', points: [
-            'AI capability is a strategic national priority. This dashboard compares ten countries and the EU across infrastructure, models and governance; it is a selected sample, not a global census.',
+            'AI capability is a strategic national priority. This dashboard compares a selected strategy sample of ten countries plus the EU, with additional model-only coverage; it is a selected sample, not a global census.',
             'The US and China have large model and accelerator ecosystems. Europe is expanding shared compute; India and Singapore emphasise local-language access; Gulf programmes combine domestic models with international infrastructure partnerships.',
             'Since the April edition, DeepSeek V4 has released; the UK has launched a £500M venture fund envelope; and the EU has published cloud sovereignty criteria and proposed a Cloud and AI Development Act. Older omissions also required correction: Sarvam models, EuroHPC expansion and the May 2025 HUMAIN launch.',
           ]},
@@ -692,46 +1409,329 @@
         };
 
         const TIMELINE_EVENTS = [
-          { date: '2017', actor: 'Canada', event: 'First national AI strategy globally - Pan-Canadian AI Strategy, CAD$125M Phase 1', category: 'Research-led' },
-          { date: '2017', actor: 'China', event: 'New Generation AI Development Plan - 2030 global leadership target formalised', category: 'Sovereignty-led' },
-          { date: '2017', actor: 'UAE', event: 'UAE AI Strategy launched + world\'s first AI Minister appointed', category: 'Infrastructure-led' },
-          { date: '2018', actor: 'France', event: 'Villani Report leads to National AI Strategy, €1.5B commitment, INRIA expansion', category: 'Sovereignty-led' },
-          { date: '2019', actor: 'Japan', event: 'Society 5.0 AI Strategy - human-centric, disaster resilience, ageing society focus', category: 'Human-centric' },
-          { date: '2021', actor: 'EU', event: 'AI Act proposed - first comprehensive AI regulatory framework globally', category: 'Regulation-led' },
-          { date: '2022', actor: 'United States', event: 'CHIPS and Science Act - $52.7B for domestic semiconductor fabrication', category: 'Infrastructure-led' },
-          { date: '2023', actor: 'Singapore', event: 'SEA-LION launched - open-source LLM for Southeast Asia, 11+ languages', category: 'Regional cooperation' },
-          { date: '2024-Q1', actor: 'India', event: 'IndiaAI Mission approved - Rs10,372 crore, original 10,000 GPU target', category: 'Inclusion-led' },
-          { date: '2024-Q2', actor: 'EU', event: 'AI Act adopted by European Parliament - risk-based framework begins phased implementation', category: 'Regulation-led' },
-          { date: '2024-Q4', actor: 'Canada', event: 'Budget 2024 AI package; Sovereign AI Compute Strategy launched in December', category: 'Research-led' },
-          { date: '2025-Jan', actor: 'United States', event: 'Stargate Project announced at White House - $500B private AI infrastructure consortium', category: 'Infrastructure-led' },
-          { date: '2025-Jan', actor: 'United Kingdom', event: 'AI Opportunities Action Plan - 50 commitments, AI Growth Zones, £14B private commitments', category: 'Infrastructure-led' },
-          { date: '2025-May', actor: 'UAE', event: 'Stargate UAE announced: 1GW cluster within wider 5GW campus; first 200MW targeted for 2026', category: 'Infrastructure-led' },
-          { date: '2025-Aug', actor: 'EU', event: 'GPAI obligations apply to newly placed models; systemic-risk obligations are additional', category: 'Regulation-led' },
-          { date: '2025-Sep', actor: 'United States', event: 'Stargate adds 5 new US sites; nearly 7GW planned, over $400B investment plans', category: 'Infrastructure-led' },
-          { date: '2025-Oct', actor: 'South Korea', event: 'NVIDIA announces over 260,000 planned GPUs across sovereign clouds and AI factories (Samsung, SK, Hyundai, NAVER)', category: 'Infrastructure-led' },
-          { date: '2026-Feb', actor: 'India', event: 'India AI Impact Summit - 38,000 GPUs reported; 20,000 more announced; over $200B investment expected', category: 'Inclusion-led' },
-          { date: '2026-Mar', actor: 'Singapore', event: 'SEA-LION embedding suite released; developer reports evaluation across 10 regional languages', category: 'Regional cooperation' },
-          { date: '2025-May', actor: 'Saudi Arabia', event: 'PIF launches HUMAIN; NVIDIA partnership follows with planned 18,000-GB300 first phase', category: 'Infrastructure-led' },
-          { date: '2025-Oct', actor: 'EU', event: 'Six more AI Factories selected, taking network to 19', category: 'Regulation-led' },
-          { date: '2026-Mar', actor: 'India', event: 'Sarvam releases 30B and 105B model weights', category: 'Inclusion-led' },
-          { date: '2026-Apr', actor: 'United Kingdom', event: '9 April: Stargate UK paused; energy costs and regulation cited by OpenAI', category: 'Infrastructure-led' },
-          { date: '2026-Apr', actor: 'United Kingdom', event: '16 April: £500M Sovereign AI fund launches; fund envelope, not disbursed spending or a dedicated frontier-model budget', sourceUrl: 'https://www.sovereignai.gov.uk/faqs', category: 'Infrastructure-led' },
-          { date: '2026-Apr', actor: 'China', event: 'DeepSeek V4 released on 24 April', category: 'Sovereignty-led' },
-          { date: '2026-Apr', actor: 'Canada', event: 'Public sovereign supercomputing application call opens', category: 'Research-led' },
-          { date: '2026-Jun', actor: 'India', event: 'Shared compute capacity exceeds 45,000 GPUs per PIB; 237 projects approved for subsidised access by August', category: 'Inclusion-led' },
-          { date: '2026-Apr', actor: 'United States', event: 'OpenAI reports surpassing 10GW secured infrastructure goal; distinct from operational power', category: 'Infrastructure-led' },
-          { date: '2026-Jul', actor: 'EU', event: 'AI Gigafactories tender opens; proposals due 12 November 2026', category: 'Regulation-led' },
-          { date: '2026-Aug', actor: 'EU', event: 'AI Act enforcement powers and transparency requirements apply', category: 'Regulation-led' },
-          { date: '2026-Aug', actor: 'Saudi Arabia', event: 'HUMAIN M3 limited-preview terms effective 31 August; weights not released', category: 'Sovereignty-led' },
-          {"date": "2026-Apr", "actor": "EU", "event": "17 April: sovereign cloud contracts awarded, up to €180M over six years; SEAL-2 minimum, not full sovereignty", "category": "Sovereignty-led", "sourceUrl": "https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en"},
-          {"date": "2026-Jun", "actor": "EU", "event": "1 June: Cloud Sovereignty Framework clarification — 48 criteria, eight objectives and separate SEAL thresholds", "category": "Sovereignty-led", "sourceUrl": "https://commission.europa.eu/news-and-media/news/sovereign-cloud-framework-explained-2026-06-01_en"},
-          {"date": "2026-Jun", "actor": "EU", "event": "3 June: Cloud and AI Development Act proposed, including EU-wide sovereignty assessment; not enacted law", "category": "Sovereignty-led", "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM%3A2026%3A0502%3AFIN"},
-          {"date": "2026-Jun", "actor": "United States", "event": "12 June: US export-control directive on Fable 5/Mythos 5 foreign access causes Anthropic to suspend both for all users", "category": "Sovereignty-led", "sourceUrl": "https://www.anthropic.com/news/fable-mythos-access"},
-          {"date": "2026-Jun", "actor": "United States", "event": "30 June: Fable/Mythos export controls lifted; access restored 1 July — historical disruption, not an ongoing blanket ban", "category": "Sovereignty-led", "sourceUrl": "https://www.anthropic.com/news/redeploying-fable-5"},
-          {"date": "2026-Sep", "actor": "United States", "event": "1 September: Astra advanced cyber capabilities restricted to testers and managed access; safety gating, not a verified export embargo", "category": "Sovereignty-led", "sourceUrl": "https://openai.com/index/path-to-astra/"},
-          {"date": "2026-Sep", "actor": "United States / Google", "event": "2 September: Fairwind launches managed Gemini cyber access for trusted partners; current programme includes Gemini 4 Argon; no verified US embargo in reviewed sources", "category": "Sovereignty-led", "sourceUrl": "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/"},
-          {"date": "2026-Oct", "actor": "France", "event": "6 October: Mistral Large 4 preview announced; downloadable weights planned for 27 October, not yet delivered", "category": "Sovereignty-led", "sourceUrl": "https://mistral.ai/news/mistral-large-4/"},
-        ];
+          {
+                    "date": "2017",
+                    "actor": "Canada",
+                    "event": "First national AI strategy globally - Pan-Canadian AI Strategy, CAD$125M Phase 1",
+                    "category": "Research-led",
+                    "sourceUrl": "https://www.ised-isde.canada.ca/site/ised/en/pan-canadian-artificial-intelligence-strategy"
+          },
+          {
+                    "date": "2017",
+                    "actor": "China",
+                    "event": "New Generation AI Development Plan - 2030 global leadership target formalised",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://app.www.gov.cn/govdata/gov/201707/20/408540/article.html"
+          },
+          {
+                    "date": "2017",
+                    "actor": "UAE",
+                    "event": "UAE AI Strategy launched + world's first AI Minister appointed",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/government-services-and-digital-transformation/uae-strategy-for-artificial-intelligence"
+          },
+          {
+                    "date": "2018-03-29",
+                    "actor": "France",
+                    "event": "Villani Report leads to National AI Strategy, €1.5B commitment, INRIA expansion",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://www.elysee.fr/emmanuel-macron/2018/03/29/discours-du-president-de-la-republique-sur-lintelligence-artificielle"
+          },
+          {
+                    "date": "2019",
+                    "actor": "Japan",
+                    "event": "AI Strategy 2019 published, building on Society 5.0 (first proposed in 2016)",
+                    "category": "Human-centric",
+                    "sourceUrl": "https://www8.cao.go.jp/cstp/ai/aistratagy2019en.pdf"
+          },
+          {
+                    "date": "2021",
+                    "actor": "EU",
+                    "event": "AI Act proposed - first comprehensive AI regulatory framework globally",
+                    "category": "Regulation-led",
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+          },
+          {
+                    "date": "2022",
+                    "actor": "United States",
+                    "event": "CHIPS and Science Act: $52.7B for semiconductor manufacturing, research and workforce programmes",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.nist.gov/chips"
+          },
+          {
+                    "date": "2023",
+                    "actor": "Singapore",
+                    "event": "SEA-LION launched - open-source LLM for Southeast Asia, 11+ languages",
+                    "category": "Regional cooperation",
+                    "sourceUrl": "https://github.com/aisingapore/sealion"
+          },
+          {
+                    "date": "2024-Q1",
+                    "actor": "India",
+                    "event": "IndiaAI Mission approved - Rs10,372 crore, original 10,000 GPU target",
+                    "category": "Inclusion-led",
+                    "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"
+          },
+          {
+                    "date": "2024-May",
+                    "actor": "EU",
+                    "event": "EU AI Act adopted by Council in May, following Parliament approval in March",
+                    "category": "Regulation-led",
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+          },
+          {
+                    "date": "2024-12-05",
+                    "actor": "Canada",
+                    "event": "Budget 2024 AI package; Sovereign AI Compute Strategy launched in December",
+                    "category": "Research-led",
+                    "sourceUrl": "https://www.canada.ca/en/innovation-science-economic-development/news/2024/12/canada-to-drive-billions-in-investments-to-build-domestic-ai-compute-capacity-at-home.html"
+          },
+          {
+                    "date": "2025-01-21",
+                    "actor": "United States",
+                    "event": "Stargate Project announced at White House - $500B private AI infrastructure consortium",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://openai.com/index/announcing-the-stargate-project/"
+          },
+          {
+                    "date": "2025-Jan",
+                    "actor": "United Kingdom",
+                    "event": "AI Opportunities Action Plan - 50 commitments, AI Growth Zones, £14B private commitments",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.gov.uk/government/publications/ai-opportunities-action-plan-one-year-on/ai-opportunities-action-plan-one-year-on"
+          },
+          {
+                    "date": "2025-May",
+                    "actor": "UAE",
+                    "event": "Stargate UAE announced: 1GW cluster within wider 5GW campus; first 200MW targeted for 2026",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://openai.com/index/introducing-stargate-uae/"
+          },
+          {
+                    "date": "2025-Aug",
+                    "actor": "EU",
+                    "event": "GPAI obligations apply to newly placed models; systemic-risk obligations are additional",
+                    "category": "Regulation-led",
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+          },
+          {
+                    "date": "2025-09-23",
+                    "actor": "United States",
+                    "event": "Stargate adds 5 new US sites; nearly 7GW planned, over $400B investment plans",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://openai.com/index/five-new-stargate-sites/"
+          },
+          {
+                    "date": "2025-10-31",
+                    "actor": "South Korea",
+                    "event": "NVIDIA announces over 260,000 planned GPUs across sovereign clouds and AI factories (Samsung, SK, Hyundai, NAVER)",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-South-Korea-Government-and-Industrial-Giants-Build-AI-Infrastructure-and-Ecosystem-to-Fuel-Korea-Innovation-Industries-and-Jobs/default.aspx"
+          },
+          {
+                    "date": "2026-Feb",
+                    "actor": "India",
+                    "event": "India AI Impact Summit - 38,000 GPUs reported; 20,000 more announced; over $200B investment expected",
+                    "category": "Inclusion-led",
+                    "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"
+          },
+          {
+                    "date": "2026-Mar",
+                    "actor": "Singapore",
+                    "event": "SEA-LION embedding suite released; developer reports evaluation across 10 regional languages",
+                    "category": "Regional cooperation",
+                    "sourceUrl": "https://github.com/aisingapore/sealion"
+          },
+          {
+                    "date": "2025-May",
+                    "actor": "Saudi Arabia",
+                    "event": "PIF launches HUMAIN; NVIDIA partnership follows with planned 18,000-GB300 first phase",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia"
+          },
+          {
+                    "date": "2025-Oct",
+                    "actor": "EU",
+                    "event": "Six more AI Factories selected, taking network to 19",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.eurohpc-ju.europa.eu/ai-factories_en"
+          },
+          {
+                    "date": "2026-03-06",
+                    "actor": "India",
+                    "event": "Sarvam releases 30B and 105B model weights",
+                    "category": "Inclusion-led",
+                    "sourceUrl": "https://www.sarvam.ai/blogs/sarvam-30b-105b"
+          },
+          {
+                    "date": "2026-04-09",
+                    "actor": "United Kingdom",
+                    "event": "9 April: Stargate UK paused; energy costs and regulation cited by OpenAI",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/"
+          },
+          {
+                    "date": "2026-04-16",
+                    "actor": "United Kingdom",
+                    "event": "16 April: £500M Sovereign AI fund launches; fund envelope, not disbursed spending or a dedicated frontier-model budget",
+                    "sourceUrl": "https://www.sovereignai.gov.uk/faqs",
+                    "category": "Infrastructure-led"
+          },
+          {
+                    "date": "2026-04-24",
+                    "actor": "China",
+                    "event": "DeepSeek V4 released on 24 April",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://www.deepseek.com/en/transparency/"
+          },
+          {
+                    "date": "2026-04-15",
+                    "actor": "Canada",
+                    "event": "Public sovereign supercomputing application call opens",
+                    "category": "Research-led",
+                    "sourceUrl": "https://www.canada.ca/en/innovation-science-economic-development/news/2026/04/canada-launches-national-initiative-to-build-large-scale-ai-supercomputing-capacity.html"
+          },
+          {
+                    "date": "2026-Jun",
+                    "actor": "India",
+                    "event": "Shared compute capacity exceeds 45,000 GPUs as of June, per PIB; this is provider-empanelled access, not a single installation",
+                    "category": "Inclusion-led",
+                    "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"
+          },
+          {
+                    "date": "2026-04-29",
+                    "actor": "United States",
+                    "event": "OpenAI reports surpassing 10GW secured infrastructure goal; distinct from operational power",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/"
+          },
+          {
+                    "date": "2026-Jul",
+                    "actor": "EU",
+                    "event": "AI Gigafactories tender opens; proposals due 12 November 2026",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.eurohpc-ju.europa.eu/call-tenders-selection-artificial-intelligence-gigafactory-consortia-and-establishment-ai_en"
+          },
+          {
+                    "date": "2026-Aug",
+                    "actor": "EU",
+                    "event": "AI Act enforcement powers and transparency requirements apply",
+                    "category": "Regulation-led",
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+          },
+          {
+                    "date": "2026-08-31",
+                    "actor": "Saudi Arabia",
+                    "event": "HUMAIN M3 limited-preview terms effective 31 August; weights not released",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://node.humain.com/legal/model-terms"
+          },
+          {
+                    "date": "2026-04-17",
+                    "actor": "EU",
+                    "event": "17 April: sovereign cloud contracts awarded, up to €180M over six years; SEAL-2 minimum, not full sovereignty",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en"
+          },
+          {
+                    "date": "2026-06-01",
+                    "actor": "EU",
+                    "event": "1 June: Cloud Sovereignty Framework clarification — 48 criteria, eight objectives and separate SEAL thresholds",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://commission.europa.eu/news-and-media/news/sovereign-cloud-framework-explained-2026-06-01_en"
+          },
+          {
+                    "date": "2026-06-03",
+                    "actor": "EU",
+                    "event": "3 June: Cloud and AI Development Act proposed, including EU-wide sovereignty assessment; not enacted law",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM%3A2026%3A0502%3AFIN"
+          },
+          {
+                    "date": "2026-06-12",
+                    "actor": "United States",
+                    "event": "12 June: US export-control directive on Fable 5/Mythos 5 foreign access causes Anthropic to suspend both for all users",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://www.anthropic.com/news/fable-mythos-access"
+          },
+          {
+                    "date": "2026-06-30",
+                    "actor": "United States",
+                    "event": "30 June: Fable/Mythos export controls lifted; access restored 1 July — historical disruption, not an ongoing blanket ban",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://www.anthropic.com/news/redeploying-fable-5"
+          },
+          {
+                    "date": "2026-09-01",
+                    "actor": "United States",
+                    "event": "1 September: Astra advanced cyber capabilities restricted to testers and managed access; safety gating, not a verified export embargo",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://openai.com/index/path-to-astra/"
+          },
+          {
+                    "date": "2026-09-02",
+                    "actor": "United States / Google",
+                    "event": "2 September: Fairwind launches managed Gemini cyber access for trusted partners; current programme includes Gemini 4 Argon; no verified US embargo in reviewed sources",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://deepmind.google/fairwind-program/"
+          },
+          {
+                    "date": "2026-10-06",
+                    "actor": "France",
+                    "event": "6 October: Mistral Large 4 preview announced; downloadable weights planned for end-October, not yet delivered",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://mistral.ai/news/mistral-large-4/"
+          },
+          {
+                    "date": "2025-02-11",
+                    "actor": "EU",
+                    "event": "InvestAI announced: €200B investment mobilisation ambition, including a €20B gigafactory fund; not disbursed spending",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/news/eu-launches-investai-initiative-mobilise-eu200-billion-investment-artificial-intelligence"
+          },
+          {
+                    "date": "2025-07-23",
+                    "actor": "United States",
+                    "event": "America’s AI Action Plan released: innovation, infrastructure, and international diplomacy/security pillars",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.whitehouse.gov/releases/2025/07/white-house-unveils-americas-ai-action-plan/"
+          },
+          {
+                    "date": "2025-09-24",
+                    "actor": "Canada",
+                    "event": "TELUS reports Rimouski AI factory operational and serving customers; imported hardware remains a dependency",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.telus.com/en/about/news-and-events/media-releases/telus-opens-canadas-first-fully-sovereign-ai-factory"
+          },
+          {
+                    "date": "2026-07-27",
+                    "actor": "EU",
+                    "event": "AI Omnibus enters into force; high-risk application dates become December 2027 / August 2028",
+                    "category": "Regulation-led",
+                    "sourceUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+          },
+          {
+                    "date": "2026-07-31",
+                    "actor": "South Korea",
+                    "event": "LG releases K-EXAONE 2.0 weights under Apache 2.0; regional/domestic capability, not proof of broad frontier leadership",
+                    "category": "Sovereignty-led",
+                    "sourceUrl": "https://www.lgresearch.ai/news/view?seq=678"
+          },
+          {
+                    "date": "2026-08-31",
+                    "actor": "Saudi Arabia",
+                    "event": "HUMAIN/DataVolt announce construction of 100MW within a 360MW Oxagon phase; construction is not operational delivery",
+                    "category": "Infrastructure-led",
+                    "sourceUrl": "https://www.neom.com/en-us/newsroom/HUMAIN-and-DataVolt-to-develop-AI-data-center-in-NEOM"
+          },
+          {
+                    "date": "2026-08",
+                    "actor": "India",
+                    "event": "PIB reports 237 projects accessing subsidised compute, covering 9.318M GPU hours; 20 public-sector AI solutions deployed",
+                    "category": "Inclusion-led",
+                    "sourceUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150860&lang=1&reg=3"
+          }
+];
 
         // 3. COMPONENTS
         function SCQAView() {
@@ -741,13 +1741,13 @@
             <div className="space-y-4">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">SCQA: The Strategic Argument - October 2026</h2>
-                <p className="text-sm text-slate-400">Reviewed 8 October 2026. Linked evidence, dated milestones and editorial analysis for strategic discussion.</p>
+                <p className="text-sm text-slate-400">Reviewed 9 October 2026. Linked evidence, dated milestones and editorial analysis for strategic discussion.</p>
               </div>
               {order.map(key => {
                 const s = SCQA[key]; const isOpen = expanded === key;
                 return (
                   <div key={key} className="rounded-xl overflow-hidden glass-panel shadow-sm">
-                    <button onClick={() => setExpanded(isOpen ? null : key)}
+                    <button onClick={() => setExpanded(isOpen ? null : key)} aria-expanded={isOpen}
                       className={`w-full ${s.color} text-white px-5 py-4 flex items-center justify-between hover:opacity-90 transition`}>
                       <span className="font-semibold tracking-wide">{s.title}</span>
                       <span className="text-xl font-light">{isOpen ? '−' : '+'}</span>
@@ -769,20 +1769,22 @@
         }
 
         function timelineKey(date) {
+          if (/^\d{4}-\d{2}-\d{2}$/.test(date)) return Date.parse(date+'T00:00:00Z');
           const [year, part = 'Jan'] = date.split('-');
           const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-          return Number(year) * 12 + (part.startsWith('Q') ? (Number(part[1]) - 1) * 3 : months.indexOf(part));
+          return Date.UTC(Number(year), /^\d{2}$/.test(part) ? Number(part)-1 : part.startsWith('Q') ? (Number(part[1])-1)*3 : months.indexOf(part), 1);
         }
 
         function TimelineView() {
           const [filter, setFilter] = useState('All');
           const categories = ['All', ...Object.keys(ARCHETYPE_COLORS)];
           const filtered = filter === 'All' ? TIMELINE_EVENTS : TIMELINE_EVENTS.filter(t => t.category === filter);
-          const chronological = [...filtered].sort((a, b) => timelineKey(a.date) - timelineKey(b.date));
+          const chronological = [...filtered].sort((a, b) => timelineKey(b.date) - timelineKey(a.date));
           return (
             <div className="space-y-6">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Dated Initiative Timeline</h2>
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Dated Initiative Timeline — newest first</h2>
+                <p className="text-xs text-slate-400 mb-3">Latest developments first, down to the earliest strategy milestones. Exact dates are used where evidenced; month, quarter and year-only entries retain their source precision. Future targets appear in their announcement record, not as completed events.</p>
                 <div className="flex flex-wrap gap-2">
                   {categories.map(c => (
                     <button key={c} onClick={() => setFilter(c)}
@@ -835,7 +1837,7 @@
                   <div className="rounded-lg border border-violet-900 bg-violet-950/20 p-3"><strong className="text-violet-300">Control</strong><p className="mt-1">Developer ownership, released weights, licensing and the ability to adapt the model.</p></div>
                   <div className="rounded-lg border border-teal-900 bg-teal-950/20 p-3"><strong className="text-teal-300">Continuity</strong><p className="mt-1">Can the model keep operating if a foreign API or supplier withdraws? Local weights help, but compute and maintenance still matter.</p></div>
                 </div>
-                <p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 8 October 2026. These are separate editorial scores, not benchmark values. Capability: 9–10 domestic leading frontier ecosystem; 7–8 domestic frontier challenger; 4–6 released domestic or specialist developer capability; 1–3 adaptation, preview or early domestic development without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. The UK is revised 9→3: Gemini belongs to US-controlled Google, while Ineffable is still development-stage in the evidence reviewed. France/EU remain 7 for Mistral, a domestic frontier challenger; these ordinal scores are not benchmark percentages. The evidence is selective; “not established” does not mean no model exists.</p>
+                <p className="text-xs text-slate-400 mt-4 leading-relaxed">Reviewed 9 October 2026. These are separate editorial scores, not benchmark values. Capability: 9–10 domestic leading frontier ecosystem; 7–8 domestic frontier challenger; 4–6 released domestic or specialist developer capability; 1–3 adaptation, preview or early domestic development without demonstrated broad frontier status. Control: 7–10 substantial domestic developer and deployment options; 4–6 material corporate, licence or access dependencies; 1–3 mostly external service access. The UK is revised 9→3: Gemini belongs to US-controlled Google, while Ineffable is still development-stage in the evidence reviewed. France/EU remain 7 for Mistral, a domestic frontier challenger; these ordinal scores are not benchmark percentages. The evidence is selective; “not established” does not mean no model exists.</p>
                 <p className="text-xs text-slate-400 mt-2">The control scores replace the former blended model scores in Sovereign AI. Capability stays separate and is not folded into the six-factor Posture Scorer, which compares programme strategy. France/EU overlap and cross-border research affiliations must not be added together.</p>
                 <div className="overflow-x-auto mt-4">
                   <table className="w-full text-xs text-left">
@@ -845,8 +1847,8 @@
                       <tr><td className="py-2 pr-4">Frontier developers</td><td>United States, China</td></tr>
                       <tr><td className="py-2 pr-4">No demonstrated domestic frontier model</td><td>United Kingdom — Gemini is Google-controlled; domestic development remains early</td></tr>
                       <tr><td className="py-2 pr-4">Frontier challenger</td><td>France / EU — Mistral; overlapping coverage</td></tr>
-                      <tr><td className="py-2 pr-4">Domestic / specialist models; broad frontier status not established</td><td>Canada, India, Japan, United Arab Emirates</td></tr>
-                      <tr><td className="py-2 pr-4">Regional adaptation / preview; broad frontier status not established</td><td>Singapore, Saudi Arabia</td></tr>
+                      <tr><td className="py-2 pr-4">Domestic / specialist models; broad frontier status not established</td><td>Canada, India, Japan, United Arab Emirates, Saudi Arabia, South Korea, Switzerland</td></tr>
+                      <tr><td className="py-2 pr-4">Regional adaptation; broad frontier status not established</td><td>Singapore</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -865,7 +1867,7 @@
                     </button>
                     {selected===d.country && <div className="p-5 border-t border-slate-800 bg-slate-950/40 space-y-3 text-xs leading-relaxed">
                       {[['Dated capability evidence',d.evidence],['Ownership / control',d.ownership],['Weights / deployment rights',d.weights],['Dependencies / continuity',d.dependencies]].map(([label,value]) => <div key={label}><h4 className="font-bold text-slate-200 mb-1">{label}</h4><p className="text-slate-400">{value}</p></div>)}
-                      <div className="flex flex-wrap gap-3">{d.sources.map(([label,url]) => <a key={url} className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a>)}</div>
+                      <div className="flex flex-wrap gap-3">{d.sources.map(([label,url]) => <a key={label+url} className="text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a>)}</div>
                     </div>}
                   </section>
                 ))}
@@ -1021,7 +2023,7 @@
                               </div>
                             ))}
                           </div>
-                          <a className="text-xs text-blue-400 underline" href={d.sourceUrl} target="_blank" rel="noopener noreferrer">Primary source ↗</a>
+                          <div className="flex flex-wrap gap-3"><a className="text-xs text-blue-400 underline" href={d.sourceUrl} target="_blank" rel="noopener noreferrer">Primary source ↗</a>{(d.sources || []).map(([label,url])=><a key={label+url} className="text-xs text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a>)}</div>
                           {d.nvidiaPartnered && (
                             <div className="bg-emerald-950/20 rounded-lg p-3 border border-emerald-900/50 text-xs text-slate-300 flex items-start gap-2">
                               <span className="text-emerald-400 font-bold shrink-0 mt-0.5">NVIDIA Partner →</span>
@@ -1082,29 +2084,28 @@
         }
 
         function PostureScorer() {
-          const [weights, setWeights] = useState({ infra: 5, regulation: 3, sovereignty: 4, openness: 3, speed: 5, talent: 5 });
-          const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0) || 1;
-
-          const scored = useMemo(() => {
-            const byCountry = {};
-            INITIATIVES.forEach(init => {
-              if (!byCountry[init.country]) byCountry[init.country] = { ...init, count: 1 };
-              else { Object.keys(weights).forEach(k => { byCountry[init.country][k] += init[k]; }); byCountry[init.country].count++; }
-            });
-            return Object.entries(byCountry).map(([country, data]) => {
-              const n = data.count;
-              const score = Object.keys(weights).reduce((s, k) => s + (data[k] / n) * (weights[k] / totalWeight), 0);
-              return { country, flag: data.flag, score: Math.round(score * 10), archetype: data.archetype };
-            }).sort((a, b) => b.score - a.score);
-          }, [weights, totalWeight]);
+          const [weights, setWeights] = useState({...DEFAULT_WEIGHTS});
+          const [selectedPrograms, setSelectedPrograms] = useState(INITIATIVES.map(i=>i.initiative));
+          const selectedInitiatives = INITIATIVES.filter(i=>selectedPrograms.includes(i.initiative));
+          const weightSum = Object.values(weights).reduce((a,b)=>a+b,0);
+          const totalWeight = weightSum || 1;
+          const scored = useMemo(()=>weightedScores(selectedInitiatives,weights),[weights,selectedPrograms]);
 
           return (
             <div className="space-y-5">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-1">Strategic Posture Scorer</h2>
-                <p className="text-sm text-slate-400">Adjust dimension weights to reflect your priorities. Scores update dynamically from editorial assessments; they are not measured national performance.</p>
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-1">Selected Programme Posture Scorer</h2>
+                <p className="text-sm text-slate-400">Adjust dimension weights to reflect your priorities. Scores summarise selected programmes; they are not national capability rankings. Programme mix affects the result—for example, averaging the AI Act with infrastructure projects lowers the EU infrastructure mean because these programmes have different purposes.</p>
               </div>
               
+              <div className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3">
+                <div className="flex flex-wrap gap-2"><button className="border border-slate-600 rounded px-3 py-2" onClick={()=>setWeights({...DEFAULT_WEIGHTS})}>Reset default weights</button><button className="border border-slate-600 rounded px-3 py-2" onClick={()=>setWeights(Object.fromEntries(Object.keys(DIM_LABELS).map(k=>[k,1])))}>Equal weights</button></div>
+                <details><summary className="cursor-pointer font-bold text-blue-300">Choose programme coverage ({selectedInitiatives.length} of {INITIATIVES.length})</summary>
+                  <p className="text-xs text-slate-400 my-3">Use this to inspect programme-selection sensitivity, not to treat a favoured subset as an objective national ranking. Countries with no selected programme are omitted, not scored zero.</p>
+                  <div className="grid md:grid-cols-2 gap-2">{INITIATIVES.map(i=><label key={i.initiative} className="flex gap-2 items-start text-xs"><input type="checkbox" checked={selectedPrograms.includes(i.initiative)} onChange={e=>setSelectedPrograms(p=>e.target.checked?[...p,i.initiative]:p.filter(n=>n!==i.initiative))}/><span>{i.country} — {i.initiative}</span></label>)}</div>
+                  <button className="mt-3 text-blue-300 underline" onClick={()=>setSelectedPrograms(INITIATIVES.map(i=>i.initiative))}>Restore all programmes</button>
+                </details>
+              </div>
               <div className="glass-panel rounded-xl p-6 shadow-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
                     {Object.entries(DIM_LABELS).map(([key, label]) => (
@@ -1125,7 +2126,7 @@
                 <h3 className="text-lg font-bold text-white">Scoring methodology and weighting</h3>
                 <p>Each programme has six editorial scores from 1 to 10. First average the selected programmes within each country for each dimension; then apply your normalized weights. Programmes receive equal weight within a country, regardless of budget. Countries with different programme coverage are not measured on an identical evidence base.</p>
                 <p className="font-mono text-xs bg-slate-950 rounded p-3">Score / 100 = round(10 × Σ(country dimension mean × weight / sum of weights))</p>
-                <p>Defaults: infrastructure 20%, regulatory maturity 12%, tech sovereignty 16%, openness 12%, execution speed 20%, talent 20%. These are editorial starting preferences, not statistically calibrated weights. A zero weight excludes a dimension. If every weight is zero, displayed scores are 0 and no meaningful ranking exists. Rounding can create ties; small gaps are not evidence of significant national differences.</p>
+                <p>Defaults: infrastructure 20%, regulatory maturity 12%, tech sovereignty 16%, openness 12%, execution speed 20%, talent 20%. These are editorial starting preferences, not statistically calibrated weights. A zero weight excludes a dimension. If every weight is zero, the score is undefined and the comparison is hidden. Rounding can create ties; small gaps are not evidence of significant national differences.</p>
                 <p>Score bands: 1–3 early; 4–6 developing; 7–8 strong; 9–10 leading within the sample. The criteria below guide judgment; they are not a mechanical conversion of budgets or benchmark results. Exact point choices remain editorial, with no measured uncertainty intervals. Sources and programme notes are in Inventory.</p>
                 <div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr className="text-slate-400"><th className="py-2 pr-4">Dimension</th><th>Evidence considered</th></tr></thead><tbody className="divide-y divide-slate-800">
                   {[
@@ -1138,13 +2139,13 @@
                   ].map(([label,evidence])=><tr key={label}><th className="py-3 pr-4 font-semibold">{label}</th><td>{evidence}</td></tr>)}
                 </tbody></table></div>
                 <p><strong>UK worked example at default weights:</strong> 10 × (5×0.20 + 7×0.12 + 4×0.16 + 8×0.12 + 5×0.20 + 9×0.20) = 62.4 → <strong>62/100</strong>. Infrastructure 5 and speed 5 reflect the Stargate pause while retaining delivered public compute credit. Sovereignty 4 reflects foreign frontier dependence and early domestic development; talent 9 reflects research strengths. Previously 66, before sovereignty was revised 6→4.</p>
-                <p>Model capability/control scores in Models &amp; Control are separate. Frontier capability does not enter this six-factor formula directly; domestic control and external dependencies inform the sovereignty judgment. The £500M UK fund envelope receives no automatic score uplift. Radar archetypes are fixed illustrations; heatmap values are country dimension means.</p>
-                <details><summary className="cursor-pointer font-bold text-blue-300">Inspect country inputs and current weighted results</summary><div className="overflow-x-auto mt-3"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Country / programmes</th>{Object.values(DIM_LABELS).map(label=><th key={label} className="p-2">{label}</th>)}<th className="p-2">Current /100</th></tr></thead><tbody>{scored.map(row=>{const items=INITIATIVES.filter(i=>i.country===row.country);return <tr key={row.country} className="border-t border-slate-800"><th className="p-2">{row.country} ({items.length})</th>{Object.keys(DIM_LABELS).map(k=><td className="p-2" key={k}>{(items.reduce((sum,i)=>sum+i[k],0)/items.length).toFixed(2)}</td>)}<td className="p-2 font-bold">{row.score}</td></tr>;})}</tbody></table></div></details>
+                <p>Model capability/control scores in Models &amp; Control are separate. Frontier capability does not enter this six-factor formula directly; domestic control and external dependencies inform the sovereignty judgment. The £500M UK fund envelope receives no automatic score uplift. Radar and heatmap values use the same country programme means at full programme coverage.</p>
+                <details><summary className="cursor-pointer font-bold text-blue-300">Inspect country inputs and current weighted results</summary><div className="overflow-x-auto mt-3"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Country / programmes</th>{Object.values(DIM_LABELS).map(label=><th key={label} className="p-2">{label}</th>)}<th className="p-2">Current /100</th></tr></thead><tbody>{scored.map(row=>{const items=selectedInitiatives.filter(i=>i.country===row.country);return <tr key={row.country} className="border-t border-slate-800"><th className="p-2">{row.country} ({items.length})</th>{Object.keys(DIM_LABELS).map(k=><td className="p-2" key={k}>{(items.reduce((sum,i)=>sum+i[k],0)/items.length).toFixed(2)}</td>)}<td className="p-2 font-bold">{row.score ?? "Not scored"}</td></tr>;})}</tbody></table></div></details>
               </div>
 
               <div className="glass-panel rounded-xl p-5 shadow-lg">
-                <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-4">Nations Ranked By Custom Weights</div>
-                <div className="h-[380px] w-full">
+                <div className="text-xs font-mono font-semibold text-slate-500 uppercase tracking-widest mb-4">Selected programme comparison · custom weights</div>
+                {!weightSum || !scored.length ? <p className="text-sm text-amber-300">{!weightSum ? "Choose at least one non-zero weight to calculate a score." : "Select at least one programme to compare."}</p> : <div className="h-[380px] w-full">
                     <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={scored} layout="vertical" margin={{ left: 20, right: 30, top: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
@@ -1161,18 +2162,18 @@
                         </Bar>
                     </BarChart>
                     </ResponsiveContainer>
-                </div>
+                </div>}
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {scored.slice(0, 6).map((s, i) => (
+                {(weightSum ? scored : []).map((s, i) => (
                   <div key={s.country} className="glass-panel rounded-xl p-4 flex items-center gap-3 hover:border-slate-600 transition">
                     <span className="text-2xl drop-shadow-md">{s.flag}</span>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-bold text-slate-100 truncate tracking-tight">{s.country}</div>
                       <div className="text-[10px] text-slate-400 truncate mt-0.5">{s.archetype}</div>
                     </div>
-                    <div className="text-2xl font-bold font-mono drop-shadow" style={{ color: i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : i === 2 ? '#cd7f32' : '#475569' }}>{s.score}</div>
+                    <div className="text-2xl font-bold font-mono drop-shadow" style={{ color: '#93c5fd' }}>{s.score}</div>
                   </div>
                 ))}
               </div>
@@ -1183,23 +2184,17 @@
         function StrategicHeatmap() {
           const [dim, setDim] = useState('speed');
 
-          const byCountry = useMemo(() => {
-            const acc = {};
-            INITIATIVES.forEach(init => {
-              if (!acc[init.country]) acc[init.country] = { ...init, count: 1 };
-              else { Object.keys(DIM_LABELS).forEach(k => { acc[init.country][k] += init[k]; }); acc[init.country].count++; }
-            });
-            return Object.values(acc).map(d => ({ ...d, dimVal: Math.round((d[dim] / d.count) * 10) / 10 })).sort((a, b) => b.dimVal - a.dimVal);
-          }, [dim]);
+          const byCountry = useMemo(()=>countryMeans().map(d=>({...d,dimVal:Math.round(d[dim]*10)/10})).sort((a,b)=>b.dimVal-a.dimVal||a.country.localeCompare(b.country)),[dim]);
+          const tier = v => v >= 9 ? 'Leading' : v >= 7 ? 'Strong' : v >= 4 ? 'Developing' : 'Early';
 
-          const tier = v => v >= 8 ? 'Leading' : v >= 6 ? 'Competitive' : v >= 4 ? 'Developing' : 'Early';
-          const tierBorderLeft = { Leading: 'border-l-emerald-500', Competitive: 'border-l-blue-500', Developing: 'border-l-amber-500', Early: 'border-l-slate-500' };
-          const tierText = { Leading: 'text-emerald-400', Competitive: 'text-blue-400', Developing: 'text-amber-400', Early: 'text-slate-500' };
+          const tierBorderLeft = { Leading: 'border-l-emerald-500', Strong: 'border-l-blue-500', Developing: 'border-l-amber-500', Early: 'border-l-slate-500' };
+          const tierText = { Leading: 'text-emerald-400', Strong: 'text-blue-400', Developing: 'text-amber-400', Early: 'text-slate-500' };
 
           return (
             <div className="space-y-5">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Strategic Position Heatmap - October 2026</h2>
+                <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Selected Programme Heatmap — October 2026</h2>
+                <p className="text-xs text-slate-400 mb-3">Full programme coverage; country means match the default scorer and radar. Band labels describe this editorial sample, not national leadership. Programme counts and mix matter.</p>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(DIM_LABELS).map(([k, label]) => (
                     <button key={k} onClick={() => setDim(k)}
@@ -1262,7 +2257,7 @@
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-3">Initiative Inventory - Reviewed October 2026</h2>
                 <div className="flex flex-wrap gap-2">
                   {archetypes.map(a => (
-                    <button key={a} onClick={() => setFilter(a)}
+                    <button key={a} onClick={() => {setFilter(a);setExpanded(null);}}
                       style={filter === a && a !== 'All' ? { backgroundColor: ARCHETYPE_COLORS[a], borderColor: ARCHETYPE_COLORS[a] } : {}}
                       className={`text-xs px-3 py-1.5 rounded-full font-medium transition border ${filter === a ? 'bg-blue-600 text-white border-blue-500' : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-700'}`}>
                       {a}
@@ -1273,7 +2268,7 @@
               <div className="space-y-3">
                 {sorted.map((r, i) => (
                   <div key={i} className="glass-panel rounded-xl border border-slate-800 overflow-hidden shadow-sm transition hover:border-slate-600">
-                    <button onClick={() => setExpanded(expanded === i ? null : i)}
+                    <button onClick={() => setExpanded(expanded === r.initiative ? null : r.initiative)} aria-expanded={expanded === r.initiative}
                       className="w-full p-4 flex items-center gap-4 hover:bg-slate-800/30 transition text-left">
                       <span className="text-2xl shrink-0 drop-shadow-md">{r.flag}</span>
                       <div className="flex-1 min-w-0">
@@ -1290,16 +2285,16 @@
                       </div>
                       <div className="text-right shrink-0">
                         <div className="text-lg font-bold text-slate-100 font-mono tracking-tighter">
-                          {r.investment > 0 ? `${r.investmentUnit.includes('€') ? '€' : r.investmentUnit.includes('£') ? '£' : r.investmentUnit.includes('CAD') ? 'C$' : r.investmentUnit.includes('SGD') ? 'S$' : '$'}${r.investment}B` : r.investment === 0 ? 'N/A' : 'Not stated'}
+                          {r.investmentDisplay || (r.investment > 0 ? `${r.investmentUnit.includes('€') ? '€' : r.investmentUnit.includes('£') ? '£' : r.investmentUnit.includes('CAD') ? 'C$' : r.investmentUnit.includes('SGD') ? 'S$' : '$'}${r.investment}B` : r.investment === 0 ? 'N/A' : 'Not stated')}
                         </div>
                         <div className="text-[11px] text-slate-400 mt-0.5 max-w-[150px]">{r.investmentUnit}</div><div className="text-[11px] font-mono text-slate-500 mt-0.5">{r.year}</div>
                       </div>
-                      <span className="text-slate-500 ml-2 text-xl font-light shrink-0">{expanded === i ? '−' : '+'}</span>
+                      <span className="text-slate-500 ml-2 text-xl font-light shrink-0">{expanded === r.initiative ? '−' : '+'}</span>
                     </button>
-                    {expanded === i && (
+                    {expanded === r.initiative && (
                       <div className="bg-slate-950/50 px-5 py-4 border-t border-slate-800/80 space-y-4">
                         <p className="text-sm text-slate-300 leading-relaxed border-l-2 border-slate-700 pl-3">{r.verifiedNotes}</p>
-                        <a className="text-xs text-blue-400 underline" href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Primary source ↗</a>
+                        <div className="flex flex-wrap gap-3">{r.sources.map(([label,url])=><a key={label+url} className="text-xs text-blue-400 underline" href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a>)}</div><p className="text-xs text-slate-500">Evidence checked {r.checked}; score numbers remain editorial judgments, not outputs audited by these sources.</p>
                         <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
                           {Object.entries(DIM_LABELS).map(([k, label]) => (
                             <div key={k} className="text-center bg-slate-900/50 border border-slate-800/50 rounded-lg p-3">
@@ -1323,11 +2318,11 @@
                 </div>
                 <div className="glass-panel border-emerald-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
                   <div className="text-3xl font-bold text-emerald-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'teal').length}</div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-600/80 mt-1">On track</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-600/80 mt-1">Active / mixed delivery</div>
                 </div>
                 <div className="glass-panel border-amber-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
                   <div className="text-3xl font-bold text-amber-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'amber').length}</div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-amber-600/80 mt-1">Delays / partial</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-amber-600/80 mt-1">Plans / pauses / partial</div>
                 </div>
                 <div className="glass-panel border-red-900/40 rounded-xl p-4 text-center flex flex-col justify-center">
                   <div className="text-3xl font-bold text-red-500 font-mono drop-shadow-sm">{INITIATIVES.filter(r => r.statusColor === 'red').length}</div>
@@ -1340,13 +2335,9 @@
 
         function ArchetypeCompare() {
           const ARCHETYPE_DIMS = ['Infrastructure', 'Regulation', 'Sovereignty', 'Openness', 'Speed', 'Talent'];
-          const ARCHETYPE_SCORES = {
-            'US (Infrastructure)':   [10, 3.5, 7.5, 5, 9,  8.5],
-            'EU (Regulation)':       [5,  9.5, 8.5, 9, 4.5, 7  ],
-            'China (Sovereignty)':   [10, 7,   10,  3, 10,  9  ],
-            'India (Inclusion)':     [6,  4,   7,   8, 8,   9  ],
-            'Singapore (Regional)':  [6,  9,   6,   10,9,   8  ],
-          };
+          const profiles = {'US (Infrastructure)':'United States','EU (Regulation)':'European Union','China (Sovereignty)':'China','India (Inclusion)':'India','Singapore (Regional)':'Singapore'};
+          const means = countryMeans();
+          const ARCHETYPE_SCORES = Object.fromEntries(Object.entries(profiles).map(([label,country])=>[label,Object.keys(DIM_LABELS).map(k=>means.find(r=>r.country===country)[k])]));
           const ARCHETYPE_RADAR_COLORS = {
             'US (Infrastructure)':  '#3b82f6', // blue
             'EU (Regulation)':      '#8b5cf6', // violet
@@ -1363,32 +2354,32 @@
           const summaries = {
             'US (Infrastructure)': {
               exemplars: 'Stargate ($500B ambition, over 10GW secured per OpenAI), CHIPS Act ($52.7B)',
-              thesis: 'Overwhelm through scale and private capital. Own the compute layer and frontier model access follows.',
+              thesis: 'Overwhelm through scale and private capital. Compute scale does not guarantee access to every frontier model: ownership, export controls and provider terms remain separate.',
               currentState: 'OpenAI reported surpassing its 10GW secured-capacity goal in April 2026. Abilene supports training. Contracted capacity and operational service availability remain distinct.',
-              risk: 'Execution risk on energy and grid; regulatory fragmentation; concentration in 3 companies.',
+              risk: 'Execution risk on energy and grid; regulatory fragmentation; concentration among a small number of providers.',
             },
             'EU (Regulation)': {
               exemplars: 'AI Act (enforcement active), AI Factories (19 + 13 Antennas)',
               thesis: 'Set the global compliance standard. Combine governance with shared compute access and regional model development.',
               currentState: 'Enforcement powers apply from August 2026. Commission high-risk timeline: December 2027 / August 2028. Gigafactories tender opened July 2026.',
-              risk: 'Over-regulation risk; compute gap; EU AI startups face compliance overhead US and China counterparts do not.',
+              risk: 'Over-regulation risk; compute gap; uneven implementation; external supplier dependencies and compliance costs.',
             },
             'China (Sovereignty)': {
               exemplars: 'DeepSeek (efficiency breakthrough), Huawei Ascend, NGAIDP',
               thesis: 'Develop domestic models and accelerators while reducing exposure to external suppliers.',
               currentState: 'DeepSeek V4 released 24 April 2026. Domestic models and accelerators strengthen capability, while supply-chain dependencies remain.',
-              risk: 'Chip performance gap vs NVIDIA persists; talent suppression risk; opacity reduces external adoption.',
+              risk: 'Advanced accelerator and fabrication dependencies; uncertain operational capacity and limited disclosure of delivery metrics.',
             },
             'India (Inclusion)': {
-              exemplars: 'IndiaAI Mission (45,000+ reported shared GPUs, ~$1.25B mission budget)',
+              exemplars: 'IndiaAI Mission (45,000+ reported shared GPUs, ₹10,371.92 crore approved mission outlay)',
               thesis: '"AI for All" - apply AI to 1.4B people across 22 official languages. Access sovereignty over stack sovereignty.',
-              currentState: 'Shared capacity exceeded 45,000 GPUs by June; 237 projects approved for 9.318M GPU hours by August. Sarvam released 30B and 105B models in March. Investment forecasts are not delivered expenditure.',
+              currentState: 'Shared capacity exceeded 45,000 GPUs by June; 237 projects accessing subsidised compute covering 9.318M GPU hours by August. Sarvam released 30B and 105B models in March. Investment forecasts are not delivered expenditure.',
               risk: 'Energy reliability; foreign GPU dependency; talent retention; last-mile deployment in tier 2/3 cities.',
             },
             'Singapore (Regional)': {
-              exemplars: 'SEA-LION v4.5 and regional model ecosystem, MERaLiON, SEA-Guard, SGD$70M NMLP',
-              thesis: 'Build the open regional layer. A shared multilingual model serves 700M Southeast Asians at a fraction of the cost of competing nationally.',
-              currentState: 'SEA-LION now lists v4.5 variants; SEA-Guard and embeddings extend the ecosystem. NAIIP targets 10,000 enterprises and 100,000 workers over three years.',
+              exemplars: 'SEA-LION v4.8 / v4.5 and regional model ecosystem, MERaLiON, SEA-Guard, SGD$70M NMLP',
+              thesis: 'Build the open regional layer. A shared multilingual model supports regional languages through shared development and deployment; no comparable national cost ratio is asserted.',
+              currentState: 'SEA-LION now lists v4.8 and v4.5 variants; SEA-Guard and embeddings extend the ecosystem. NAIIP targets 10,000 enterprises and 100,000 workers over three years.',
               risk: 'Resource constrained; dependent on global base models; ASEAN political fragmentation.',
             },
           };
@@ -1397,7 +2388,7 @@
             <div className="space-y-5">
               <div className="glass-panel rounded-xl p-5 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-100 tracking-tight mb-2">Five Strategic Archetypes - October 2026 State</h2>
-                <p className="text-sm text-slate-400">Each archetype reflects a different definition of winning in AI. The radar shows how they trade off across six dimensions.</p>
+                <p className="text-sm text-slate-400">Archetypes describe strategic emphasis. Radar values use the same full-coverage programme means as the scorer and heatmap; they are editorial profiles, not separate measurements of national performance.</p>
               </div>
               <div className="glass-panel rounded-xl p-5 shadow-lg flex justify-center items-center">
                 <div className="w-full max-w-2xl h-[400px]">
@@ -1455,9 +2446,33 @@
           );
         }
 
+        function ReviewView() {
+          const notes = [
+            ['United States','Frontier developers and operational training infrastructure documented; 10GW is secured capacity, not total operational power. Government/provider access controls can still limit availability.'],
+            ['China','Infrastructure 10→9, sovereignty 10→8, speed 10→8 remove unsupported maximum scores. Domestic models and accelerators retain credit; international fabrication/equipment dependencies remain. Data control 10→8 avoids equating extensive regulation with complete control.'],
+            ['United Kingdom','Domestic general-purpose capability 3 and default programme posture 62 retained. Strong talent is distinct from Google ownership. Up-to-£500M was already announced before April launch; launch is not evidence of a fresh £500M appropriation or disbursement.'],
+            ['France / EU','Mistral preview versus pending weights preserved; compute source updated to /cloud. EU Factories classified as infrastructure. AI Omnibus and InvestAI added; sovereign cloud SEAL is a provider/procurement assessment, not a national score. EU data control 10→8 aligns the assessment with France under their shared laws.'],
+            ['Canada','Rimouski operational operator evidence was missing: compute/infrastructure 5→6 and programme speed 5→6. Expansion targets remain plans.'],
+            ['Japan','RIKYU has 1,600 installed Blackwell GPUs with early-access operation. The old 2,140 count covers two announced systems. Society 5.0 began in 2016, not 2019.'],
+            ['India','Shared provider compute is distinct from government ownership. PIB access/outcome reporting replaces “approved hours” wording. Budget shown in rupees; no undated dollar conversion.'],
+            ['Singapore','Current repository lists v4.8 Nemotron-based adaptations as well as v4.5; earlier from-scratch v1 is acknowledged. Adoption targets remain targets.'],
+            ['United Arab Emirates','Compute 8→6, programme infrastructure 9→6 and speed 9→5 remove plan-based delivery credit. Falcon capability is separate from Stargate commissioning.'],
+            ['Saudi Arabia','ALLaM weights were omitted: capability 3→4 and model control 4→6. M3 remains evaluation-only. Programme sovereignty 7→6 recognises remaining dependencies. Oxagon construction and non-binding financing are separately labelled.'],
+            ['South Korea / Switzerland','Added model-only profiles for K-EXAONE and Apertus. No posture scores assigned without comparable programme review; Switzerland is outside the EU.']
+          ];
+          return <div className="space-y-5">
+            <section className="glass-panel rounded-xl p-5 space-y-3 text-sm text-slate-300"><h2 className="text-lg font-bold text-white">Independent review — 9 October 2026</h2><p>This review rechecks the evidence and the calculation assumptions. It corrects both overstated plans and overlooked operational progress. Editorial scores are comparisons within the selected sample, not measured national indices; a source confirms the associated facts, not the exact score.</p><p>The strategy sample has {new Set(INITIATIVES.map(i=>i.country)).size-1} countries plus the EU, across {INITIATIVES.length} programmes. Models &amp; Control covers {MODEL_CAPABILITIES.length-1} countries plus the EU. Hardware examples and timeline actors have wider coverage; their absence from scoring is deliberate and does not imply zero capability.</p><p>Important coverage gaps remain: Germany, Italy, Spain and other EU national strategies; Israel, Taiwan, Australia, Brazil and African economies; complete domestic model inventories; procurement contracts, switching rights, installed accelerator totals, utilisation, energy prices and outcomes measured on a common basis. The EU and France overlap. These gaps prevent a defensible global league table.</p></section>
+            <section className="glass-panel rounded-xl p-5"><h3 className="text-base font-bold text-white mb-3">What changed and why</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead className="text-slate-400"><tr><th className="p-2">Coverage</th><th className="p-2">Review finding / score rationale</th></tr></thead><tbody className="divide-y divide-slate-800">{notes.map(([country,note])=><tr key={country}><th className="p-3 text-slate-200">{country}</th><td className="p-3 text-slate-300 leading-relaxed">{note}</td></tr>)}</tbody></table></div></section>
+            <section className="glass-panel rounded-xl p-5 text-sm text-slate-300 space-y-3"><h3 className="font-bold text-white">How evidence is treated</h3><p>Government sources establish official policy, funding envelopes and reported outcomes. Operator/developer sources establish reported operation, model release and terms; their performance and sovereignty claims are not independent audits. Model cards establish release-specific rights. Independent evaluators provide dated, task-specific comparisons rather than universal frontier certification. Unknown delivery or rights are marked as unknown, not treated as zero.</p><p>Model sovereignty has several routes: domestic frontier development; a controlled domestic specialist; licensed local deployment of imported weights; and diversified foreign services. A country can run useful sovereign inference without building a frontier model. Research location, corporate control, training provenance and deployment rights are separate tests.</p><p>Compute scores consider accessible operation and delivery evidence; model-control scores consider developer control and deployment/adaptation rights; data scores consider governance instruments and access safeguards. Data scores do not measure privacy quality, democratic accountability or immunity from foreign lawful access. No score certifies complete independence.</p><p>Unresolved evidence includes Stargate UAE commissioning at announced scale; a Stargate UK restart; M3 reference-model provenance and production rights; complete disbursement totals for headline funds; and the delivery status of every announced GPU partnership. Target dates are preserved without claiming completion.</p></section>
+            <section className="glass-panel rounded-xl p-5"><h3 className="font-bold text-white mb-3">Coverage and default programme posture</h3><div className="overflow-x-auto"><table className="w-full text-xs text-left"><thead><tr><th className="p-2">Jurisdiction</th><th className="p-2">Model category</th><th className="p-2">Strategy programmes</th><th className="p-2">Default /100</th></tr></thead><tbody>{MODEL_CAPABILITIES.map(m=>{const row=weightedScores(INITIATIVES,DEFAULT_WEIGHTS).find(r=>r.country===m.country);return <tr className="border-t border-slate-800" key={m.country}><th className="p-2">{m.country}</th><td className="p-2">{m.category}</td><td className="p-2">{row?.count ?? 'Not reviewed'}</td><td className="p-2">{row?.score ?? 'Not scored'}</td></tr>})}</tbody></table></div></section>
+          </div>;
+        }
+
         // 4. MAIN APP
         function App() {
-          const [tab, setTab] = useState('scqa');
+          const [tab, setTab] = useState(()=>TABS.some(t=>t.id===window.location.hash.slice(1))?window.location.hash.slice(1):'scqa');
+          useEffect(()=>{window.history.replaceState(null,'','#'+tab);},[tab]);
+          useEffect(()=>{const change=()=>{const id=window.location.hash.slice(1);if(TABS.some(t=>t.id===id))setTab(id);};window.addEventListener('hashchange',change);return()=>window.removeEventListener('hashchange',change);},[]);
           return (
             <div className="text-slate-100 font-sans pb-12">
               <header className="px-4 py-8 border-b border-slate-800/80 relative overflow-hidden"
@@ -1467,13 +2482,13 @@
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></div>
-                      <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Reviewed 8 October 2026 • 14 Initiatives • 10 Countries + EU</div>
+                      <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Reviewed 9 October 2026 • {INITIATIVES.length} Programmes • 10 Strategy Countries + EU • 12 Model Countries + EU</div>
                     </div>
                     <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tighter mb-3">
                       The National AI Race<br className="hidden md:block" /> Promise, Delivery, and Sovereignty
                     </h1>
                     <p className="text-base text-slate-400 font-medium max-w-3xl leading-relaxed">
-                      EU enforcement active • 19 AI Factories • DeepSeek V4 released • Sarvam open weights • UK Sovereign AI launched • Delivery distinguished from ambition
+                      EU enforcement active • 19 AI Factories • DeepSeek V4 released • Sarvam open weights • Operational evidence and plans separated • Sources and coverage disclosed
                     </p>
                   </div>
                   
@@ -1491,7 +2506,7 @@
               <nav className="sticky top-0 z-50 glass-panel border-b border-slate-800 shadow-sm overflow-x-auto">
                 <div className="flex gap-2 px-4 py-3 min-w-max max-w-6xl mx-auto">
                   {TABS.map(t => (
-                    <button key={t.id} onClick={() => setTab(t.id)}
+                    <button key={t.id} onClick={() => setTab(t.id)} aria-pressed={tab === t.id}
                       className={`px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-all duration-200
                         ${tab === t.id ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'}`}>
                       {t.label}
@@ -1501,6 +2516,7 @@
               </nav>
 
               <main className="p-4 md:p-6 lg:p-8 max-w-6xl mx-auto mt-4">
+                {tab === 'review' && <ReviewView />}
                 {tab === 'scqa'       && <SCQAView />}
                 {tab === 'timeline'   && <TimelineView />}
                 {tab === 'sovereign'  && <SovereignAIView />}
@@ -1513,9 +2529,9 @@
 
               <footer className="max-w-6xl mx-auto px-4 mt-8">
                   <div className="glass-panel rounded-xl p-5 text-center text-xs text-slate-500 leading-relaxed font-mono">
-                    <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 8 October 2026</h2>
-                    <p className="text-slate-400 mb-3">Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 8 October 2026. Coverage is selective.</p>
-                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar archetypes are illustrative fixed profiles. Model-control scores were reassessed separately from frontier capability; Saudi control is 4 because its preview weights remain unavailable; UK compute previously fell 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. UK domestic capability is corrected 9→3 by removing US-controlled Gemini credit; tech sovereignty 6→4 changes default posture 66→62. Other scores remain comparative judgments. Models &amp; Control documents the new capability/control rubric and evidence; capability is not included in the six-factor posture calculation.</p>
+                    <h2 className="text-sm font-bold text-slate-200 mb-3">Sources and methodology · Reviewed 9 October 2026</h2>
+                    <p className="text-slate-400 mb-3">See Review &amp; Coverage for the independent review and remaining gaps. Source dates vary. Announcements retain their original date; expected completion is not treated as delivery. This review corrects the April edition and checks material developments through 9 October 2026. Coverage is selective.</p>
+                    <p className="text-slate-400 mb-3">Scores are editorial 1–10 assessments: 1–3 early capability, 4–6 developing, 7–8 strong, 9–10 leading within this sample. They are not independently audited measurements. Country posture scores average selected initiative scores, then apply your weights; programme selection affects the result. Radar profiles now use the same selected-programme means as the default scorer and heatmap. Model-control scores were reassessed separately from frontier capability; Saudi model control is 6 after including ALLaM weights separately from the restricted M3 preview; UK compute previously fell 6→5, initiative infrastructure 6→5 and execution speed 7→5 following the Stargate UK pause, while delivered public compute retains credit. UK domestic capability is corrected 9→3 by removing US-controlled Gemini credit; tech sovereignty 6→4 changes default posture 66→62. Other scores remain comparative judgments. Models &amp; Control documents the new capability/control rubric and evidence; capability is not included in the six-factor posture calculation.</p>
                     <p className="text-slate-400 mb-3">Investment figures retain original currencies and scopes. Public allocations, private ambitions and total project budgets are not directly comparable or summed. “Not stated” means no comparable verified amount is asserted. The EU overlaps with France; do not add their figures.</p>
                     <p className="text-slate-400 mb-3">UK funding scope: £500M is the Sovereign AI fund envelope, not a verified disbursement total, new installed compute, or a dedicated frontier training budget. The reviewed evidence does not establish that the whole amount is new incremental spending. <a className="text-blue-400 underline" href="https://www.sovereignai.gov.uk/faqs" target="_blank" rel="noopener noreferrer">Official fund scope ↗</a>. <a className="text-blue-400 underline" href="https://whyaiman.substack.com/p/how-serious-is-the-uk-about-artificial" target="_blank" rel="noopener noreferrer">Why Aiman critique ↗</a> is commentary on mixed investment headlines, power and grid constraints; funding delivery is assessed against official disclosures.</p>
                     <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
@@ -1533,7 +2549,7 @@
                       <a className="text-blue-400 underline" href="https://www.pif.gov.sa/en/news-and-insights/press-releases/2025/hrh-crown-prince-launches-humain-as-global-ai-powerhouse/" target="_blank" rel="noopener noreferrer">HUMAIN launch ↗</a>
                       <a className="text-blue-400 underline" href="https://nvidianews.nvidia.com/news/humain-and-nvidia-announce-strategic-partnership-to-build-ai-factories-of-the-future-in-saudi-arabia" target="_blank" rel="noopener noreferrer">HUMAIN/NVIDIA plan ↗</a>
                       <a className="text-blue-400 underline" href="https://node.humain.com/legal/model-terms" target="_blank" rel="noopener noreferrer">HUMAIN preview terms ↗</a>
-                      <a className="text-blue-400 underline" href="https://mistral.ai/compute/" target="_blank" rel="noopener noreferrer">Mistral compute ↗</a>
+                      <a className="text-blue-400 underline" href="https://mistral.ai/cloud/" target="_blank" rel="noopener noreferrer">Mistral compute ↗</a>
                       <a className="text-blue-400 underline" href="https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age/" target="_blank" rel="noopener noreferrer">US Stargate progress ↗</a>
                       <a className="text-blue-400 underline" href="https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing" target="_blank" rel="noopener noreferrer">RIKEN / FugakuNEXT ↗</a>
                     </div>
@@ -1550,3 +2566,4 @@
     </script>
 </body>
 </html>
+
