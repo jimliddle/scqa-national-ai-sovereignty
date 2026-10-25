@@ -4,11 +4,21 @@ A dashboard comparing national AI programmes, model ownership and infrastructure
 
 Published page: https://jimliddle.github.io/scqa-national-ai-sovereignty/
 
-## Evidence review — 9 October 2026
+## UK update — 25 October 2026
+
+The UK SCQA, programme inventory, model/control notes, supply-chain view and timeline now incorporate [HM Treasury’s 24 October announcement](https://www.gov.uk/government/news/chancellor-unveils-britains-ambitious-plan-for-ai), with the editor’s accompanying analysis. Other jurisdictions retain the 9 October review date.
+
+- The four named security commitments total **£415M**: biosecurity £165M (including the £100M lab), AISI £120M, National Cyber Shield £60M (including a £25M challenge fund), and NERV £70M. Included sub-allocations are counted once.
+- Additional Sovereign AI support is **£60M for the fund and £60M for R&D procurement**. The package also announces £18M for chip-design skills, £15M for a challenge prize, £23M over three years for the AI Economics Institute, and £30M for local partnerships. No separate amount is stated for the Manchester government cyber/AI training centre. The release does not give a common spending period for every line.
+- Up to **£200M in OpenAI/Anthropic model credits** for the proposed Biosecurity Lab is service access, separate from cash funding and model ownership. Google DeepMind and Basecamp Research are also named partners. Continuing costs, access, data handling and supplier switching need contractual scrutiny; chip-design skills do not establish fabrication capacity.
+- The analysis asks whether spending creates technology Britain can control. It prioritises procurement that creates paying demand for UK suppliers, whole-service costs and reliable service outcomes, with training linked to actual work and practical support for affected workers. Treasury’s NHS examples are attributed reports about existing adoption, not results of the new package.
+- **Scores remain unchanged:** domestic general-purpose capability 3/10, model control 4/10, compute 5/10, data 7/10 and default programme posture 62/100. Funding commitments and proposed programmes do not establish released models, working capacity, stronger contractual rights or delivered outcomes. Historical fund envelopes and private pledges are kept separate.
+
+## Base evidence review — 9 October 2026
 
 The review covers ten countries plus the European Union across 14 programmes. Models & Control covers fourteen countries plus the EU; South Korea, Switzerland, Germany and Spain have model-only profiles. Coverage is selective and too limited for a global ranking. EU coverage overlaps with France, Germany and Spain. The Review & Coverage view explains corrections, evidence limits and missing coverage.
 
-The 60-milestone timeline runs newest first, from October 2026 back to 2017. Source links accompany every milestone. Exact dates are used where supported; month, quarter and year-only records retain their precision. Future targets remain in the announcement record and are not shown as completed events.
+The 61-milestone timeline runs newest first, from 24 October 2026 back to 2017. Source links accompany every milestone. Exact dates are used where supported; month, quarter and year-only records retain their precision. Future targets remain in the announcement record and are not shown as completed events.
 
 ## Findings and corrections
 

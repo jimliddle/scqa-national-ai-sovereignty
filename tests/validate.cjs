@@ -7,7 +7,7 @@ const code = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/)[1];
 const context = {};
 vm.createContext(context);
 vm.runInContext(code.slice(code.indexOf('const TABS'), code.indexOf('// 3. COMPONENTS')) +
-  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
+  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, ARCHETYPE_COLORS, UK_UPDATE, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
 vm.runInContext(code.slice(code.indexOf('function timelineKey'), code.indexOf('function TimelineView')) + '\nthis.timelineKey = timelineKey;', context);
 const d = context.data;
 for (const rows of [d.MODEL_CAPABILITIES, d.SOVEREIGN_DATA]) {
@@ -38,7 +38,15 @@ for (const row of d.TIMELINE_EVENTS) assert(Number.isFinite(context.timelineKey(
 assert.equal(context.timelineKey('2026-08'), context.timelineKey('2026-Aug'));
 assert.equal(context.timelineKey('2024-Q4'), context.timelineKey('2024-Oct'));
 const events = [...d.TIMELINE_EVENTS].sort((a,b)=>context.timelineKey(b.date)-context.timelineKey(a.date));
-assert.equal(events[0].date, '2026-10-06');
+assert.equal(events[0].date, '2026-10-24');
+assert.equal(events[0].sourceUrl, d.UK_UPDATE.sourceUrl);
+for (const row of d.TIMELINE_EVENTS) assert(d.ARCHETYPE_COLORS[row.category], 'Timeline category must render and filter');
+const ukSubtotal = group => d.UK_UPDATE.commitments.filter(c => c.group === group).reduce((sum,c) => sum+c.amount,0);
+assert.equal(ukSubtotal('Security'), 415, 'Included lab/challenge allocations must not be counted twice');
+assert.equal(ukSubtotal('Fund and procurement'), 120, 'Fund and procurement support are separate £60M lines');
+for (const rows of [d.MODEL_CAPABILITIES, d.SOVEREIGN_DATA, d.INITIATIVES]) {
+  assert(rows.find(r => r.country === 'United Kingdom').sources.some(([,url]) => url === d.UK_UPDATE.sourceUrl));
+}
 assert.equal(events.at(-1).date, '2017');
 assert(html.includes('timelineKey(b.date) - timelineKey(a.date)'), 'UI must sort newest first');
 console.log(`PASS: coverage, sources, score bounds, arithmetic, undefined weights, programme selection and ${events.length} newest-first milestones.`);
