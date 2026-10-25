@@ -7,7 +7,7 @@ const code = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/)[1];
 const context = {};
 vm.createContext(context);
 vm.runInContext(code.slice(code.indexOf('const TABS'), code.indexOf('// 3. COMPONENTS')) +
-  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, ARCHETYPE_COLORS, EVIDENCE_UPDATES, UK_UPDATE, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
+  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, ARCHETYPE_COLORS, EVIDENCE_UPDATES, SCORE_REVIEW, UK_UPDATE, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
 vm.runInContext(code.slice(code.indexOf('function timelineKey'), code.indexOf('function TimelineView')) + '\nthis.timelineKey = timelineKey;', context);
 const d = context.data;
 for (const rows of [d.MODEL_CAPABILITIES, d.SOVEREIGN_DATA]) {
@@ -21,7 +21,8 @@ for (const row of [...d.MODEL_CAPABILITIES, ...d.INITIATIVES, ...d.SOVEREIGN_DAT
   for (const [label, url] of row.sources) { assert(label); assert.match(url, /^https:\/\//); }
 }
 const scores = d.weightedScores(d.INITIATIVES, d.DEFAULT_WEIGHTS);
-assert.equal(scores.find(r => r.country === 'United Kingdom').score, 62);
+assert.equal(scores.find(r => r.country === 'United Kingdom').score, 60);
+assert.equal(scores.find(r => r.country === 'European Union').score, 67);
 assert.equal(scores.find(r => r.country === 'United Arab Emirates').score, 60);
 assert.equal(scores.find(r => r.country === 'Canada').score, 71);
 assert.equal(scores.find(r => r.country === 'Saudi Arabia').score, 48);
@@ -50,7 +51,7 @@ for (const update of d.EVIDENCE_UPDATES) {
 assert.equal(d.EVIDENCE_UPDATES.find(u => u.id === 'cst').documentDate, '2026-07-30');
 assert.equal(d.EVIDENCE_UPDATES.find(u => u.id === 'cst').date, '2026-10-19');
 assert(!d.INITIATIVES.some(r => r.country.includes('Greece')), 'A project example must not create a country programme score');
-assert.equal(d.CAPACITY_EXAMPLES.find(r => r.project === 'DAEDALUS / PHAROS').status, 'Inaugurated; previously benchmarked');
+assert.equal(d.CAPACITY_EXAMPLES.find(r => r.project === 'DAEDALUS / PHAROS').status, 'Installed / benchmarked; user access planned');
 assert.equal(d.CAPACITY_EXAMPLES.find(r => r.project === 'Loughton').gpus, null, 'No installed hardware count follows from the old project plan');
 for (const row of d.TIMELINE_EVENTS) assert(d.ARCHETYPE_COLORS[row.category], 'Timeline category must render and filter');
 const ukSubtotal = group => d.UK_UPDATE.commitments.filter(c => c.group === group).reduce((sum,c) => sum+c.amount,0);
@@ -90,9 +91,33 @@ const scenario = d.scenarioRows({models:{'United Kingdom':{control:8}},sovereign
 assert.equal(scenario.sovereign.find(r=>r.country==='United Kingdom').model,8);
 assert.equal(scenario.models.find(r=>r.country==='United Kingdom').control,8);
 assert.equal(d.sovereignAverage(scenario.sovereign.find(r=>r.country==='United Kingdom')),(9+8+7)/3);
-assert.equal(d.weightedScores(scenario.programmes,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,72);
+assert.equal(d.weightedScores(scenario.programmes,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,70);
 assert.equal(d.countryMeans(scenario.programmes).find(r=>r.country==='United Kingdom').infra,10);
 assert.equal(JSON.stringify({models:d.MODEL_CAPABILITIES, sovereign:d.SOVEREIGN_DATA, programmes:d.INITIATIVES}),baseline);
 assert.equal(d.scenarioRows({}).sovereign.find(r=>r.country==='United Kingdom').model,4);
-assert.equal(d.weightedScores(d.scenarioRows({}).programmes,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,62);
+assert.equal(d.weightedScores(d.scenarioRows({}).programmes,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,60);
 console.log('PASS: custom weights, zero-weight handling, shared model control, programme recalculation and baseline preservation.');
+
+// The audit record must agree with the live published inputs and calculation.
+assert.equal(d.SCORE_REVIEW.decisions.length, 12);
+const revised=d.SCORE_REVIEW.decisions.filter(r=>r.before!==r.after);
+assert.equal(revised.length,1);
+assert.equal(revised[0].country,'United Kingdom');
+assert.equal(revised[0].dimension,'speed');
+assert.equal(revised[0].before,5);
+assert.equal(revised[0].after,4);
+const reviewDatasets={programmes:d.INITIATIVES,models:d.MODEL_CAPABILITIES,sovereign:d.SOVEREIGN_DATA};
+for(const decision of d.SCORE_REVIEW.decisions){
+  const row=reviewDatasets[decision.kind].find(r=>r.country===decision.country && (!decision.programme || r.initiative===decision.programme));
+  assert(row,decision.label);
+  assert.equal(row[decision.dimension],decision.after,decision.label+' must match the published data');
+  assert(decision.rationale && decision.next && decision.sources.length);
+  for(const id of decision.sources) assert.match(d.SCORE_REVIEW.sources[id][1],/^https:\/\//);
+}
+const beforeReview=d.INITIATIVES.map(row=>({...row,...Object.fromEntries(d.SCORE_REVIEW.decisions.filter(r=>r.kind==='programmes' && r.programme===row.initiative).map(r=>[r.dimension,r.before]))}));
+assert.equal(d.weightedScores(beforeReview,d.DEFAULT_WEIGHTS).find(r=>r.country==='United Kingdom').score,62);
+assert.equal(d.weightedScores(beforeReview,d.DEFAULT_WEIGHTS).find(r=>r.country==='European Union').score,67);
+assert.equal(d.countryMeans().find(r=>r.country==='United Kingdom').speed,4);
+assert.equal(d.INITIATIVES.length,14);
+assert.equal(JSON.stringify(d.DEFAULT_WEIGHTS),JSON.stringify({infra:5,regulation:3,sovereignty:4,openness:3,speed:5,talent:5}));
+console.log('PASS: 12 review decisions match published inputs; only UK execution changes, posture 62→60, fixed coverage and weights.');

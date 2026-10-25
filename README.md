@@ -4,6 +4,26 @@ A dashboard comparing national AI programmes, model ownership and infrastructure
 
 Published page: https://jimliddle.github.io/scqa-national-ai-sovereignty/
 
+## Focused UK/EU score review — 25 October 2026
+
+The review records **12 input decisions: one revision and 11 retentions**. Only UK programme execution changes, **5→4**, reducing default posture **62→60**. The EU’s default posture remains **67/100**. Sources, reasons and evidence that would trigger reconsideration are published in the SCQA and Review & Coverage views.
+
+| Assessment | Before → after | Decision |
+| --- | --- | --- |
+| UK programme execution | 5→4 | The additional adverse customer-commitment outcome changes the reviewed delivery record. Existing public delivery limits the reduction to one point. |
+| UK programme infrastructure; compute control | Each 5→5 | Installed AIRR credit is retained. Planned expansion risk is accounted for in execution. |
+| UK programme tech sovereignty; model control | Each 4→4 | Funding and proposals do not establish stronger ownership or deployment rights. |
+| UK domestic model capability | 3→3 | No new demonstrated capability is established by the evidence examined. |
+| EU AI Factories infrastructure; execution; tech sovereignty | 7→7; 5→5; 8→8 | Installation and access remain separate milestones. |
+| EU compute control | 6→6 | Additional installed-system evidence does not establish wider production access or changed operating rights. |
+| EU domestic model capability; model control | Each 7→7 | The new evidence does not establish another point of capability or new release-specific rights. |
+
+[GRNET’s operator account](https://grnet.gr/en/2026/10/19/national-supercomputer-daedalus-inaugurated/) plans gradual DAEDALUS user access in December after configuration. That strengthens the distinction between installed/benchmarked hardware and available user service. The [Loughton company statements reported by Reuters](https://www.reuters.com/business/media-telecom/microsoft-pulls-out-uk-data-center-deal-with-nscale-telegraph-reports-2026-10-18/), [earlier Stargate pause](https://questions-statements.parliament.uk/written-questions/detail/2026-04-27/HL16723/) and [operational AIRR evidence](https://questions-statements.parliament.uk/written-questions/detail/2026-04-21/128826) inform the UK delivery judgment.
+
+The one-point execution distinction is editorial: 4 reflects partial delivery alongside repeated unresolved material setbacks; a return to 5 needs evidenced recovery or further material delivery. It is not a formula counting news stories or failed projects. The lost commitment affects execution; installed infrastructure is not deducted again. Restoring execution to 5 would restore 62/100 at the default weights; this is sensitivity analysis, not a statistical confidence interval.
+
+Weights, six criteria and 14-programme coverage stay fixed. Regulatory, data-law, openness and talent inputs, other EU programmes and other jurisdictions are outside this focused review. This is not a new global ranking or full model-benchmark evaluation.
+
 ## October evidence additions — 25 October 2026
 
 Six developments now inform the SCQA, Review & Coverage, timeline and relevant country/control notes:
@@ -15,7 +35,7 @@ Six developments now inform the SCQA, Review & Coverage, timeline and relevant c
 - **[Project SAIL](https://projectsail.co.uk/):** [launched 22 October](https://www.steverigby.com/news/project-sail-sovereign-ai-leadership-moving-from-ambition-to-delivery), with industry proposals on fallbacks, procurement and community benefits. Taskforce membership does not imply endorsement of every recommendation; proposals are not government commitments.
 - **[OECD’s 13 October compute brief](https://www.oecd.org/en/publications/securing-ai-compute_7f96dc99-en/full-report.html):** informs needs-based assessment and evidence limitations. It does not certify dashboard scores.
 
-All published numeric inputs and programme coverage remain unchanged. The additions strengthen evidence and status notes without creating a Greece programme score. Mistral Large 4 retains preview / weights-pending status until the downloadable release and licence are verified. These are targeted updates, not a full re-review of every country to 25 October.
+The evidence-only update initially retained all numeric inputs. The subsequent focused review above changes UK execution only; programme coverage is unchanged. No Greece programme score is inferred. Mistral Large 4 retains preview / weights-pending status until the downloadable release and licence are verified. These are targeted updates, not a full re-review of every country to 25 October.
 
 ## UK update — 25 October 2026
 
@@ -25,7 +45,7 @@ The UK SCQA, programme inventory, model/control notes, supply-chain view and tim
 - Additional Sovereign AI support is **£60M for the fund and £60M for R&D procurement**. The package also announces £18M for chip-design skills, £15M for a challenge prize, £23M over three years for the AI Economics Institute, and £30M for local partnerships. No separate amount is stated for the Manchester government cyber/AI training centre. The release does not give a common spending period for every line.
 - Up to **£200M in OpenAI/Anthropic model credits** for the proposed Biosecurity Lab is service access, separate from cash funding and model ownership. Google DeepMind and Basecamp Research are also named partners. Continuing costs, access, data handling and supplier switching need contractual scrutiny; chip-design skills do not establish fabrication capacity.
 - The analysis asks whether spending creates technology Britain can control. It prioritises procurement that creates paying demand for UK suppliers, whole-service costs and reliable service outcomes, with training linked to actual work and practical support for affected workers. Treasury’s NHS examples are attributed reports about existing adoption, not results of the new package.
-- **Scores remain unchanged:** domestic general-purpose capability 3/10, model control 4/10, compute 5/10, data 7/10 and default programme posture 62/100. Funding commitments and proposed programmes do not establish released models, working capacity, stronger contractual rights or delivered outcomes. Historical fund envelopes and private pledges are kept separate.
+- **Focused review:** domestic general-purpose capability 3/10, model control 4/10 and compute 5/10 are retained; data remains 7/10 outside this scoring review. Programme execution changes 5→4, taking default posture to **60/100**. Funding commitments and proposed programmes do not establish released models, working capacity, stronger contractual rights or delivered outcomes. Historical fund envelopes and private pledges are kept separate.
 
 ## Base evidence review — 9 October 2026
 
@@ -36,7 +56,7 @@ The 67-milestone timeline runs newest first, from 24 October 2026 back to 2017. 
 ## Findings and corrections
 
 - UK domestic general-purpose model capability remains **3/10**, independent of its **9/10 talent** assessment. US-controlled Google Gemini receives no UK domestic frontier ownership credit. France/EU retain **7/10** for Mistral as a frontier challenger, with Large 4 preview access distinguished from pending end-October weights. Capability scores are editorial classifications, not benchmark conversions.
-- The UK Stargate pause remains reflected in infrastructure and execution scores. The up-to-£500M fund was already announced before its April launch; the announced budget does not establish how much has been spent or reserved for frontier training. Default UK programme posture remains **62/100**.
+- The UK Stargate pause was reflected in the 9 October infrastructure and execution inputs, producing **62/100** before the 25 October execution revision to **60/100**. The up-to-£500M fund was already announced before its April launch; the announced budget does not establish how much has been spent or reserved for frontier training.
 - UAE compute control changes **8→6**, programme infrastructure **9→6**, and execution **9→5**: announced campus capacity does not establish commissioning. Default posture changes **74→60**.
 - China programme infrastructure changes **10→9**, sovereignty **10→8**, and execution **10→8**. Domestic models and accelerators retain credit, while supply-chain dependencies and uneven delivery do not justify maximum scores.
 - China/EU data control changes **10→8**: extensive laws do not establish complete data control. EU and France now share the same assessment under their common framework.
@@ -54,7 +74,7 @@ Government and operator claims are attributed as such. Primary sources document 
 - Japan’s LLM-jp4.1 release changes model control **6→8**; capability stays **4/10**. The model card cautions against direct production use.
 - German Kolibri and Spanish ALIA-40B add specialist/base-model coverage. The profiles explain their licences and deployment limits. Neither country receives a programme score without a review of its programmes.
 - The Cohere–Aleph Alpha agreement remains subject to regulatory approval. Mistral’s international minority investment is distinguished from a foreign controlling parent.
-- The UK AIRR entries list operational capacity: **5,448 GH200** in Isambard-AI and **1,024 Intel Max 1550** in Dawn. UK default posture stays **62/100**; existing public compute remains included despite the Stargate pause.
+- The UK AIRR entries list operational capacity: **5,448 GH200** in Isambard-AI and **1,024 Intel Max 1550** in Dawn. That infrastructure credit is retained while the separate execution revision brings default posture to **60/100**.
 - Germany’s Industrial AI Cloud is operational. Norway’s newer Nscale announcement covers more than **30,000 additional Rubin GPUs for Microsoft in 2027**. The 16 compute-project examples distinguish operation, plans, inauguration, customer-agreement status and authorisations, and do not sum unlike hardware.
 - Supply & Access covers chip design, fabrication, lithography and memory, replacing the old yes/no chip-design indicator. It explains the AI Diffusion policy change, conditional China licensing and Gulf authorisations without treating permissions as delivery.
 - India’s data-protection rules have phased commencement. The timeline also adds relevant releases, policy and project milestones, remaining newest first.
@@ -65,7 +85,7 @@ Programme scores use six criteria assessed by the editor, each on a 1–10 scale
 
 `Score / 100 = round(10 × Σ(country dimension mean × weight / sum of weights))`
 
-Default weight shares are **20%, 12%, 16%, 12%, 20%, 20%**, respectively. For the UK, this produces **62.4 → 62**. The scorer displays criteria, input means, a worked example, weight shares and selectable programme coverage. Zero total weight is undefined, rather than a score of zero. Countries without selected programmes are omitted. Use Reset and Equal weights to see how the choice of weights changes the result.
+Default weight shares are **20%, 12%, 16%, 12%, 20%, 20%**, respectively. For the UK, the reviewed inputs **5, 7, 4, 8, 4, 9** produce **60.4 → 60**. The scorer displays criteria, input means, a worked example, weight shares and selectable programme coverage. Zero total weight is undefined, rather than a score of zero. Countries without selected programmes are omitted. Use Reset and Equal weights to see how the choice of weights changes the result.
 
 Radar and heatmap share the full-coverage programme means with the default scorer. Programme selection changes only the interactive scorer. A regulatory programme and an infrastructure programme have different purposes: their average describes the programmes reviewed and cannot represent the entire economy.
 
