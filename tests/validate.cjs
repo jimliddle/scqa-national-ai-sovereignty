@@ -7,7 +7,7 @@ const code = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/)[1];
 const context = {};
 vm.createContext(context);
 vm.runInContext(code.slice(code.indexOf('const TABS'), code.indexOf('// 3. COMPONENTS')) +
-  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, ARCHETYPE_COLORS, UK_UPDATE, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
+  '\nthis.data = {TABS, CAPACITY_EXAMPLES, MODEL_CAPABILITIES, SOVEREIGN_DATA, INITIATIVES, TIMELINE_EVENTS, ARCHETYPE_COLORS, EVIDENCE_UPDATES, UK_UPDATE, DEFAULT_WEIGHTS, weightedScores, sovereignAverage, scenarioRows, countryMeans};', context);
 vm.runInContext(code.slice(code.indexOf('function timelineKey'), code.indexOf('function TimelineView')) + '\nthis.timelineKey = timelineKey;', context);
 const d = context.data;
 for (const rows of [d.MODEL_CAPABILITIES, d.SOVEREIGN_DATA]) {
@@ -40,6 +40,18 @@ assert.equal(context.timelineKey('2024-Q4'), context.timelineKey('2024-Oct'));
 const events = [...d.TIMELINE_EVENTS].sort((a,b)=>context.timelineKey(b.date)-context.timelineKey(a.date));
 assert.equal(events[0].date, '2026-10-24');
 assert.equal(events[0].sourceUrl, d.UK_UPDATE.sourceUrl);
+// Every update must reach the timeline with its own evidence date and source.
+assert.equal(d.EVIDENCE_UPDATES.length, 6);
+assert.equal(new Set(d.EVIDENCE_UPDATES.map(u => u.id)).size, 6);
+for (const update of d.EVIDENCE_UPDATES) {
+  assert(update.status && update.evidence && update.implication);
+  assert(d.TIMELINE_EVENTS.some(e => e.date === update.date && e.sourceUrl === update.sourceUrl));
+}
+assert.equal(d.EVIDENCE_UPDATES.find(u => u.id === 'cst').documentDate, '2026-07-30');
+assert.equal(d.EVIDENCE_UPDATES.find(u => u.id === 'cst').date, '2026-10-19');
+assert(!d.INITIATIVES.some(r => r.country.includes('Greece')), 'A project example must not create a country programme score');
+assert.equal(d.CAPACITY_EXAMPLES.find(r => r.project === 'DAEDALUS / PHAROS').status, 'Inaugurated; previously benchmarked');
+assert.equal(d.CAPACITY_EXAMPLES.find(r => r.project === 'Loughton').gpus, null, 'No installed hardware count follows from the old project plan');
 for (const row of d.TIMELINE_EVENTS) assert(d.ARCHETYPE_COLORS[row.category], 'Timeline category must render and filter');
 const ukSubtotal = group => d.UK_UPDATE.commitments.filter(c => c.group === group).reduce((sum,c) => sum+c.amount,0);
 assert.equal(ukSubtotal('Security'), 415, 'Included lab/challenge allocations must not be counted twice');

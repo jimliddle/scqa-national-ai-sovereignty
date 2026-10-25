@@ -4,9 +4,22 @@ A dashboard comparing national AI programmes, model ownership and infrastructure
 
 Published page: https://jimliddle.github.io/scqa-national-ai-sovereignty/
 
+## October evidence additions — 25 October 2026
+
+Six developments now inform the SCQA, Review & Coverage, timeline and relevant country/control notes:
+
+- **[CST sovereignty advice](https://www.gov.uk/government/publications/ai-sovereignty-preserving-uk-agency-in-an-ai-enabled-world/ai-sovereignty-preserving-uk-agency-in-an-ai-enabled-world-web-version):** published 19 October, letter dated 30 July. Dependency mapping, accountable governance and domestic-model trials remain recommendations; the proposed public-interest base model is not a released system.
+- **[Loughton reporting](https://www.reuters.com/business/media-telecom/microsoft-pulls-out-uk-data-center-deal-with-nscale-telegraph-reports-2026-10-18/):** records the site-specific customer withdrawal and alternatives under review.
+- **[DAEDALUS / PHAROS](https://www.eurohpc-ju.europa.eu/eurohpc-ju-and-grnet-inaugurate-daedalus-ranked-among-worlds-top-50-supercomputers-2026-10-19_en):** inaugurated 19 October after June benchmarking, with over 2,000 GH200 Superchips. This adds an EU infrastructure example; inauguration is not its first operating date or proof of network-wide delivery.
+- **[Microsoft’s 20 October roadmap](https://blogs.microsoft.com/blog/2026/10/20/advancing-digital-sovereignty-with-greater-control-and-choice/):** distinguishes available capabilities, previews and future Ignite releases. Local operation and domestic technology ownership remain separate assessments.
+- **[Project SAIL](https://projectsail.co.uk/):** [launched 22 October](https://www.steverigby.com/news/project-sail-sovereign-ai-leadership-moving-from-ambition-to-delivery), with industry proposals on fallbacks, procurement and community benefits. Taskforce membership does not imply endorsement of every recommendation; proposals are not government commitments.
+- **[OECD’s 13 October compute brief](https://www.oecd.org/en/publications/securing-ai-compute_7f96dc99-en/full-report.html):** informs needs-based assessment and evidence limitations. It does not certify dashboard scores.
+
+All published numeric inputs and programme coverage remain unchanged. The additions strengthen evidence and status notes without creating a Greece programme score. Mistral Large 4 retains preview / weights-pending status until the downloadable release and licence are verified. These are targeted updates, not a full re-review of every country to 25 October.
+
 ## UK update — 25 October 2026
 
-The UK SCQA, programme inventory, model/control notes, supply-chain view and timeline now incorporate [HM Treasury’s 24 October announcement](https://www.gov.uk/government/news/chancellor-unveils-britains-ambitious-plan-for-ai), with the editor’s accompanying analysis. Other jurisdictions retain the 9 October review date.
+The UK SCQA, programme inventory, model/control notes, supply-chain view and timeline incorporate [HM Treasury’s 24 October announcement](https://www.gov.uk/government/news/chancellor-unveils-britains-ambitious-plan-for-ai), with the editor’s accompanying analysis. The additional targeted evidence updates are documented above; the base review remains dated 9 October.
 
 - The four named security commitments total **£415M**: biosecurity £165M (including the £100M lab), AISI £120M, National Cyber Shield £60M (including a £25M challenge fund), and NERV £70M. Included sub-allocations are counted once.
 - Additional Sovereign AI support is **£60M for the fund and £60M for R&D procurement**. The package also announces £18M for chip-design skills, £15M for a challenge prize, £23M over three years for the AI Economics Institute, and £30M for local partnerships. No separate amount is stated for the Manchester government cyber/AI training centre. The release does not give a common spending period for every line.
@@ -18,7 +31,7 @@ The UK SCQA, programme inventory, model/control notes, supply-chain view and tim
 
 The review covers ten countries plus the European Union across 14 programmes. Models & Control covers fourteen countries plus the EU; South Korea, Switzerland, Germany and Spain have model-only profiles. Coverage is selective and too limited for a global ranking. EU coverage overlaps with France, Germany and Spain. The Review & Coverage view explains corrections, evidence limits and missing coverage.
 
-The 61-milestone timeline runs newest first, from 24 October 2026 back to 2017. Source links accompany every milestone. Exact dates are used where supported; month, quarter and year-only records retain their precision. Future targets remain in the announcement record and are not shown as completed events.
+The 67-milestone timeline runs newest first, from 24 October 2026 back to 2017. Source links accompany every milestone. Exact dates are used where supported; month, quarter and year-only records retain their precision. Future targets remain in the announcement record and are not shown as completed events.
 
 ## Findings and corrections
 
@@ -42,7 +55,7 @@ Government and operator claims are attributed as such. Primary sources document 
 - German Kolibri and Spanish ALIA-40B add specialist/base-model coverage. The profiles explain their licences and deployment limits. Neither country receives a programme score without a review of its programmes.
 - The Cohere–Aleph Alpha agreement remains subject to regulatory approval. Mistral’s international minority investment is distinguished from a foreign controlling parent.
 - The UK AIRR entries list operational capacity: **5,448 GH200** in Isambard-AI and **1,024 Intel Max 1550** in Dawn. UK default posture stays **62/100**; existing public compute remains included despite the Stargate pause.
-- Germany’s Industrial AI Cloud is operational. Norway’s newer Nscale announcement covers more than **30,000 additional Rubin GPUs for Microsoft in 2027**. The 14 compute-project examples distinguish operation, plans and authorisations, and do not sum unlike hardware.
+- Germany’s Industrial AI Cloud is operational. Norway’s newer Nscale announcement covers more than **30,000 additional Rubin GPUs for Microsoft in 2027**. The 16 compute-project examples distinguish operation, plans, inauguration, customer-agreement status and authorisations, and do not sum unlike hardware.
 - Supply & Access covers chip design, fabrication, lithography and memory, replacing the old yes/no chip-design indicator. It explains the AI Diffusion policy change, conditional China licensing and Gulf authorisations without treating permissions as delivery.
 - India’s data-protection rules have phased commencement. The timeline also adds relevant releases, policy and project milestones, remaining newest first.
 
